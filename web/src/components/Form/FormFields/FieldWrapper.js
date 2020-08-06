@@ -86,6 +86,8 @@ class FieldWrapper extends Component {
 			notification,
 			hideCheck = false,
 			outlineClassName = '',
+			tip_text = '',
+			error_disabled = false,
 		} = this.props;
 
 		const displayError = !(active || focused) && (visited || touched) && error;
@@ -121,7 +123,14 @@ class FieldWrapper extends Component {
 						/>
 					)}
 				</FieldContent>
-				<FieldError displayError={displayError} error={error} />
+				{tip_text ? (
+					<span style={{ fontSize: '0.75rem', color: 'var(--form-label)' }}>
+						{tip_text}
+					</span>
+				) : null}
+				{error_disabled ? null : (
+					<FieldError displayError={displayError} error={error} />
+				)}
 			</div>
 		);
 	}

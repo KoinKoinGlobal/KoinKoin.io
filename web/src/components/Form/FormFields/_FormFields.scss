@@ -161,6 +161,23 @@ $placeholder--font-weight: bold;
 	}
 }
 
+.radiofield-wrapper {
+	margin: 0.3rem 0;
+	.radiofield-label {
+		padding: 0 0.25rem;
+		margin-bottom: 0;
+		margin-left: 0.25rem;
+		vertical-align: middle;
+		display: flex;
+		// justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.radiofield-input {
+		margin-top: 2px;
+	}
+}
+
 .toggle_button-wrapper {
 	.toggle-content {
 		padding: 0 1rem;
