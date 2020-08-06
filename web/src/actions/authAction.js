@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import querystring from 'query-string';
 import store from '../store';
 import { setToken, removeToken, getToken } from '../utils/token';
+import { PLUGIN_URL } from '../config/constants';
 
 export function getEmail(data) {
 	localStorage.setItem('email', data);
@@ -68,6 +69,8 @@ export const storeLoginResult = (token) => {
 };
 
 export const performSignup = (values) => axios.post('/signup', values);
+export const performQuestions = (values) =>
+	axios.post('/plugins/questionaire/save', values, { baseURL: PLUGIN_URL });
 
 const setTokenInApp = (token, setInStore = false) => {
 	axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
