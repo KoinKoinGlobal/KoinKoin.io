@@ -3,9 +3,9 @@ import classnames from 'classnames';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import { SubmissionError, change } from 'redux-form';
+import { SubmissionError, change, submit } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { performSignup } from '../../actions/authAction';
+import { performSignup, performQuestions } from '../../actions/authAction';
 import SignupForm, { generateFormFields, FORM_NAME } from './SignupForm';
 import SignupSuccess from './SignupSuccess';
 import { ContactForm } from '../';
@@ -13,6 +13,7 @@ import { IconTitle, Dialog, MobileBarBack } from '../../components';
 import { FLEX_CENTER_CLASSES } from 'config/constants';
 import STRINGS from '../../config/localizedStrings';
 import withConfig from 'components/ConfigProvider/withConfig';
+import QuestionaireContent from './QuestionaireContent';
 
 let errorTimeOut = null;
 
@@ -38,6 +39,8 @@ class Signup extends Component {
 		success: false,
 		showContactForm: false,
 		isReferral: false,
+		isAnswers: false,
+		answers: '',
 	};
 
 	componentDidMount() {
@@ -94,35 +97,91 @@ class Signup extends Component {
 	};
 
 	onSubmitSignup = (values) => {
-		// const affiliation_code = this.getReferralCode();
-		// if (affiliation_code && !values.referral) {
-		// 	values.referral = affiliation_code;
-		// }
-		return performSignup(values)
-			.then((res) => {
-				this.setState({ success: true });
-			})
-			.catch((error) => {
-				const errors = {};
-				errorTimeOut = setTimeout(() => {
-					this.props.change(FORM_NAME, 'captcha', '');
-				}, 5000);
+		if (this.state.isAnswers) {
+			const answers = this.state.answers;
+			return performSignup(values)
+				.then((res) => {
+					this.setState({ success: true });
+					performQuestions({
+						answers,
+						email: values.email,
+						password: values.password,
+					})
+						.then((re) => {
+							console.log(re);
+						})
+						.catch((er) => {
+							console.log(er);
+						});
+				})
+				.catch((error) => {
+					const errors = {};
+					errorTimeOut = setTimeout(() => {
+						this.props.change(FORM_NAME, 'captcha', '');
+					}, 5000);
 
-				if (error.response && error.response.status === 409) {
-					errors.email = STRINGS['VALIDATIONS.USER_EXIST'];
-				} else if (error.response) {
-					const { message = '' } = error.response.data;
-					if (message.toLowerCase().indexOf('password') > -1) {
-						// TODO set error in constants for language
-						errors.password = STRINGS['VALIDATIONS.INVALID_PASSWORD'];
+					if (error.response.status === 409) {
+						errors.email = STRINGS['VALIDATIONS.USER_EXIST'];
+					} else if (error.response) {
+						const { message = '' } = error.response.data;
+						if (message.toLowerCase().indexOf('password') > -1) {
+							// TODO set error in constants for language
+							errors.password = STRINGS['VALIDATIONS.INVALID_PASSWORD'];
+						} else {
+							errors._error = message || error.message;
+						}
 					} else {
-						errors._error = message || error.message;
+						errors._error = error.message;
 					}
-				} else {
-					errors._error = error.message;
-				}
-				throw new SubmissionError(errors);
-			});
+					throw new SubmissionError(errors);
+				})
+				.then(() => {
+					this.setState({ isAnswers: false });
+				});
+		} else {
+			this.setState({ showQuestionaireForm: true });
+		}
+	};
+
+	// onSubmitSignup = (values) => {
+	// 	// const affiliation_code = this.getReferralCode();
+	// 	// if (affiliation_code && !values.referral) {
+	// 	// 	values.referral = affiliation_code;
+	// 	// }
+	// 	return performSignup(values)
+	// 		.then((res) => {
+	// 			this.setState({ success: true });
+	// 		})
+	// 		.catch((error) => {
+	// 			const errors = {};
+	// 			errorTimeOut = setTimeout(() => {
+	// 				this.props.change(FORM_NAME, 'captcha', '');
+	// 			}, 5000);
+
+	// 			if (error.response && error.response.status === 409) {
+	// 				errors.email = STRINGS['VALIDATIONS.USER_EXIST'];
+	// 			} else if (error.response) {
+	// 				const { message = '' } = error.response.data;
+	// 				if (message.toLowerCase().indexOf('password') > -1) {
+	// 					// TODO set error in constants for language
+	// 					errors.password = STRINGS['VALIDATIONS.INVALID_PASSWORD'];
+	// 				} else {
+	// 					errors._error = message || error.message;
+	// 				}
+	// 			} else {
+	// 				errors._error = error.message;
+	// 			}
+	// 			throw new SubmissionError(errors);
+	// 		});
+	// };
+
+	doSignup = (answers) => {
+		this.setState(
+			{ showQuestionaireForm: false, answers: answers, isAnswers: true },
+			() => {
+				this.props.remoteSubmit();
+			}
+		);
 	};
 
 	onOpenDialog = () => {
@@ -130,11 +189,14 @@ class Signup extends Component {
 		if (window && links && links.helpdesk) {
 			window.open(links.helpdesk, '_blank');
 		}
-		// this.setState({ showContactForm: true });
 	};
 
 	onCloseDialog = () => {
 		this.setState({ showContactForm: false });
+	};
+
+	onCloseQuestionaireDialog = () => {
+		this.setState({ showQuestionaireForm: false });
 	};
 
 	onGoBack = () => {
@@ -152,8 +214,12 @@ class Signup extends Component {
 			constants = {},
 			icons: ICONS,
 		} = this.props;
-		const { success, showContactForm, isReferral } = this.state;
-
+		const {
+			success,
+			showContactForm,
+			isReferral,
+			showQuestionaireForm,
+		} = this.state;
 		if (success) {
 			return (
 				<div>
@@ -234,6 +300,20 @@ class Signup extends Component {
 						onClose={this.onCloseDialog}
 					/>
 				</Dialog>
+				<Dialog
+					isOpen={showQuestionaireForm}
+					label="questionaire-modal"
+					onCloseDialog={this.onCloseQuestionaireDialog}
+					shouldCloseOnOverlayClick={false}
+					style={{ 'z-index': 100 }}
+					showCloseText={false}
+					theme={activeTheme}
+				>
+					<QuestionaireContent
+						onSubmit={this.doSignup}
+						onClose={this.onCloseQuestionaireDialog}
+					/>
+				</Dialog>
 			</div>
 		);
 	}
@@ -246,6 +326,9 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	change: bindActionCreators(change, dispatch),
+	remoteSubmit: () => {
+		dispatch(submit(FORM_NAME));
+	},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withConfig(Signup));

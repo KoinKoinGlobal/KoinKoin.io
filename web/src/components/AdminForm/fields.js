@@ -50,6 +50,7 @@ export const renderTextAreaField = ({
 	prefix,
 	placeholder,
 	disabled = false,
+	style = {},
 }) => (
 	<div className="input_field">
 		{label && <label>{label}</label>}
@@ -61,6 +62,7 @@ export const renderTextAreaField = ({
 				{...input}
 				type={type}
 				disabled={disabled}
+				style={style}
 			/>
 			{touched &&
 				((error && <span className="red-text">{error}</span>) ||
