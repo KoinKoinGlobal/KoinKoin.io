@@ -9,6 +9,7 @@ const Fields = {
 	note: {
 		type: 'textarea',
 		label: 'Notes',
+		style: { height: '350px' },
 	},
 };
 
