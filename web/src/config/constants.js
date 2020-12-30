@@ -170,7 +170,7 @@ export const TIME_ZONE = process.env.REACT_APP_TIMEZONE || 'GMT';
 export const TOKEN_EMAIL = 'token::email';
 export const TOKEN_MAX_AGE = 23 * 60 * 60;
 
-export const DISPLAY_LANDING = false;
+export const DISPLAY_LANDING = true;
 export const DEFAULT_URL = '/';
 
 // minimum level for a user to be able to create api tokens

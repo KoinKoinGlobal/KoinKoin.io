@@ -1,24 +1,46 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
-import EventListener from 'react-event-listener';
 import { bindActionCreators } from 'redux';
 import { isBrowser, isMobile } from 'react-device-detect';
-
-import { AppBar, AppFooter } from '../../components';
-// import { requestQuickTrade } from '../../actions/orderbookAction';
-import { setLanguage, getExchangeInfo } from '../../actions/appActions';
-import { logout } from '../../actions/authAction';
+import classnames from 'classnames';
 import { getClasesForLanguage } from '../../utils/string';
 import { getThemeClass } from '../../utils/theme';
-
+import EventListener from 'react-event-listener';
+import STRINGS from '../../config/localizedStrings';
+import { AppFooter } from '../../components';
+import { Link } from 'react-router';
+import {
+	// isLoggedIn,
+	// getToken,
+	isLoggedIn,
+} from '../../utils/token';
+// Actions
+import { logout } from '../../actions/authAction';
+// import { setMe } from '../../actions/userAction';
+import {
+	// setPairs,
+	// changePair,
+	// setCurrencies,
+	// setOrderLimits,
+	// setValidBaseCurrency,
+	// setConfig,
+	setLanguage,
+	// changeTheme,
+	// requestAvailPlugins,
+	getExchangeInfo,
+} from '../../actions/appActions';
+// import {
+// 	setPairsData
+// } from '../../actions/orderbookAction';
+// Components
 import Section1 from './Section1';
-// import Section2 from './Section2';
+import Section2 from './Section2';
 import Section3 from './Section3';
-import withConfig from 'components/ConfigProvider/withConfig';
+import Section4 from './Section4';
 
-const INFORMATION_INDEX = 1;
 const MIN_HEIGHT = 450;
+const BACKGROUND_PATH =
+	'https://mcusercontent.com/94bba1379edc8e1b29b1336d6/images/84d67678-e33f-4c96-a5fe-9fadad312e9f.png';
 
 class Home extends Component {
 	state = {
@@ -27,76 +49,35 @@ class Home extends Component {
 			minHeight: MIN_HEIGHT,
 		},
 	};
-
 	componentDidMount() {
 		this.props.getExchangeInfo();
+		// this.initSocketConnections();
 	}
-
-	setContainerRef = (el) => {
-		if (el) {
-			this.container = el;
-			this.onResize();
-		}
-	};
-
 	onResize = () => {
 		if (this.container) {
 			const height = window.innerHeight - 45;
 			this.setState({
 				style: {
 					minHeight: height,
-					// maxHeight: height,
 				},
 				height,
 			});
-			// this.onClickScrollTo(0)();
 		}
 	};
-
-	onClickScrollTo = (children = 0) => () => {
-		if (this.container && typeof children === 'number') {
-			const sections = this.container.children;
-			if (children < sections.length) {
-				sections[children].scrollIntoView({
-					behavior: 'smooth',
-				});
-			}
+	setContainerRef = (el) => {
+		if (el) {
+			this.container = el;
+			this.onResize();
 		}
 	};
-
-	goTo = (path) => () => {
-		this.props.router.push(path);
-	};
-
-	// onReviewQuickTrade = () => {
-	// 	if (this.props.token) {
-	// 		this.goTo('quick-trade')();
-	// 	} else {
-	// 		this.goTo('login')();
-	// 	}
-	// };
-
 	onChangeLanguage = (language) => () => {
 		return this.props.changeLanguage(language);
 	};
-
-	onLogout = () => this.props.logout('');
-
 	render() {
-		const {
-			token,
-			verifyToken,
-			pair,
-			// symbol,
-			// quickTradeData,
-			// requestQuickTrade,
-			activeLanguage,
-			router,
-			activeTheme,
-			constants = {},
-			icons: ICONS = {},
-		} = this.props;
+		const { activeLanguage, activeTheme, constants = {} } = this.props;
+
 		const { style } = this.state;
+
 		return (
 			<div
 				className={classnames(
@@ -110,17 +91,33 @@ class Home extends Component {
 						'layout-desktop': isBrowser,
 					}
 				)}
-				style={{ background: `url(${ICONS['EXCHANGE_BOARDING_IMAGE']})` }}
 			>
 				<EventListener target="window" onResize={this.onResize} />
-				<AppBar
-					noBorders={true}
-					isHome={true}
-					token={token}
-					verifyToken={verifyToken}
-					router={router}
-					logout={this.onLogout}
-				/>
+				<div className={'koinkoin-app_bar'}>
+					<div className={classnames('app_bar-icon', 'text-uppercase')}>
+						<div
+							style={{ backgroundImage: `url(${BACKGROUND_PATH})` }}
+							className="app_bar-icon-logo"
+						></div>
+					</div>
+					{isLoggedIn() ? (
+						<div className="sign-in-up-buttons">
+							<Link className="btn-login" to="/summary">
+								{STRINGS['HOME.DASHBOARD']}
+							</Link>
+						</div>
+					) : (
+						<div className="sign-in-up-buttons">
+							<Link className="btn-login" to="/login">
+								{STRINGS.LOGIN_TEXT}&nbsp;/&nbsp;
+							</Link>
+							<Link className="btn-signup" to="/signup">
+								{' '}
+								{STRINGS.SIGNUP_TEXT}
+							</Link>
+						</div>
+					)}
+				</div>
 				<div
 					className={classnames(
 						'app_container-content',
@@ -131,27 +128,20 @@ class Home extends Component {
 					ref={this.setContainerRef}
 				>
 					<Section1
+						constants={constants}
 						style={{
-							minHeight:
+							height:
 								style.minHeight > MIN_HEIGHT ? style.minHeight : MIN_HEIGHT,
 						}}
-						onClickScrollTo={this.onClickScrollTo(INFORMATION_INDEX)}
-						onClickLearnMore={this.onClickScrollTo(INFORMATION_INDEX)}
-						token={token}
 					/>
-					{/*<Section2
+					<Section2 style={style} />
+					<Section3 style={style} />
+					<Section4
 						style={style}
-						onReviewQuickTrade={this.onReviewQuickTrade}
-						onRequestMarketValue={requestQuickTrade}
-						symbol={symbol}
-						quickTradeData={quickTradeData}
-					/>*/}
-					<Section3
-						style={style}
-						token={token}
-						onClickDemo={
-							pair ? this.goTo(`trade/${pair}`) : this.goTo('trade/add/tabs')
-						}
+						theme={activeTheme}
+						onChangeLanguage={this.onChangeLanguage}
+						activeLanguage={activeLanguage}
+						constants={constants}
 					/>
 					<AppFooter
 						theme={activeTheme}
@@ -166,23 +156,30 @@ class Home extends Component {
 }
 
 const mapStateToProps = (store) => ({
-	pair: store.app.pair,
-	token: store.auth.token,
-	verifyToken: store.auth.verifyToken,
-	// estimatedValue: 100,
-	// symbol: store.orderbook.symbol,
-	// quickTradeData: store.orderbook.quickTrade,
+	// fetchingAuth: store.auth.fetching,
+	// pair: store.app.pair,
+	// token: store.auth.token,
+	// verifyToken: store.auth.verifyToken,
 	activeLanguage: store.app.language,
-	info: store.app.info,
+	// info: store.app.info,
 	activeTheme: store.app.theme,
 	constants: store.app.constants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	// requestQuickTrade: bindActionCreators(requestQuickTrade, dispatch),
-	changeLanguage: bindActionCreators(setLanguage, dispatch),
-	logout: bindActionCreators(logout, dispatch),
 	getExchangeInfo: bindActionCreators(getExchangeInfo, dispatch),
+	// changePair: bindActionCreators(changePair, dispatch),
+	// setPairs: bindActionCreators(setPairs, dispatch),
+	// setPairsData: bindActionCreators(setPairsData, dispatch),
+	// setCurrencies: bindActionCreators(setCurrencies, dispatch),
+	// setConfig: bindActionCreators(setConfig, dispatch),
+	// setValidBaseCurrency: bindActionCreators(setValidBaseCurrency, dispatch),
+	// setOrderLimits: bindActionCreators(setOrderLimits, dispatch),
+	// setMe: bindActionCreators(setMe, dispatch),
+	changeLanguage: bindActionCreators(setLanguage, dispatch),
+	// changeTheme: bindActionCreators(changeTheme, dispatch),
+	// requestAvailPlugins: bindActionCreators(requestAvailPlugins, dispatch),
+	logout: bindActionCreators(logout, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withConfig(Home));
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -92,15 +92,6 @@ class Login extends Component {
 		return service;
 	};
 
-	// checkLogin = () => {
-	// 	// const termsAccepted = localStorage.getItem('termsAccepted');
-	// 	// if (!termsAccepted) {
-	// 	// 	this.setState({ termsDialogIsOpen: true });
-	// 	// } else {
-	// 		this.redirectToHome();
-	// 	// }
-	// };
-
 	onSubmitLogin = (values) => {
 		const service = this.getServiceParam();
 		if (service) {

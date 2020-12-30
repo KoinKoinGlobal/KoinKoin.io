@@ -24,6 +24,7 @@ const generateSectionsText = (strings, theme, links = {}, ICONS) => {
 		twitter,
 		website,
 		whitepaper,
+		corporate,
 	} = links;
 
 	let sectionsText = [
@@ -101,6 +102,15 @@ const generateSectionsText = (strings, theme, links = {}, ICONS) => {
 				// 	text: strings["FOOTER.SECTIONS.SECTION_3_LINK_2"],
 				// 	link: 'https://forum.bitholla.com'
 				// }
+			],
+		},
+		corporate && {
+			TITLE: strings['FOOTER.SECTIONS.SECTION_7_TITLE'],
+			LINKS: [
+				{
+					text: strings['FOOTER.SECTIONS.SECTION_7_LINK_1'],
+					link: corporate,
+				},
 			],
 		},
 		(twitter || telegram || facebook || instagram || linkedin || youtube) && {
@@ -278,7 +288,19 @@ const AppFooter = ({
 			</div>
 			<div className={classnames('footer-row-bottom')}>
 				<div className="d-flex my-2" />
-				<div>{STRINGS['FOOTER.FOOTER_COPYRIGHT']}</div>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<div>{STRINGS['FOOTER.FOOTER_COPYRIGHT']}</div>
+					<div className="logo-group">
+						<img src="assets/home/mastercard.png" alt="" />
+						<img src="assets/home/visa.png" alt="" />
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -163,7 +163,7 @@ const link_sections = (
 					label: 'Facebook',
 					placeholder: 'http://',
 				},
-				youTube: {
+				youtube: {
 					type: 'input',
 					label: 'YouTube',
 					placeholder: 'http://',
@@ -178,7 +178,7 @@ const link_sections = (
 					label: 'Telegram',
 					placeholder: 'http://',
 				},
-				linkedIn: {
+				linkedin: {
 					type: 'input',
 					label: 'LinkedIn',
 					placeholder: 'http://',

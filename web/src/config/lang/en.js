@@ -51,22 +51,23 @@ const nestedContent = {
 	VIEW_INFO: 'View info page', // new
 	APPLY_HERE: 'Apply Here', // new
 	HOME: {
-		SECTION_1_TITLE: 'Welcome to HollaEx Exchange Kit!',
+		SECTION_1_TITLE: 'CRYPTOCURRENCY MADE EASY FOR EVERYONE',
+		SECTION_1_BUTTON_LABEL: 'OPEN TRADING ACCOUNT',
 		SECTION_1_TEXT_1:
-			'Build your own scalable digital asset exchange with HollaEx Kit and be part of the future of finance.',
+			'Security First | Best prices at Lightningfast Speeds| Powered for A Borderless Africa & A Borderless World.',
 		SECTION_1_TEXT_2:
 			'We strive to bring the financial technology forward through affordable and simple access to trading technology.',
 		SECTION_1_BUTTON_1: 'Learn more',
-		SECTION_3_TITLE: 'Features',
-		SECTION_3_CARD_1_TITLE: 'SCALABLE MATCHING ENGINE',
+		SECTION_3_TITLE: 'TRADE CRYPTO WITH LOCAL CURRENCY EASILY',
+		SECTION_3_CARD_1_TITLE: '1 . OPEN ACCOUNT',
 		SECTION_3_CARD_1_TEXT:
-			'High performance and scalable order matching engine using the most efficient algorithms',
-		SECTION_3_CARD_2_TITLE: 'BANK INTEGRATION',
+			'Come as you are. No requirments but your email to open account.',
+		SECTION_3_CARD_2_TITLE: '2 . DEPOSIT CRYPTO / CURRENCY',
 		SECTION_3_CARD_2_TEXT:
-			'Plugins with customizable modules available for bank integration. We know the traditional finance and can help you to make your exchange local',
-		SECTION_3_CARD_3_TITLE: 'STRONG SECURITY',
+			'Deposit your local currency or Simply transfer your crypto to your KoinKoin address',
+		SECTION_3_CARD_3_TITLE: '3 . BUY / SELL CRYPTO',
 		SECTION_3_CARD_3_TEXT:
-			'HollaEx uses the best security practices and the most secure and reliable algorithms for keeping the funds secure. It is our top priority and we took a very special extra care of it.',
+			'Start trading. Buy, sell and transfer the largest crypto assets.',
 		SECTION_3_CARD_4_TITLE: 'ADVANCED REPORTING',
 		SECTION_3_CARD_4_TEXT:
 			'Admin panel with customizable email and reports for notifying support and administrator about the status of the system and transactions.',
@@ -76,7 +77,9 @@ const nestedContent = {
 		SECTION_3_CARD_6_TITLE: 'KYC INTEGRATION',
 		SECTION_3_CARD_6_TEXT:
 			'Flexible and integrable modules to apply KYC and user verification methods in different jurisdiction.',
+		SECTION_3_BUTTON_LABEL: 'OPEN ACCOUNT',
 		SECTION_3_BUTTON_1: 'View Demo',
+		DASHBOARD: 'Dashboard',
 	},
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
@@ -121,6 +124,8 @@ const nestedContent = {
 			SECTION_6_LINK_7: 'Helpdesk', // new
 			SECTION_6_LINK_8: 'Information', // new
 			SECTION_6_LINK_9: 'YouTube', // new
+			SECTION_7_TITLE: 'OTC Trading',
+			SECTION_7_LINK_1: 'Corporate',
 		},
 		XHT_DESCRIPTION:
 			'HollaEx Kit is an open source trading platform built by bitHolla Inc. You can create and list any digital assets and onboard users to trade on your exchange using this exchange Kit. In order to simply run one yourself {1}.',
@@ -307,6 +312,7 @@ const nestedContent = {
 		ORDERS_SINGULAR: 'order',
 		HOLD_ORDERS:
 			'You have {0} open {1}, resulting in a hold of {2} {3} placed on your {4} balance',
+		NOT_SELECTED_NOTICE: 'You should define wallet address for this crypto',
 	},
 	REQUEST_RESET_PASSWORD: {
 		TITLE: 'Account Recovery',
@@ -1102,6 +1108,8 @@ const nestedContent = {
 	SEARCH_TXT: 'Search',
 	SEARCH_ASSETS: 'Search Assets',
 	TOTAL_ASSETS_VALUE: 'Total assets value in {0}: {1}',
+	QUICK_BUY: 'Quick Buy',
+	BUY_COIN_INSTANTLY: 'Buy coin instantly',
 	SUMMARY: {
 		TITLE: 'Summary',
 		TINY_PINK_SHRIMP_TRADER: 'Tiny Pink Shrimp Trader',
