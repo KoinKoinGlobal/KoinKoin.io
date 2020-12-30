@@ -8,7 +8,7 @@ const nestedContent = {
 	APP_SUB_TITLE: 'Open Crypto Exchange', // slogan
 
 	LOGOUT_CONFIRM_TEXT: 'Are you sure?. Do you want to logout',
-	ADD_TRADING_PAIR: 'Add Trading Pair',
+	ADD_TRADING_PAIR: 'Select a market',
 	ACTIVE_TRADES: 'You must {0} to access your active trades',
 	CANCEL_BASE_WITHDRAWAL: 'Cancel {0} Withdrawal',
 	CANCEL_WITHDRAWAL: 'Cancel Withdrawal',
@@ -1359,6 +1359,8 @@ const nestedContent = {
 	CUMULATIVE_AMOUNT_SYMBOL: 'Cumulative',
 	POST_ONLY: 'Post only',
 	CLEAR: 'Clear',
+	ORDER_TYPE: 'type',
+	TRIGGER_CONDITIONS: 'Trigger conditions',
 };
 
 const content = flatten(nestedContent, options);
