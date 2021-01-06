@@ -114,6 +114,7 @@ class MyPlugins extends Component {
 		const file = event.target.files[0];
 		if (file) {
 			const res = await this.getJsonFromFile(file);
+
 			const check = this.checkJSON(res);
 			if (check) {
 				this.setState({ thirdParty: res });
