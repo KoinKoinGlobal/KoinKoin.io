@@ -43,3 +43,4 @@ templates/kubernetes/config/*
 
 .token
 backups
+*.junk
