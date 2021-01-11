@@ -40,6 +40,7 @@ model = sequelize.import('tier', require('./tier'));
 db[model.name] = model;
 model = sequelize.import('plugin', require('./plugin'));
 db[model.name] = model;
+// Questionaire Plugin
 model = sequelize.import('question', require('./question'));
 db[model.name] = model;
 
