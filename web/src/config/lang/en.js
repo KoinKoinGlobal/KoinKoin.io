@@ -784,6 +784,7 @@ const nestedContent = {
 	ORDERS: 'my active orders',
 	TRADES: 'my transaction history',
 	RECENT_TRADES: 'my recent trades', // ToDo
+	ORDER_HISTORY: 'Order history',
 	PUBLIC_SALES: 'public sales', // ToDo
 	REMAINING: 'Remaining',
 	FULLFILLED: '{0} % Fullfilled',
@@ -1365,6 +1366,20 @@ const nestedContent = {
 		PENDING: 'Pending',
 		REJECTED: 'Rejected',
 		COMPLETED: 'Completed',
+	},
+	DEPOSIT_STATUS: {
+		// new
+		NEW: 'New',
+		SEARCH_FIELD_LABEL: 'Paste your transaction ID',
+		SEARCH: 'SEARCH',
+		SEARCHING: 'SEARCHING',
+		CHECK_DEPOSIT_STATUS: 'Check deposit status',
+		STATUS_DESCRIPTION:
+			'You can check the status of your deposit by passing the transaction ID (hash) below.',
+		TRANSACTION_ID: 'Transaction ID (hash)',
+		SEARCH_SUCCESS: 'Transaction found!',
+		SEARCH_ERROR:
+			'Transaction not found. Please check the ID and try again. If your believe there is a problem please contact support.',
 	},
 };
 

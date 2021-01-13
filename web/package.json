@@ -68,6 +68,7 @@
 		"react-sparklines": "1.7.0",
 		"react-stockcharts": "0.7.8",
 		"react-svg": "2.2.18",
+		"react-transition-group": "4.4.1",
 		"react-truncate-markup": "3.0.1",
 		"react-youtube": "^7.13.0",
 		"redux": "4.0.1",
