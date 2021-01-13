@@ -2,13 +2,13 @@
 #### All HollaEx CLI commands rely on ENVIRONMENT_EXCHANGE_NAME below. DO NOT MODIFY IT. ####
 #########################################################################################
 
-ENVIRONMENT_EXCHANGE_NAME=testexchange
+ENVIRONMENT_EXCHANGE_NAME=koinkoin
 
 ################################
 #### GENERAL CONFIGURATIONS ####
 ################################
 
-HOLLAEX_CONFIGMAP_API_NAME=testexchange
+HOLLAEX_CONFIGMAP_API_NAME=koinkoin
 HOLLAEX_CONFIGMAP_DOMAIN=https://yourdomain.com
 
 HOLLAEX_CONFIGMAP_LOGO_IMAGE=
