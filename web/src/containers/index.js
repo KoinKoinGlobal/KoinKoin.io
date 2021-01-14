@@ -60,3 +60,8 @@ export { default as General } from './Admin/General';
 export { default as Tiers } from './Admin/Tiers';
 export { default as Roles } from './Admin/Roles';
 export { default as Resources } from './Admin/Resources';
+
+export {
+	CashDepositCurrencyWallet,
+	CashDepositMainWallet,
+} from './CashDeposit';

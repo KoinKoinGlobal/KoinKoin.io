@@ -144,6 +144,7 @@ const nestedContent = {
 		TAB_HISTORY: 'History',
 		TAB_API: 'API',
 		TAB_SIGNOUT: 'Signout',
+		TAB_CASH_DEPOSIT: 'Cash Deposit',
 	},
 	REQUEST_XHT_ACCESS: {
 		// new

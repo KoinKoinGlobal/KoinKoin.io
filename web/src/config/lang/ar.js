@@ -132,6 +132,7 @@ const nestedContent = {
 		TAB_SUMMARY: 'خلاصه',
 		TAB_API: 'API',
 		TAB_SIGNOUT: 'خروج',
+		TAB_CASH_DEPOSIT: 'إيداع نقدي',
 	},
 	REQUEST_XHT_ACCESS: {
 		// new

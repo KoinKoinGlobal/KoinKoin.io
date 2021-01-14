@@ -5,7 +5,13 @@ import { isMobile } from 'react-device-detect';
 
 import { CheckTitle, MobileBarTabs, Loader } from '../../components';
 import { IS_XHT } from '../../config/constants';
-import { UserSecurity, UserSettings, Summary, Verification } from '../';
+import {
+	UserSecurity,
+	UserSettings,
+	Summary,
+	Verification,
+	CashDepositMainWallet,
+} from '../';
 import STRINGS from '../../config/localizedStrings';
 import { openContactForm } from '../../actions/appActions';
 
@@ -178,6 +184,22 @@ class Account extends Component {
 					/>
 				),
 				content: <UserSettings location={location} />,
+			},
+			{
+				title: isMobile ? (
+					STRINGS['ACCOUNTS.TAB_CASH_DEPOSIT']
+				) : (
+					<CheckTitle
+						title={STRINGS['ACCOUNTS.TAB_CASH_DEPOSIT']}
+						icon={ICONS['GEAR_GREY']}
+					/>
+				),
+				content: (
+					<CashDepositMainWallet
+						location={location}
+						router={this.props.router}
+					/>
+				),
 			},
 		];
 		this.setState({ tabs, activeTab });

@@ -7,6 +7,7 @@ import { IS_XHT } from '../../config/constants';
 import STRINGS from '../../config/localizedStrings';
 import withConfig from 'components/ConfigProvider/withConfig';
 import { EditWrapper } from 'components';
+import ReactSVG from 'react-svg';
 
 class AppMenuBar extends Component {
 	state = {
@@ -128,6 +129,8 @@ class AppMenuBar extends Component {
 			this.props.router.push(`/quick-trade/${pair}`);
 		} else if (menu === 'pro-trade') {
 			this.props.router.push('/trade/add/tabs');
+		} else if (menu === 'cash-deposit') {
+			this.props.router.push('/cashdeposit');
 		}
 		this.setState({ activeMenu: menu });
 	};
@@ -150,6 +153,9 @@ class AppMenuBar extends Component {
 				break;
 			case '/verification':
 				activeMenu = 'verification';
+				break;
+			case '/cashdeposit':
+				activeMenu = 'cash-deposit';
 				break;
 			case '/api':
 				activeMenu = 'api';
@@ -322,6 +328,20 @@ class AppMenuBar extends Component {
 							>
 								{STRINGS['ACCOUNTS.TAB_SETTINGS']}
 							</EditWrapper>
+						</div>
+					</div>
+					<div
+						className={classnames('app-menu-bar-content d-flex', {
+							'active-menu': activeMenu === 'cash-deposit',
+						})}
+						onClick={() => this.handleMenuChange('cash-deposit')}
+					>
+						<div className="app-menu-bar-content-item d-flex">
+							<ReactSVG
+								path={ICONS['TAB_WALLET_BAG']}
+								wrapperClassName="app-menu-bar-icon"
+							/>
+							{STRINGS['ACCOUNTS.TAB_CASH_DEPOSIT']}
 						</div>
 					</div>
 					{/* <div

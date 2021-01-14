@@ -61,8 +61,8 @@ const drawFavIcon = (url) => {
 
 const getConfigs = async () => {
 	const localVersions = getLocalVersions();
-
 	const kitData = await getKitData();
+
 	const {
 		meta: { versions: remoteVersions = {} },
 		valid_languages = '',
@@ -75,6 +75,7 @@ const getConfigs = async () => {
 	const promises = {};
 	Object.keys(remoteVersions).forEach((key) => {
 		const localVersion = localVersions[key];
+
 		const remoteVersion = remoteVersions[key];
 
 		if (localVersion !== remoteVersion) {

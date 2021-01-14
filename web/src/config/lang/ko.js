@@ -128,6 +128,7 @@ const nestedContent = {
 		TAB_SUMMARY: '마이페이지',
 		TAB_API: 'API',
 		TAB_SIGNOUT: '로그아웃',
+		TAB_CASH_DEPOSIT: '현금 보증금',
 	},
 	REQUEST_XHT_ACCESS: {
 		// new
