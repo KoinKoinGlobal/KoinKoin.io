@@ -74,6 +74,8 @@ import {
 } from './utils/string';
 import { checkUserSessionExpired } from './utils/utils';
 import { getExchangeInitialized, getSetupCompleted } from './utils/initialize';
+import FiatDeposit from 'containers/FiatDeposit';
+import FiatWithdraw from 'containers/FiatWithdraw';
 
 ReactGA.initialize('UA-154626247-1'); // Google analytics. Set your own Google Analytics values
 browserHistory.listen((location) => {
@@ -326,9 +328,21 @@ export default (
 				onEnter={requireAuth}
 			/>
 			<Route
+				path="fiat/:currency/deposit"
+				name="FiatDeposit"
+				component={FiatDeposit}
+				onEnter={requireAuth}
+			/>
+			<Route
 				path="wallet/:currency/withdraw"
 				name="Withdraw"
 				component={Withdraw}
+				onEnter={requireAuth}
+			/>
+			<Route
+				path="fiat/:currency/withdraw"
+				name="FiatWithdraw"
+				component={FiatWithdraw}
 				onEnter={requireAuth}
 			/>
 			<Route

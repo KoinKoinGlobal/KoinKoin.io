@@ -52,7 +52,7 @@ class Trade extends PureComponent {
 		this.sizeTimeOut = '';
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.setSymbol(this.props.routeParams.pair);
 	}
 
