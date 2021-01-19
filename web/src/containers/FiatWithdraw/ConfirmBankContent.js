@@ -106,7 +106,6 @@ class ConfirmBankContent extends Component {
 		this.props._processRequestingFiatWithdraw();
 		requestFiatWithdraw(data)
 			.then((res) => {
-				console.log(res.status, 'Flutterwave Status');
 				if (res.status) {
 					this.props._processPendingFiatWithdraw(res);
 					//refresh_flutterwave_withdrawal_status();
