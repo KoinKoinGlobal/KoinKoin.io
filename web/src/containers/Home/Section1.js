@@ -22,7 +22,7 @@ const Section1 = ({ style = {}, constants }) => {
 				youtube,
 				twitter,
 			} = constants.links;
-			console.log('icons', ICONS);
+			console.log('style', style);
 			const current_theme = getTheme();
 
 			return (
@@ -119,14 +119,17 @@ const Section1 = ({ style = {}, constants }) => {
 						'flex-column',
 						'content'
 					)}
-					style={{ width: '100%' }}
 				>
 					<div className="home-title text-capitalize">
 						{STRINGS['HOME.SECTION_1_TITLE']}
 					</div>
 					<div className="text-section text-center">
-						<div>{STRINGS['HOME.SECTION_1_TEXT_1']}</div>
-						<div>{STRINGS['HOME.SECTION_1_TEXT_2']}</div>
+						<div className="home-sub-title">
+							{STRINGS['HOME.SECTION_1_TEXT_1']}
+						</div>
+						<div className="home-sub-title">
+							{STRINGS['HOME.SECTION_1_TEXT_2']}
+						</div>
 					</div>
 					<CommonButton
 						className="btn-open-trading-account"
