@@ -66,7 +66,7 @@ class AppWrapper extends React.Component {
 		};
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		if (isLoggedIn() && checkUserSessionExpired(getTokenTimestamp())) {
 			this.logout('Token is expired');
 		}

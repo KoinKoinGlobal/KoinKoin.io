@@ -53,7 +53,7 @@ class Trade extends PureComponent {
 		this.sizeTimeOut = '';
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.setSymbol(this.props.routeParams.pair);
 		this.initializeOrderbookWs(this.props.routeParams.pair, getToken());
 	}

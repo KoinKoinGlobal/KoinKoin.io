@@ -67,7 +67,7 @@ class TVChartContainer extends React.PureComponent {
 		};
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		var that = this;
 		const { api_name } = this.props.constants;
 		this.chartConfig = {

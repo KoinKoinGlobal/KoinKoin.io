@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { countries } from 'country-data';
 import STRINGS from '../config/localizedStrings';
-import { DEFAULT_COUNTRY } from '../config/constants';
+import { DEFAULT_COUNTRY, FIAT_WITHDRAW_COUNTRIES } from '../config/constants';
 
 const convertCountry = (value = {}) => {
 	return {
@@ -53,3 +53,13 @@ export const PHONE_OPTIONS = COUNTRIES.map((country) => ({
 	value: country.phoneCode,
 	icon: country.flag,
 }));
+
+export const getCountryByCurrency = (currency) => {
+	return FIAT_WITHDRAW_COUNTRIES.find(
+		(it) => it.currency.toLowerCase() === currency.toLowerCase()
+	);
+};
+
+export const getCountryByCode = (code) => {
+	return FIAT_WITHDRAW_COUNTRIES.find((it) => it.value === code);
+};

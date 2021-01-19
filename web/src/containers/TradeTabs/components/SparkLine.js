@@ -58,7 +58,7 @@ class SparkLine extends Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		const { data } = this.props;
 		if (JSON.stringify(data) !== JSON.stringify(nextProps.data)) {
 			this.setState((prevState) => ({

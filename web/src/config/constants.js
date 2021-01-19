@@ -298,3 +298,31 @@ export const SHOW_TOTAL_ASSETS = false;
 export const IS_XHT = false;
 export const FIT_SCREEN_HEIGHT = ['trade'];
 export const SIMPLE_FORMAT_MIN = '0.1';
+
+export const FIAT_CURRENCY = [
+	'usd',
+	'ngn',
+	'gbp',
+	'eur',
+	'aed',
+	'zar',
+	'etb',
+	'kes',
+	'ghs',
+	'rwf',
+	'tzs',
+	'ugx',
+	'idr',
+	'vnd',
+	'myr',
+	'thb',
+];
+
+export const FIAT_WITHDRAW_COUNTRIES = [
+	{ label: 'Nigeria', value: 'NG', currency: 'ngn' },
+	{ label: 'Ghana', value: 'GH', currency: 'ghs' },
+	{ label: 'Kenya', value: 'KE', currency: 'kes' },
+	{ label: 'Uganda', value: 'UG', currency: 'ugx' },
+	{ label: 'South Africa', value: 'ZA', currency: 'zar' },
+	{ label: 'Tanzania', value: 'TZ', currency: 'tzs' },
+];
