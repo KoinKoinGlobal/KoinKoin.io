@@ -44,7 +44,7 @@ class BankData extends Component {
 		};
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		let bank = [];
 		if (
 			this.props.initialValues.bank_account &&

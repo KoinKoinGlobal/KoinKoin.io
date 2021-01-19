@@ -9,6 +9,7 @@ import STRINGS from '../../config/localizedStrings';
 
 const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/;
 const usernameRegEx = /^[a-z0-9_]{3,15}$/;
+const onyStringRegEx = /^([a-zA-Z\s])*$/;
 
 export const required = (value) =>
 	!value ? STRINGS['VALIDATIONS.REQUIRED'] : undefined;
@@ -253,3 +254,17 @@ export const validateOtp = (message = STRINGS['OTP_FORM.ERROR_INVALID']) => (
 export const normalizeEmail = (value = '') => value.toLowerCase();
 
 export const tokenKeyValidation = required;
+
+export const requireOnlyString = (value = '') =>
+	!onyStringRegEx.test(value) ? STRINGS.FIRSTNAME : undefined;
+
+export const calculate_total_amount = (value, fee) => {
+	return fee > 0
+		? math.number(
+				math.add(
+					math.fraction(value),
+					math.multiply(math.fraction(value), math.fraction(fee))
+				)
+		  )
+		: value;
+};

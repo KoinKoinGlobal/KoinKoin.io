@@ -14,11 +14,11 @@ class QuestionaireContent extends Component {
 		answers: {},
 	};
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.getQuestions();
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (this.state.questions.length === 0) {
 			this.getQuestions();
 		} else {
@@ -40,7 +40,6 @@ class QuestionaireContent extends Component {
 			});
 	};
 	onSubmitQuestion = (values) => {
-		console.log('Maxkyu log ---- Question From values', values);
 		const qes = this.state.questions[this.state.isSelectedQuestionIndex];
 		let answers = this.state.answers;
 		answers[qes.id] = values.answer;
@@ -76,7 +75,6 @@ class QuestionaireContent extends Component {
 		if (nextIndex >= 0) {
 			this.setState({ isSelectedQuestionIndex: nextIndex });
 		} else {
-			console.log('Maxkyu log answers', this.state.answers);
 			this.props.onClose();
 		}
 	};

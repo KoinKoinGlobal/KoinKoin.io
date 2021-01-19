@@ -9295,6 +9295,12 @@ body {
   font-family: "Open Sans" !important;
   height: 100%; }
 
+.button-payment {
+  width: 200px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
 .direction_rtl.apply_rtl {
   direction: rtl; }
 

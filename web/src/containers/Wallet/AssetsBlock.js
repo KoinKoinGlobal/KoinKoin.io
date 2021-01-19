@@ -46,7 +46,6 @@ const AssetsBlock = ({
 			);
 			return price_a < price_b ? 1 : -1; // descending order
 		});
-
 	const findPair = (key) => {
 		let tempPair;
 		const defaultPair = `${key.toLowerCase()}-${BASE_CURRENCY.toLowerCase()}`;
@@ -169,7 +168,16 @@ const AssetsBlock = ({
 				</thead>
 				<tbody>
 					{sortedSearchResults.map(
-						([key, { min, allow_deposit, allow_withdrawal, oraclePrice }]) => {
+						([
+							key,
+							{
+								min,
+								allow_deposit,
+								allow_withdrawal,
+								oraclePrice,
+								meta: { is_fiat },
+							},
+						]) => {
 							const balanceValue = balance[`${key}_balance`];
 							const pair = findPair(key);
 							const { fullname, symbol = '' } = coins[key] || DEFAULT_COIN_DATA;
@@ -215,27 +223,35 @@ const AssetsBlock = ({
 									</td>
 									<th className="td-amount" />
 									<td className="td-wallet">
-										{wallets[key] ? (
+										{wallets[key] || is_fiat ? (
 											<div className="d-flex justify-content-between deposit-withdrawal-wrapper">
 												<ActionNotification
 													stringId="WALLET_BUTTON_BASE_DEPOSIT"
 													text={STRINGS['WALLET_BUTTON_BASE_DEPOSIT']}
 													iconId="BLUE_PLUS"
 													iconPath={ICONS['BLUE_PLUS']}
-													onClick={() => navigate(`wallet/${key}/deposit`)}
+													onClick={() =>
+														navigate(
+															`${is_fiat ? 'fiat' : 'wallet'}/${key}/deposit`
+														)
+													}
 													className="csv-action"
 													showActionText={isMobile}
-													disable={!allow_deposit}
+													disable={!is_fiat && !allow_deposit}
 												/>
 												<ActionNotification
 													stringId="WALLET_BUTTON_BASE_WITHDRAW"
 													text={STRINGS['WALLET_BUTTON_BASE_WITHDRAW']}
 													iconId="BLUE_PLUS"
 													iconPath={ICONS['BLUE_PLUS']}
-													onClick={() => navigate(`wallet/${key}/withdraw`)}
+													onClick={() =>
+														navigate(
+															`${is_fiat ? 'fiat' : 'wallet'}/${key}/withdraw`
+														)
+													}
 													className="csv-action"
 													showActionText={isMobile}
-													disable={!allow_withdrawal}
+													disable={!is_fiat && !allow_withdrawal}
 												/>
 											</div>
 										) : (
