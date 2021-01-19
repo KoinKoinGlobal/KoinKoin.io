@@ -59,7 +59,10 @@ $no-background--color: white;
 		video {
 			position: absolute;
 			top: 0;
-			height: 100%;
+			// height: 100%;
+			// width: 100%;
+			min-width: 100%;
+			min-height: 100%;
 			z-index: 0;
 			@media only screen and(min-width: 1600px) {
 				height: unset;
@@ -137,6 +140,14 @@ $no-background--color: white;
 
 	.home-title {
 		margin-bottom: 0.5rem;
+	}
+	@media screen and (max-width: 500px) {
+		.home-title {
+			font-size: 4rem;
+		}
+		.home-sub-title {
+			font-size: 1.5rem;
+		}
 	}
 
 	.text-section,
@@ -263,9 +274,13 @@ $no-background--color: white;
 
 .dark-theme {
 	&.home_container {
-		.section_1-content {
+		.section_1-content .content {
+			width: 100%;
 			// background: url($background-image-dark);
 			// font-family: Arial Black !important;
+		}
+		@media screen and (max-width: 500px) {
+			width: auto;
 		}
 		.features-container {
 			background-color: #020202;
@@ -536,6 +551,12 @@ nav {
 	margin-top: 150px;
 	transition: all 0.3s linear;
 	box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (max-width: 450px) {
+	nav {
+		display: none;
+	}
 }
 
 nav ul {
