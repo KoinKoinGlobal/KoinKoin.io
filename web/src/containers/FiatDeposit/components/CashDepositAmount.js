@@ -90,7 +90,6 @@ class CashDepositAmount extends Component {
 		const { email } = this.props;
 		const { amountData, ipay_Total, formFields } = this.state;
 		let amount = amountData * 100;
-		console.log('this.props --------->', this.props);
 		const componentProps = {
 			email,
 			amount,
