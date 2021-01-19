@@ -56,7 +56,7 @@ const nestedContent = {
 		SECTION_1_TEXT_1:
 			'Security First | Best prices at Lightningfast Speeds| Powered for A Borderless Africa & A Borderless World.',
 		SECTION_1_TEXT_2:
-			'We strive to bring the financial technology forward through affordable and simple access to trading technology.',
+			'We strive to bring Financial Inclusion through affordable and simple access to financial technology',
 		SECTION_1_BUTTON_1: 'Learn more',
 		SECTION_3_TITLE: 'TRADE CRYPTO WITH LOCAL CURRENCY EASILY',
 		SECTION_3_CARD_1_TITLE: '1 . OPEN ACCOUNT',
