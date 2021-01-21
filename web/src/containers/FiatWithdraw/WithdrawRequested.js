@@ -12,7 +12,7 @@ class WithdrawRequested extends Component {
 		return (
 			<div className="summary-container">
 				<IconTitle
-					text={`${STRINGS.WITHDRAW_PAGE.WITHDRAW_ORDER_SUBMITTED}`}
+					text={`${STRINGS['WITHDRAW_PAGE.WITHDRAW_ORDER_SUBMITTED']}`}
 					textType="title"
 				/>
 				<div>

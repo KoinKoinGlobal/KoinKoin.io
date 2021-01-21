@@ -35,7 +35,7 @@ class Form extends Component {
 				</div>
 				<ButtonSection
 					onClickCancel={this.props.onCancel}
-					ok_label={STRINGS.CONFIRM_TEXT}
+					ok_label={STRINGS['CONFIRM_TEXT']}
 					ok_disabled={!valid || submitting}
 					type="submit"
 				/>

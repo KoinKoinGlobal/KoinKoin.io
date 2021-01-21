@@ -11,7 +11,7 @@ export const generateBaseInformation = (id = '') => (
 	<div className="text">
 		{id && (
 			<p>
-				{STRINGS.formatString(STRINGS.DEPOSIT_BANK_REFERENCE, id).join(' ')}
+				{STRINGS.formatString(STRINGS['DEPOSIT_BANK_REFERENCE'], id).join(' ')}
 			</p>
 		)}
 	</div>
@@ -61,12 +61,12 @@ const renderBTCContent = (
 					<div className="qr-code-bg d-flex justify-content-center align-items-center">
 						<QRCode value={address} />
 					</div>
-					<div className="qr-text">{STRINGS.DEPOSIT.QR_CODE}</div>
+					<div className="qr-text">{STRINGS['DEPOSIT.QR_CODE']}</div>
 				</div>
 			</div>
 		</div>
 	) : (
-		<div>{STRINGS.DEPOSIT.NO_DATA}</div>
+		<div>{STRINGS['DEPOSIT.NO_DATA']}</div>
 	);
 
 export const renderContent = (
@@ -86,11 +86,11 @@ export const renderContent = (
 		}
 		const additionalText =
 			symbol === 'xlm'
-				? STRINGS.DEPOSIT.CRYPTO_LABELS.MEMO
-				: STRINGS.DEPOSIT.CRYPTO_LABELS.DESTINATION_TAG;
+				? STRINGS['DEPOSIT.CRYPTO_LABELS.MEMO']
+				: STRINGS['DEPOSIT.CRYPTO_LABELS.DESTINATION_TAG'];
 
 		return renderBTCContent(
-			STRINGS.formatString(STRINGS.DEPOSIT.CRYPTO_LABELS.ADDRESS, fullname),
+			STRINGS.formatString(STRINGS['DEPOSIT.CRYPTO_LABELS.ADDRESS'], fullname),
 			address,
 			onCopy,
 			true,
@@ -98,6 +98,6 @@ export const renderContent = (
 			STRINGS.formatString(additionalText, fullname)
 		);
 	} else {
-		return <div>{STRINGS.DEPOSIT.NO_DATA}</div>;
+		return <div>{STRINGS['DEPOSIT.NO_DATA']}</div>;
 	}
 };

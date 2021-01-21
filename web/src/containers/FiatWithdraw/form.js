@@ -210,7 +210,7 @@ class Form extends Component {
 						{error && <div className="warning_text">{error}</div>}
 					</div>
 					<ButtonSection
-						ok_label={STRINGS.CONTINUE}
+						ok_label={STRINGS['CONTINUE']}
 						disabled={submitting || !valid}
 						onClickCancel={this.onClickCancel}
 						type="submit"
