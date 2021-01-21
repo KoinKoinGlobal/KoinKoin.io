@@ -12,6 +12,7 @@ const nestedContent = {
 	ACTIVE_TRADES: 'You must {0} to access your active trades',
 	CANCEL_BASE_WITHDRAWAL: 'Cancel {0} Withdrawal',
 	CANCEL_WITHDRAWAL: 'Cancel Withdrawal',
+	WITHDRAWAL_INFO: 'Withdrawal info',
 	CANCEL_WITHDRAWAL_POPUP_CONFIRM:
 		'Do you want to cancel your pending withdrawal of:',
 	CANT_BE_CANCELLED: '-',
@@ -35,8 +36,9 @@ const nestedContent = {
 	HELPFUL_RESOURCES_TEXT: 'Helpful resources',
 	HELP_RESOURCE_GUIDE_TEXT:
 		'Feel free to contact us for more information and any issues by sending us an email',
-	HELP_TELEGRAM_TEXT: 'Check out open API documentation:',
-	HELP_TELEGRAM_LINK: 'https://apidocs.hollaex.com',
+	HELP_TELEGRAM_TEXT: 'Check out our Knowledge Base:',
+	HELP_TELEGRAM_LINK: 'https://koinkoin.zendesk.com',
+	HELP_EXIR_TUTORIAL_LINK: 'support@koinkoin.com',
 	NEED_HELP_TEXT: 'Need help?', // new
 	HELP_TEXT: 'help',
 	SUCCESS_TEXT: 'Success',
@@ -426,6 +428,7 @@ const nestedContent = {
 		ADD_ANOTHER_BANK_ACCOUNT: 'Add Another Bank Account',
 		BANK_NAME: 'Bank Name',
 		ACCOUNT_NUMBER: 'Account Number',
+		PAYSTACK_BUTTON: 'Pay Using Paystack',
 		CARD_NUMBER: 'Card Number',
 		BANK_VERIFICATION_HELP_TEXT:
 			'In order for this section to be verified you must complete the {0} section.',
@@ -581,6 +584,16 @@ const nestedContent = {
 					WARNING:
 						'Selfie with a different passport with uploaded content will be rejected',
 				},
+			},
+		},
+		PAYMENT_ACCOUNT_FORM: {
+			VALIDATIONS: {
+				COUNTRY_MAX_LENGTH: 'The country may not be greater than 2 characters.',
+				MOBILE_MAX_LENGTH: 'Enter valid number',
+				CURRENCY_MAX_LENGTH:
+					'The currency may not be greater than 3 characters',
+				FRISTNAME: 'Numbers and special characters are not allowed.',
+				ZIPCODE: 'Enter valid zipcode',
 			},
 		},
 		BANK_ACCOUNT_FORM: {
@@ -866,6 +879,7 @@ const nestedContent = {
 	WITHDRAWALS_FORM_DESTINATION_TAG_PLACEHOLDER: 'Type the destination tag', // new
 	WITHDRAWALS_FORM_MEMO_PLACEHOLDER: 'Type the transaction memo', // new
 	WITHDRAWALS_FORM_AMOUNT_LABEL: '{0} amount to withdraw',
+	WITHDRAWALS_FORM_TOTAL_AMOUNT_LABEL: '{0} total amount to withdraw',
 	WITHDRAWALS_FORM_AMOUNT_PLACEHOLDER:
 		'Type the amount of {0} you wish to withdraw',
 	WITHDRAWALS_FORM_FEE_COMMON_LABEL: 'Transaction fee',
@@ -908,6 +922,8 @@ const nestedContent = {
 	QUOTE_SUCCESS_REVIEW_MESSAGE: 'You have successfully {0} {1} {2} for {3} {4}', // you have successfully buy 1 btc from x toman
 	COUNTDOWN_ERROR_MESSAGE: 'Countdown is finished',
 	WITHDRAW_PAGE: {
+		WITHDRAW_ORDER_SUBMITTED: 'Withdraw Order Submitted',
+		WITHDRAW_OVERVIEW: 'Withdraw Overview',
 		BANK_TO_WITHDRAW: 'Bank to Withdraw to',
 		MESSAGE_ABOUT_SEND: 'You are about to send',
 		MESSAGE_BTC_WARNING:
@@ -1142,6 +1158,8 @@ const nestedContent = {
 	SEARCH_ASSETS: 'Search Assets',
 	TOTAL_ASSETS_VALUE: 'Total assets value in {0}: {1}',
 	QUICK_BUY: 'Quick Buy',
+	CRYPTOCURRENCY_AMOUNT_REQUIRED:
+		'The cryptocurrenty amount must be greater than 0',
 	BUY_COIN_INSTANTLY: 'Buy coin instantly',
 	SUMMARY: {
 		TITLE: 'Summary',
@@ -1198,6 +1216,7 @@ const nestedContent = {
 		TRADING_FEE_STRUCTURE: 'Trading fee structure',
 		WITHDRAWAL: 'Withdrawal',
 		DEPOSIT: 'Deposit',
+		WITHDRAW: 'Withdraw',
 		TAKER: 'Taker',
 		MAKER: 'Maker',
 		WEBSITE: 'website',
@@ -1357,7 +1376,10 @@ const nestedContent = {
 	},
 	USER_LEVEL: 'User level', // new
 	LIMIT_AMOUNT: 'Limit amount', // new
+	LIMIT_AMOUNT_NOTICE:
+		'The amount you have entered is below the minimum amount you can purchase',
 	FEE_AMOUNT: 'Fee amount', // new
+	NOTE_FOR_MINIMUM_AMOUNT: 'Note: Minimum amount is {0}',
 	COINS: 'Coins', // new
 	PAIRS: 'Pairs', // new
 	NOTE_FOR_EDIT_COIN:

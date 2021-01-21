@@ -49,16 +49,16 @@ export const generateFormValues = (
 
 	const amountValidate = [required];
 	if (min) {
-		amountValidate.push(minValue(min, STRINGS.WITHDRAWALS_MIN_VALUE_ERROR));
+		amountValidate.push(minValue(min, STRINGS['WITHDRAWALS_MIN_VALUE_ERROR']));
 	}
 	if (MAX) {
-		amountValidate.push(maxValue(MAX, STRINGS.WITHDRAWALS_MAX_VALUE_ERROR));
+		amountValidate.push(maxValue(MAX, STRINGS['WITHDRAWALS_MAX_VALUE_ERROR']));
 	}
 	// FIX add according fee
 	amountValidate.push(
 		checkBalance(
 			available,
-			STRINGS.formatString(STRINGS.WITHDRAWALS_LOWER_BALANCE, fullname),
+			STRINGS.formatString(STRINGS['WITHDRAWALS_LOWER_BALANCE'], fullname),
 			withdrawal_fee
 		)
 	);
@@ -66,11 +66,11 @@ export const generateFormValues = (
 	fields.amount = {
 		type: 'number',
 		label: STRINGS.formatString(
-			STRINGS.WITHDRAWALS_FORM_AMOUNT_LABEL,
+			STRINGS['WITHDRAWALS_FORM_AMOUNT_LABEL'],
 			fullname
 		),
 		placeholder: STRINGS.formatString(
-			STRINGS.WITHDRAWALS_FORM_AMOUNT_PLACEHOLDER,
+			STRINGS['WITHDRAWALS_FORM_AMOUNT_PLACEHOLDER'],
 			fullname
 		).join(''),
 		min: min,
@@ -80,9 +80,9 @@ export const generateFormValues = (
 		normalize: null,
 		fullWidth: true,
 		notification: {
-			text: STRINGS.CALCULATE_MAX,
+			text: STRINGS['CALCULATE_MAX'],
 			status: 'information',
-			iconPath: ICONS.BLUE_PLUS,
+			iconPath: ICONS['BLUE_PLUS'],
 			className: 'file_upload_icon',
 			useSvg: true,
 			onClick: calculateMax,
@@ -100,18 +100,18 @@ export const generateFormValues = (
 			}
 			return result;
 		},
-		tip_text: STRINGS.formatString(STRINGS.NOTE_FOR_MINIMUM_AMOUNT, min),
+		tip_text: STRINGS.formatString(STRINGS['NOTE_FOR_MINIMUM_AMOUNT'], min),
 	};
 
 	if (coins[symbol]) {
 		fields.fee = {
 			type: 'number',
 			label: STRINGS.formatString(
-				STRINGS.WITHDRAWALS_FORM_FEE_COMMON_LABEL,
+				STRINGS['WITHDRAWALS_FORM_FEE_COMMON_LABEL'],
 				fullname
 			),
 			placeholder: STRINGS.formatString(
-				STRINGS.WITHDRAWALS_FORM_FEE_PLACEHOLDER,
+				STRINGS['WITHDRAWALS_FORM_FEE_PLACEHOLDER'],
 				fullname
 			).join(''),
 			disabled: true,
@@ -123,7 +123,7 @@ export const generateFormValues = (
 			inputType: 'number',
 			label: STRINGS[`WITHDRAWALS_FORM_FEE_${symbol.toUpperCase()}_LABEL`],
 			placeholder: STRINGS.formatString(
-				STRINGS.WITHDRAWALS_FORM_FEE_PLACEHOLDER,
+				STRINGS['WITHDRAWALS_FORM_FEE_PLACEHOLDER'],
 				fullname
 			).join(''),
 			step: min,
@@ -151,21 +151,21 @@ export const generateBankInfoFormFields = (
 	return {
 		bank_country: {
 			type: 'select',
-			label: STRINGS.USER_VERIFICATION.TITLE_BANK_COUNTRY,
+			label: STRINGS['USER_VERIFICATION.TITLE_BANK_COUNTRY'],
 			fullWidth: true,
 			options: bankCountries,
 			onChange: onBankCountryChange,
 		},
 		bank_code: {
 			type: 'select',
-			label: STRINGS.USER_VERIFICATION.TITLE_BANK_ACCOUNT,
+			label: STRINGS['USER_VERIFICATION.TITLE_BANK_ACCOUNT'],
 			validate: [required],
 			fullWidth: true,
 			options: bankOptions,
 		},
 		account_number: {
 			type: 'number',
-			label: STRINGS.USER_VERIFICATION.ACCOUNT_NUMBER,
+			label: STRINGS['USER_VERIFICATION.ACCOUNT_NUMBER'],
 			validate: [required],
 			fullWidth: true,
 		},

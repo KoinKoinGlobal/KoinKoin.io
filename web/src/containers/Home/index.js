@@ -109,11 +109,11 @@ class Home extends Component {
 					) : (
 						<div className="sign-in-up-buttons">
 							<Link className="btn-login" to="/login">
-								{STRINGS.LOGIN_TEXT}&nbsp;/&nbsp;
+								{STRINGS['LOGIN_TEXT']}&nbsp;/&nbsp;
 							</Link>
 							<Link className="btn-signup" to="/signup">
 								{' '}
-								{STRINGS.SIGNUP_TEXT}
+								{STRINGS['SIGNUP_TEXT']}
 							</Link>
 						</div>
 					)}

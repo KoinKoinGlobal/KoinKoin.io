@@ -106,9 +106,10 @@ class ConfirmBankContent extends Component {
 		this.props._processRequestingFiatWithdraw();
 		requestFiatWithdraw(data)
 			.then((res) => {
-				if (res.waiting || res.status || res.processing) {
+				console.log(res.status, 'Flutterwave Status');
+				if (res.status) {
 					this.props._processPendingFiatWithdraw(res);
-					refresh_flutterwave_withdrawal_status();
+					//refresh_flutterwave_withdrawal_status();
 				} else {
 					this.props._processRequestingFailedFiatWithdraw(res);
 				}
@@ -148,8 +149,8 @@ class ConfirmBankContent extends Component {
 				return (
 					<div className="d-flex flex-column review_email-wrapper">
 						<IconTitle
-							text={STRINGS.WITHDRAWAL_INFO}
-							iconPath={ICONS.ACCOUNT_SUMMARY}
+							text={STRINGS['WITHDRAWAL_INFO']}
+							iconPath={ICONS['ACCOUNT_SUMMARY']}
 							useSvg={true}
 							textType="title"
 						/>
@@ -173,8 +174,8 @@ class ConfirmBankContent extends Component {
 				return (
 					<div className="d-flex flex-column review_email-wrapper">
 						<IconTitle
-							text={STRINGS.WITHDRAW_PAGE.WITHDRAW_OVERVIEW}
-							iconPath={ICONS.ACCOUNT_SUMMARY}
+							text={STRINGS['WITHDRAW_PAGE.WITHDRAW_OVERVIEW']}
+							iconPath={ICONS['ACCOUNT_SUMMARY']}
 							useSvg={true}
 							textType="title"
 						/>
@@ -216,8 +217,8 @@ class ConfirmBankContent extends Component {
 								<ButtonSection
 									onClickAccept={this.onPerformWithdraw}
 									onClickCancel={onClickCancel}
-									ok_label={STRINGS.CONFIRM_TEXT}
-									cancel_label={STRINGS.CANCEL}
+									ok_label={STRINGS['CONFIRM_TEXT']}
+									cancel_label={STRINGS['CANCEL']}
 									ok_disabled={fiatWithdraw.fetching}
 								/>
 							</div>
@@ -232,8 +233,8 @@ class ConfirmBankContent extends Component {
 				return (
 					<div className="d-flex flex-column review_email-wrapper">
 						<IconTitle
-							text={STRINGS.WITHDRAW_PAGE.WITHDRAW_ORDER_SUBMITTED}
-							iconPath={ICONS.ACCOUNT_SUMMARY}
+							text={STRINGS['WITHDRAW_PAGE.WITHDRAW_ORDER_SUBMITTED']}
+							iconPath={ICONS['ACCOUNT_SUMMARY']}
 							useSvg={true}
 							textType="title"
 						/>

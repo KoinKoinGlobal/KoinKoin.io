@@ -97,7 +97,7 @@ class FiatWithdrawOverview extends Component {
 		return (
 			<div className="summary-container">
 				<IconTitle
-					text={`${STRINGS.WITHDRAW_PAGE.WITHDRAW_OVERVIEW}`}
+					text={`${STRINGS['WITHDRAW_PAGE.WITHDRAW_OVERVIEW']}`}
 					textType="title"
 				/>
 				<div>
@@ -131,8 +131,8 @@ class FiatWithdrawOverview extends Component {
 					<ButtonSection
 						onClickAccept={this.onPerformWithdraw}
 						onClickCancel={this.onClickCancel}
-						ok_label={STRINGS.CONFIRM_TEXT}
-						cancel_label={STRINGS.CANCEL}
+						ok_label={STRINGS['CONFIRM_TEXT']}
+						cancel_label={STRINGS['CANCEL']}
 						ok_disabled={this.props.fetching}
 					/>
 				</div>

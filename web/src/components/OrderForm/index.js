@@ -134,7 +134,7 @@ const OrderForm = (props) => {
 		}
 
 		if (!cryptocurrency_amount) {
-			setErrorMessage(STRINGS.CRYPTOCURRENCY_AMOUNT_REQUIRED);
+			setErrorMessage(STRINGS['CRYPTOCURRENCY_AMOUNT_REQUIRED']);
 			setShowError(true);
 		}
 
