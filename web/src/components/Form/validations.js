@@ -256,7 +256,7 @@ export const normalizeEmail = (value = '') => value.toLowerCase();
 export const tokenKeyValidation = required;
 
 export const requireOnlyString = (value = '') =>
-	!onyStringRegEx.test(value) ? STRINGS.FIRSTNAME : undefined;
+	!onyStringRegEx.test(value) ? STRINGS['FIRSTNAME'] : undefined;
 
 export const calculate_total_amount = (value, fee) => {
 	return fee > 0

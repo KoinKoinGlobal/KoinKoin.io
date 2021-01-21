@@ -65,8 +65,9 @@ class PaymentVerification extends Component {
 				required,
 				maxLength(
 					2,
-					STRINGS.USER_VERIFICATION.PAYMENT_ACCOUNT_FORM.VALIDATIONS
-						.COUNTRY_MAX_LENGTH
+					STRINGS[
+						'USER_VERIFICATION.PAYMENT_ACCOUNT_FORM.VALIDATIONS.COUNTRY_MAX_LENGTH'
+					]
 				),
 			],
 			maxValue: 2,
@@ -102,8 +103,9 @@ class PaymentVerification extends Component {
 				required,
 				exactLength(
 					10,
-					STRINGS.USER_VERIFICATION.PAYMENT_ACCOUNT_FORM.VALIDATIONS
-						.MOBILE_MAX_LENGTH
+					STRINGS[
+						'USER_VERIFICATION.PAYMENT_ACCOUNT_FORM.VALIDATIONS.MOBILE_MAX_LENGTH'
+					]
 				),
 			],
 			maxValue: 10,

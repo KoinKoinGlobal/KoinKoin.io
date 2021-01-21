@@ -98,7 +98,7 @@ class UserVerification extends Component {
 
 		const props = {};
 
-		props.title = STRINGS.ACCOUNT_SECURITY.LOGIN.CONTENT.TITLE;
+		props.title = STRINGS['ACCOUNT_SECURITY.LOGIN.CONTENT.TITLE'];
 		props.headers = headers.logins;
 		props.data = logins;
 		props.handleNext = this.handleNext;
@@ -238,7 +238,6 @@ class UserVerification extends Component {
 				),
 				disabled: false,
 				notification: {
-					// text: STRINGS[`DEVELOPER_SECTION.${otp_enabled ? 'ACTIVE' : 'INACTIVE'}`],
 					status: otp_enabled ? 'success' : 'disabled',
 					iconId: 'TOKEN_TOKENS_ACTIVE,TOKEN_TOKENS_INACTIVE',
 					iconPath: otp_enabled
@@ -247,46 +246,6 @@ class UserVerification extends Component {
 					allowClick: true,
 				},
 			},
-			// TODO Login history feature
-			/*
-			{
-				title: isMobile ? (
-					<CustomMobileTabs
-						title={STRINGS.ACCOUNT_SECURITY.LOGIN.TITLE}
-						icon={ICONS.SETTING_INTERFACE_ICON}
-					/>
-				) : (
-					<CustomTabs
-						title={STRINGS.ACCOUNT_SECURITY.LOGIN.TITLE}
-						icon={ICONS.DEPOSIT_HISTORY}
-					/>
-				),
-				content: activeTab === 3 && (
-					<div className={classnames('inner_container', 'with_border_top')}>
-						{this.renderLoginsTab()}
-					</div>
-				)
-			},
-			*/
-			// TODO Freezing feature
-			/*{
-				title: isMobile ? (
-					<CustomMobileTabs
-						title={STRINGS.ACCOUNT_SECURITY.FREEZE.TITLE}
-						icon={ICONS.SETTING_LANGUAGE_ICON}
-					/>
-				) : (
-					<CustomTabs
-						title={STRINGS.ACCOUNT_SECURITY.FREEZE.TITLE}
-						icon={ICONS.SETTING_LANGUAGE_ICON}
-					/>
-				),
-				content: activeTab === 4 && freeze === false && (
-					<FreezeSection
-					handleSubmit={this.openFreeze}
-					/>
-				)
-			}*/
 		];
 
 		this.setState({ tabs });

@@ -26,7 +26,7 @@ const SelectSearchBox = (props) => {
 
 	const renderOptions = () => {
 		const arr = [];
-
+		console.log(options);
 		options.forEach((element, i) => {
 			const symbol = element.symbol.toUpperCase();
 
