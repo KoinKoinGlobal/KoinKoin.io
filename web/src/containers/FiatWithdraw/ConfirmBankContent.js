@@ -20,7 +20,7 @@ import { getCountryByCurrency, getCountryByCode } from '../../utils/countries';
 import { ACTIONS } from '../../actions/fiatWithdrawAction';
 import ButtonSection from '../../components/Button/ButtonSection';
 import CommonButton from '../../components/CommonButton';
-import { refresh_flutterwave_withdrawal_status } from '../../actions/walletActions';
+// import { refresh_flutterwave_withdrawal_status } from '../../actions/walletActions';
 
 class ConfirmBankContent extends Component {
 	state = {
