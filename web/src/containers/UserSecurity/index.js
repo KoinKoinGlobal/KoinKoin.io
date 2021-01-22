@@ -44,7 +44,8 @@ class UserVerification extends Component {
 		headers: [],
 		dialogIsOpen: false,
 		modalText: '',
-		stringId: '',
+		iconId: '',
+		icon: '',
 		activeTab: 0,
 		jumpToPage: 0,
 		freeze: false,
@@ -147,7 +148,7 @@ class UserVerification extends Component {
 					<CustomTabs
 						stringId={'ACCOUNT_SECURITY.OTP.TITLE'}
 						title={STRINGS['ACCOUNT_SECURITY.OTP.TITLE']}
-						icon={ICONS.SETTING_NOTIFICATION_ICON}
+						icon={ICONS.SECURITY_OTP_ICON}
 					/>
 				),
 				content: activeTab === 0 && (
@@ -189,13 +190,13 @@ class UserVerification extends Component {
 					<CustomMobileTabs
 						stringId={'ACCOUNT_SECURITY.CHANGE_PASSWORD.TITLE'}
 						title={STRINGS['ACCOUNT_SECURITY.CHANGE_PASSWORD.TITLE']}
-						icon={ICONS.SETTING_INTERFACE_ICON}
+						icon={ICONS.SECURITY_CHANGE_PASSWORD_ICON}
 					/>
 				) : (
 					<CustomTabs
 						stringId={'ACCOUNT_SECURITY.CHANGE_PASSWORD.TITLE'}
 						title={STRINGS['ACCOUNT_SECURITY.CHANGE_PASSWORD.TITLE']}
-						icon={ICONS.SETTING_INTERFACE_ICON}
+						icon={ICONS.SECURITY_CHANGE_PASSWORD_ICON}
 					/>
 				),
 				content: activeTab === 1 && (
@@ -220,13 +221,13 @@ class UserVerification extends Component {
 					<CustomMobileTabs
 						stringId={'DEVELOPER_SECTION.TITLE'}
 						title={STRINGS['DEVELOPER_SECTION.TITLE']}
-						icon={ICONS.SETTING_LANGUAGE_ICON}
+						icon={ICONS.SECURITY_API_ICON}
 					/>
 				) : (
 					<CustomTabs
 						stringId={'DEVELOPER_SECTION.TITLE'}
 						title={STRINGS['DEVELOPER_SECTION.TITLE']}
-						icon={ICONS.SETTING_LANGUAGE_ICON}
+						icon={ICONS.SECURITY_API_ICON}
 					/>
 				),
 				content: activeTab === 2 && (
@@ -328,11 +329,14 @@ class UserVerification extends Component {
 	};
 
 	onSubmitActivateOtp = (values) => {
+		const { icons: ICONS } = this.props;
 		return otpActivate(values)
 			.then((res) => {
 				this.props.otpSetActivated(true);
 				this.setState({
 					dialogIsOpen: true,
+					iconId: 'OTP_ACTIVE',
+					icon: ICONS['OTP_ACTIVE'],
 					modalText: STRINGS['ACCOUNT_SECURITY.OTP.DIALOG.SUCCESS'],
 					stringId: 'ACCOUNT_SECURITY.OTP.DIALOG.SUCCESS',
 				});
@@ -367,11 +371,14 @@ class UserVerification extends Component {
 	};
 
 	onSubmitCancelOTP = (values) => {
+		const { icons: ICONS } = this.props;
 		return otpRevoke({ code: values.otp_code })
 			.then(() => {
 				this.props.otpSetActivated(false);
 				this.setState({
 					dialogIsOpen: true,
+					iconId: 'OTP_DEACTIVATED',
+					icon: ICONS['OTP_DEACTIVATED'],
 					modalText: STRINGS['ACCOUNT_SECURITY.OTP.DIALOG.REVOKE'],
 					stringId: 'ACCOUNT_SECURITY.OTP.DIALOG.REVOKE',
 				});
@@ -387,17 +394,8 @@ class UserVerification extends Component {
 		this.setActiveTab(2);
 	};
 
-	renderModalContent = () => {
-		return (
-			<SuccessDisplay
-				onClick={this.onCloseDialog}
-				text={this.state.modalText}
-			/>
-		);
-	};
-
 	onCloseDialog = () => {
-		this.setState({ dialogIsOpen: false });
+		this.setState({ dialogIsOpen: false, iconId: '', icon: '' });
 	};
 
 	// onSubmitotp = (values) => {
@@ -414,6 +412,8 @@ class UserVerification extends Component {
 		constants,
 		icons
 	) => {
+		const { stringId, icon, iconId } = this.state;
+
 		if (error) {
 			return (
 				<SuccessDisplay
@@ -438,6 +438,9 @@ class UserVerification extends Component {
 					onClick={this.onCloseDialog}
 					text={modalText}
 					success={!error}
+					iconId={iconId}
+					iconPath={icon}
+					stringId={stringId}
 				/>
 			);
 		}
