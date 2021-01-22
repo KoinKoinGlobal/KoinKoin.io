@@ -43,7 +43,7 @@ const validate = (values) => {
 	const { answer } = values;
 	const errors = {};
 
-	if (answer == undefined || answer == '') {
+	if (answer === undefined || answer === '') {
 		errors.answer = STRINGS['VALIDATIONS.REQUIRED'];
 	}
 
