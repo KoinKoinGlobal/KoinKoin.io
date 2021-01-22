@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactSVG from 'react-svg';
+import { ReactSVG } from 'react-svg';
 import OutsideAlerter from './OutsideAlerter';
 import PropTypes from 'prop-types';
 import classes from './style.module.scss';
@@ -40,7 +40,7 @@ const SelectSearchBox = (props) => {
 							}}
 						>
 							<div className="coin-price-container">
-								<ReactSVG path={element.icon} wrapperClassName="coin-price" />
+								<ReactSVG src={element.icon} className="coin-price" />
 							</div>
 							<div className="cryto-symbol">{symbol}</div>
 						</div>
@@ -60,8 +60,8 @@ const SelectSearchBox = (props) => {
 						>
 							<div className="coin-price-container">
 								<ReactSVG
-									path={icons[`${symbol}_ICON`]}
-									wrapperClassName="coin-price"
+									src={icons[`${symbol}_ICON`]}
+									className="coin-price"
 								/>
 							</div>
 							<div className="cryto-symbol">{symbol}</div>
@@ -88,8 +88,8 @@ const SelectSearchBox = (props) => {
 					<div className="coin-price-container">
 						{currentSymbol ? (
 							<ReactSVG
-								path={icons[`${currentSymbol}_ICON`]}
-								wrapperClassName="coin-price"
+								src={icons[`${currentSymbol}_ICON`]}
+								className="coin-price"
 							/>
 						) : null}
 					</div>

@@ -53,8 +53,8 @@ class PaymentVerification extends Component {
 			label: 'address',
 			placeholder: 'address',
 			rows: '2',
-			validate: [required],
-			maxValue: 150,
+			validate: [required, maxLength(150)],
+			// maxValue: 150,
 			fullWidth: isMobile,
 		};
 		formFields.country = {
@@ -70,7 +70,7 @@ class PaymentVerification extends Component {
 					]
 				),
 			],
-			maxValue: 2,
+			// maxValue: 2,
 			fullWidth: isMobile,
 		};
 		formFields.state = {
@@ -91,8 +91,8 @@ class PaymentVerification extends Component {
 			type: 'text',
 			label: 'zip',
 			placeholder: 'zip',
-			validate: [required],
-			maxValue: 5,
+			validate: [required, maxLength(5)],
+			// maxValue: 5,
 			fullWidth: isMobile,
 		};
 		formFields.phone_no = {
@@ -108,8 +108,8 @@ class PaymentVerification extends Component {
 					]
 				),
 			],
-			maxValue: 10,
-			minValue: 10,
+			// maxValue: 10,
+			// minValue: 10,
 			fullWidth: isMobile,
 		};
 		formFields.email = {

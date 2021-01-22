@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { browserHistory } from 'react-router';
 
-import { ReactSVG } from 'react-svg';
+// import { ReactSVG } from 'react-svg';
 import STRINGS from '../../config/localizedStrings';
 
 import { FLEX_CENTER_CLASSES } from '../../config/constants';
@@ -139,14 +139,14 @@ const Section1 = ({ style = {}, constants }) => {
 					<OrderForm />
 				</div>
 			</div>
-			<EditWrapper iconId="ARROW_ARROW">
+			{/* <EditWrapper iconId="ARROW_ARROW">
 				<div
 					className={classnames('pointer', 'flex-0', 'scroll-button')}
 					onClick={onClickScrollTo}
 				>
 					<ReactSVG src={ICONS['ARROW_ARROW']} />
 				</div>
-			</EditWrapper>
+			</EditWrapper> */}
 		</div>
 	);
 };
