@@ -124,7 +124,6 @@ class PaymentVerification extends Component {
 	};
 
 	handleSubmit = (formData) => {
-		console.log('IAPYTOTAL START');
 		const { paymentStaticData } = this.state;
 		const { currency, amount } = this.props;
 
@@ -138,7 +137,6 @@ class PaymentVerification extends Component {
 
 		return paymentData({ ...formData, ...paymentStaticData, ...amountData })
 			.then(({ data }) => {
-				console.log(data, 'IPAYTOTAL SUCCESS MESSAGE');
 				if (data.status === 'success') {
 					window.location.assign(data.payment_redirect_url);
 				} else {
@@ -146,7 +144,6 @@ class PaymentVerification extends Component {
 				}
 			})
 			.catch((err) => {
-				console.log(err.message, 'IAPYTOTAL ERROR MESSAGE');
 				const error = { _error: err.message };
 				if (
 					err.response &&
