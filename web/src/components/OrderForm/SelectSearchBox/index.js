@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ReactSVG } from 'react-svg';
+// import { ReactSVG } from 'react-svg';
 import OutsideAlerter from './OutsideAlerter';
 import PropTypes from 'prop-types';
 import classes from './style.module.scss';
-
+import { Image } from 'components';
 import withConfig from 'components/ConfigProvider/withConfig';
 
 const SelectSearchBox = (props) => {
@@ -40,7 +40,18 @@ const SelectSearchBox = (props) => {
 							}}
 						>
 							<div className="coin-price-container">
-								<ReactSVG src={element.icon} className="coin-price" />
+								{/* <ReactSVG src={element.icon} className="coin-price" /> */}
+								<Image
+									iconId={
+										icons[`${symbol}_ICON`] ? `${symbol}_ICON` : 'DEFAULT_ICON'
+									}
+									icon={
+										icons[`${symbol}_ICON`]
+											? icons[`${symbol}_ICON`]
+											: icons['DEFAULT_ICON']
+									}
+									wrapperClassName="coin-price"
+								/>
 							</div>
 							<div className="cryto-symbol">{symbol}</div>
 						</div>
@@ -49,7 +60,6 @@ const SelectSearchBox = (props) => {
 			}
 			if (type === 'cash') {
 				if (!element.isCryto) {
-					console.log('cash element', element);
 					arr.push(
 						<div
 							key={i}
@@ -59,9 +69,20 @@ const SelectSearchBox = (props) => {
 							}}
 						>
 							<div className="coin-price-container">
-								<ReactSVG
+								{/* <ReactSVG
 									src={icons[`${symbol}_ICON`]}
 									className="coin-price"
+								/> */}
+								<Image
+									iconId={
+										icons[`${symbol}_ICON`] ? `${symbol}_ICON` : 'DEFAULT_ICON'
+									}
+									icon={
+										icons[`${symbol}_ICON`]
+											? icons[`${symbol}_ICON`]
+											: icons['DEFAULT_ICON']
+									}
+									wrapperClassName="coin-price"
 								/>
 							</div>
 							<div className="cryto-symbol">{symbol}</div>
@@ -87,9 +108,22 @@ const SelectSearchBox = (props) => {
 				<div className="select-search-box-btn" onClick={openSelectbox}>
 					<div className="coin-price-container">
 						{currentSymbol ? (
-							<ReactSVG
-								src={icons[`${currentSymbol}_ICON`]}
-								className="coin-price"
+							// <ReactSVG
+							// 	src={icons[`${currentSymbol}_ICON`]}
+							// 	className="coin-price"
+							// />
+							<Image
+								iconId={
+									icons[`${currentSymbol}_ICON`]
+										? `${currentSymbol}_ICON`
+										: 'DEFAULT_ICON'
+								}
+								icon={
+									icons[`${currentSymbol}_ICON`]
+										? icons[`${currentSymbol}_ICON`]
+										: icons['DEFAULT_ICON']
+								}
+								wrapperClassName="coin-price"
 							/>
 						) : null}
 					</div>
