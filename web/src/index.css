@@ -9273,7 +9273,7 @@ foreignObject {
         align-items: center;
         width: 38px; }
         .order-form-container .order-form .select-search-box .coin-price-container .coin-price {
-          width: 100%;
+          width: 36px;
           padding-top: 5px; }
       .order-form-container .order-form .select-search-box .arrow-down {
         display: flex;
