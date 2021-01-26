@@ -48,7 +48,11 @@ const OrderForm = (props) => {
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
 		Object.keys(coins).forEach((currency) => {
-			const { symbol, min } = coins[currency] || DEFAULT_COIN_DATA;
+			const {
+				symbol,
+				min,
+				meta: { is_fiat },
+			} = coins[currency] || DEFAULT_COIN_DATA;
 			const currencyBalance = calculatePrice(
 				balance[`${symbol}_balance`],
 				prices[currency]
@@ -64,13 +68,13 @@ const OrderForm = (props) => {
 				balancePercentage: donutFormatPercentage(balancePercent),
 			});
 
-			const isCrytocoin = isCryto(symbol);
+			// const isCrytocoin = isCryto(symbol);
 
-			if (isCrytocoin) {
+			if (!is_fiat) {
 				arr.push({
 					...coins[currency],
 					walletAddress: wallets[symbol],
-					isCryto: isCrytocoin,
+					isCryto: !is_fiat,
 					balance: balancePercent,
 					balanceFormat: formatToCurrency(currencyBalance, min),
 					balancePercentage: donutFormatPercentage(balancePercent),
@@ -83,7 +87,7 @@ const OrderForm = (props) => {
 				arr.push({
 					...coins[currency],
 					walletAddress: wallets[symbol],
-					isCryto: isCrytocoin,
+					isCryto: !is_fiat,
 					balance: balancePercent,
 					balanceFormat: formatToCurrency(currencyBalance, min),
 					balancePercentage: donutFormatPercentage(balancePercent),
@@ -102,24 +106,23 @@ const OrderForm = (props) => {
 
 	const [cryto, setCryto] = useState('btc');
 	const [cash, setCash] = useState('usd');
-	console.log('options', options);
 	const currentCtytoItem =
 		find(options, { symbol: cryto })[0] || find(options, { isCryto: true })[0];
 	const currentCashItem =
 		find(options, { symbol: cash })[0] || find(options, { isCryto: false })[0];
 
-	const isCryto = (symbol) => {
-		if (
-			symbol === 'bch' ||
-			symbol === 'xrp' ||
-			symbol === 'btc' ||
-			symbol === 'eth' ||
-			symbol === 'usdt'
-		) {
-			return true;
-		}
-		return false;
-	};
+	// const isCryto = (symbol) => {
+	// 	if (
+	// 		symbol === 'bch' ||
+	// 		symbol === 'xrp' ||
+	// 		symbol === 'btc' ||
+	// 		symbol === 'eth' ||
+	// 		symbol === 'usdt'
+	// 	) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// };
 
 	const onCrytoChangeSelect = (element) => {
 		setCryto(element.symbol);
