@@ -1,4 +1,4 @@
-import { WS_URL } from '../config/constants';
+import { PLUGIN_URL } from '../config/constants';
 import { requestAuthenticated } from '../utils';
 
 export const ACTIONS = {
@@ -90,7 +90,12 @@ export function requestFiatWithdraw(data) {
 		body: JSON.stringify(data),
 	};
 
-	return requestAuthenticated('/plugins/withdraw/fiat', options, null, WS_URL);
+	return requestAuthenticated(
+		'/plugins/withdraw/fiat',
+		options,
+		null,
+		PLUGIN_URL
+	);
 }
 
 export function requestWithdrawBanks(country = 'NG') {
@@ -101,6 +106,6 @@ export function requestWithdrawBanks(country = 'NG') {
 		`/plugins/withdraw/banks/${country}`,
 		options,
 		null,
-		WS_URL
+		PLUGIN_URL
 	);
 }
