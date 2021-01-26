@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { PLUGIN_URL } from 'config/constants';
 import querystring from 'query-string';
 
 const VERIFICATION_ENDPOINTS = {
 	VERIFY_SMS_CODE: '/plugins/sms/verify',
 	VERIFY_BANK: '/plugins/bank/user',
 	GET_USER: '/user',
-	PAYMENT_DATA: `$/plugins/deposit/credit/pg-ipaytotal/get-payment-url`,
-	PAYSTACK_CREDIT: `$/plugins/deposit/credit/pg-paystack`,
+	PAYMENT_DATA: `/plugins/deposit/credit/pg-ipaytotal/get-payment-url`,
+	PAYSTACK_CREDIT: `/plugins/deposit/credit/pg-paystack`,
 	FLUTTERWAVE_CREDIT: `/plugins/deposit/credit/pg-flutterwave`,
 	IPAYTOTAL_WEBHOOK: `/plugins/deposit/credit/pg-ipaytotal`,
 	IPAYTOTALTRANSACTION: 'https://ipaytotal.solutions/api/get/transaction',
@@ -39,6 +40,7 @@ export const paymentData = (values) => {
 		data: values,
 		url: VERIFICATION_ENDPOINTS.PAYMENT_DATA,
 		method: 'POST',
+		baseURL: PLUGIN_URL,
 	});
 };
 
@@ -47,6 +49,7 @@ export const payStackCredit = (values) => {
 		data: values,
 		url: VERIFICATION_ENDPOINTS.PAYSTACK_CREDIT,
 		method: 'POST',
+		baseURL: PLUGIN_URL,
 	});
 };
 
@@ -55,6 +58,7 @@ export const flutterwaveCredit = (values) => {
 		data: values,
 		url: VERIFICATION_ENDPOINTS.FLUTTERWAVE_CREDIT,
 		method: 'POST',
+		baseURL: PLUGIN_URL,
 	});
 };
 
@@ -63,6 +67,7 @@ export const IPaytotalWebHookData = (values) => {
 		data: values,
 		url: VERIFICATION_ENDPOINTS.IPAYTOTAL_WEBHOOK,
 		method: 'POST',
+		baseURL: PLUGIN_URL,
 	});
 };
 
@@ -71,5 +76,6 @@ export const IPaytotalTransaction = (values) => {
 		data: values,
 		url: VERIFICATION_ENDPOINTS.IPAYTOTAL_TRANSACTION,
 		method: 'POST',
+		baseURL: PLUGIN_URL,
 	});
 };
