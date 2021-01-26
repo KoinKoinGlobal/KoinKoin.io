@@ -22,7 +22,6 @@ const Section1 = ({ style = {}, constants }) => {
 				youtube,
 				twitter,
 			} = constants.links;
-			console.log('style', style);
 			const current_theme = getTheme();
 
 			return (
