@@ -48,11 +48,9 @@ const OrderForm = (props) => {
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
 		Object.keys(coins).forEach((currency) => {
-			const {
-				symbol,
-				min,
-				meta: { is_fiat },
-			} = coins[currency] || DEFAULT_COIN_DATA;
+			console.log(coins[currency]);
+			const { symbol, min } = coins[currency] || DEFAULT_COIN_DATA;
+			let is_fiat = coins[currency].meta && !!coins[currency].meta.is_fiat;
 			const currencyBalance = calculatePrice(
 				balance[`${symbol}_balance`],
 				prices[currency]
