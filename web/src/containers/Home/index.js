@@ -7,7 +7,7 @@ import { getClasesForLanguage } from '../../utils/string';
 import { getThemeClass } from '../../utils/theme';
 import EventListener from 'react-event-listener';
 import STRINGS from '../../config/localizedStrings';
-import { AppFooter } from '../../components';
+// import { AppFooter } from '../../components';
 import { Link } from 'react-router';
 import {
 	// isLoggedIn,
@@ -143,12 +143,12 @@ class Home extends Component {
 						activeLanguage={activeLanguage}
 						constants={constants}
 					/>
-					<AppFooter
+					{/* <AppFooter
 						theme={activeTheme}
 						onChangeLanguage={this.onChangeLanguage}
 						activeLanguage={activeLanguage}
 						constants={constants}
-					/>
+					/> */}
 				</div>
 			</div>
 		);

@@ -48,9 +48,9 @@ const OrderForm = (props) => {
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
 		Object.keys(coins).forEach((currency) => {
-			console.log(coins[currency]);
 			const { symbol, min } = coins[currency] || DEFAULT_COIN_DATA;
 			let is_fiat = coins[currency].meta && !!coins[currency].meta.is_fiat;
+
 			const currencyBalance = calculatePrice(
 				balance[`${symbol}_balance`],
 				prices[currency]
@@ -65,8 +65,6 @@ const OrderForm = (props) => {
 				balanceFormat: formatToCurrency(currencyBalance, min),
 				balancePercentage: donutFormatPercentage(balancePercent),
 			});
-
-			// const isCrytocoin = isCryto(symbol);
 
 			if (!is_fiat) {
 				arr.push({
@@ -108,19 +106,6 @@ const OrderForm = (props) => {
 		find(options, { symbol: cryto })[0] || find(options, { isCryto: true })[0];
 	const currentCashItem =
 		find(options, { symbol: cash })[0] || find(options, { isCryto: false })[0];
-
-	// const isCryto = (symbol) => {
-	// 	if (
-	// 		symbol === 'bch' ||
-	// 		symbol === 'xrp' ||
-	// 		symbol === 'btc' ||
-	// 		symbol === 'eth' ||
-	// 		symbol === 'usdt'
-	// 	) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// };
 
 	const onCrytoChangeSelect = (element) => {
 		setCryto(element.symbol);
