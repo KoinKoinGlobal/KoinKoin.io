@@ -227,7 +227,6 @@ function withAdminProps(Component, key) {
 
 export default (
 	<Router history={browserHistory}>
-		<Route path="/" name="Home" component={Home} onEnter={checkLanding} />
 		<Route path="lang/:locale" component={createLocalizedRoutes} />
 		<Route component={AuthContainer} {...noAuthRoutesCommonProps}>
 			{isMobile ? (
@@ -260,6 +259,13 @@ export default (
 			/>
 		</Route>
 		<Route component={Container}>
+			<Route
+				path="/"
+				name="Home"
+				component={Home}
+				onEnter={checkLanding}
+				isHome={true}
+			/>
 			{isMobile ? (
 				<Route
 					path="/home"

@@ -500,6 +500,13 @@ class App extends Component {
 			? ''
 			: this.getClassForActivePath(this.props.location.pathname);
 		const isMenubar = true;
+		const isHomePage = () => {
+			var location = router.getCurrentLocation();
+			if (location.pathname === '/') {
+				return true;
+			}
+			return false;
+		};
 		return (
 			<ThemeProvider>
 				<div>
@@ -557,19 +564,22 @@ class App extends Component {
 								onKeyPress={this.resetTimer}
 							/>
 							<div className="d-flex flex-column f-1">
-								<AppBar
-									router={router}
-									location={location}
-									goToDashboard={this.goToDashboard}
-									logout={this.logout}
-									activePath={activePath}
-									onHelp={openHelpfulResourcesForm}
-								>
-									{isBrowser && isMenubar && isLoggedIn() && (
-										<AppMenuBar router={router} location={location} />
-									)}
-								</AppBar>
-								{isBrowser && isLoggedIn() && (
+								{!isHomePage() ? (
+									<AppBar
+										router={router}
+										location={location}
+										goToDashboard={this.goToDashboard}
+										logout={this.logout}
+										activePath={activePath}
+										onHelp={openHelpfulResourcesForm}
+									>
+										{isBrowser && isMenubar && isLoggedIn() && (
+											<AppMenuBar router={router} location={location} />
+										)}
+									</AppBar>
+								) : null}
+
+								{isBrowser && !isHomePage() && isLoggedIn() && (
 									<PairTabs
 										activePath={activePath}
 										location={location}
