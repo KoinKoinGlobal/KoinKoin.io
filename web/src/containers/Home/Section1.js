@@ -122,13 +122,13 @@ const Section1 = ({ style = {}, constants }) => {
 					<div className="home-title text-capitalize">
 						{STRINGS['HOME.SECTION_1_TITLE']}
 					</div>
-					<div className="text-section text-center">
-						<div className="home-sub-title">
+					<div className="text-center mb-4">
+						<p className="lead font-weight-bold m-0">
 							{STRINGS['HOME.SECTION_1_TEXT_1']}
-						</div>
-						<div className="home-sub-title">
+						</p>
+						<p className="lead font-weight-bold">
 							{STRINGS['HOME.SECTION_1_TEXT_2']}
-						</div>
+						</p>
 					</div>
 					<CommonButton
 						className="btn-open-trading-account"

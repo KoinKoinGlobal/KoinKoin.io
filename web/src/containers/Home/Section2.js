@@ -13,20 +13,20 @@ const Section2 = ({ style }) => {
 	};
 
 	return (
-		<div className={'section_2'} style={style}>
+		<div className="my-5 section_2 text-dark" style={style}>
 			<div className="animate-container">
 				<img src={'/assets/background-animate-pattern.jpg'} alt="" />
 			</div>
 			<AnimationContainer>
-				<div className={'section-detail-item'}>
+				<div className="section-detail-item my-5 py-5">
 					<div className="image">
 						<img src={'/assets/home/home_box.svg'} alt="" width="150px" />
 					</div>
 					<div className="title">ENGINEERED WITH THE LATEST TECHNOLOGY</div>
-					<div className="description">
+					<p className="lead text-muted">
 						Keeping ahead and staying up to date with the very best trading
 						technology available
-					</div>
+					</p>
 					<div className="action-group">
 						<CommonButton label="MORE INFO" />
 						<CommonButton
@@ -38,30 +38,30 @@ const Section2 = ({ style }) => {
 				</div>
 			</AnimationContainer>
 			<AnimationContainer>
-				<div className={'section-detail-item'}>
+				<div className="section-detail-item my-5 py-5">
 					<div className="image">
 						<img src={'/assets/home/home_hand.png'} alt="" />
 					</div>
 					<div className="title">FOR EVERYONE</div>
-					<div className="description">
+					<p className="lead text-muted">
 						Building a Borderless World Through International Crypto exchange
 						trading
-					</div>
+					</p>
 					<div className="action-group">
 						<CommonButton label="MORE INFO" />
 					</div>
 				</div>
 			</AnimationContainer>
 			<AnimationContainer>
-				<div className={'section-detail-item'}>
+				<div className="section-detail-item my-5 py-5">
 					<div className="image">
 						<img src={'/assets/home/home_search.png'} width="200px" alt="" />
 					</div>
 					<div className="title">BEST LIQUIDITY</div>
-					<div className="description">
+					<p className="lead text-muted">
 						Trade your local currencies against BTC and other major crypto
 						assets
-					</div>
+					</p>
 					<div className="action-group">
 						<CommonButton label="VIEW MARKET" onClick={onClickViewMarketBtn} />
 					</div>
@@ -69,23 +69,23 @@ const Section2 = ({ style }) => {
 			</AnimationContainer>
 
 			<AnimationContainer>
-				<div className={'section-detail-item'}>
+				<div className="section-detail-item my-5 py-5">
 					<div className="title" style={{ fontSize: '24px' }}>
 						KoinKoin Fiat Partners
 					</div>
-					<div className="supported-cards-row">
+					<div className="supported-cards-row m-5 d-flex col-md-9 col-sm-12">
 						<div className="supported-card-item">
 							<div className="logo">
 								<img src={'/assets/home/paystack.png'} alt="" />
 							</div>
-							<div className="detail">
+							<p className="lead text-center">
 								Paystack provides us with a modern, frictionless, payment
 								process. Our integration with paystack allows you to painlessly
 								deposit your currency whilst keeping your financial details
 								highly secure. Your payments are automatically routed through
 								the most optimal channels, ensuring the highest transaction
 								success rates in the market.
-							</div>
+							</p>
 						</div>
 						<div className="supported-card-item">
 							<div className="logo">
@@ -95,7 +95,7 @@ const Section2 = ({ style }) => {
 									alt=""
 								/>
 							</div>
-							<div className="detail">
+							<p className="lead text-center">
 								Koinal provides you with 24/7 instant access to Bitcoin,
 								Ethereum, Litecoin, Bitcoin Cash and Ripple liquidity. You can
 								buy coin instantly with your debit/credit cards and wire
@@ -103,30 +103,30 @@ const Section2 = ({ style }) => {
 								sensitive financial details are never shared with others and
 								your payments are protected by sophisticated fraud monitoring
 								and advanced encryption.
-							</div>
+							</p>
 						</div>
 						<div className="supported-card-item">
 							<div className="logo">
 								<img src={'/assets/home/ipaytotal.png'} alt="" />
 							</div>
-							<div className="detail">
+							<p className="lead text-center">
 								iPaytotal are a London-based company that take security of your
 								money to a very advanced level. They monitor transactions in
 								real-time allowing you the peace of mind to make deposits and
 								purchase cryptocurrency from any location in the world.
-							</div>
+							</p>
 						</div>
 						<div className="supported-card-item">
 							<div className="logo">
 								<img src={'/assets/home/flutterwave.png'} alt="" />
 							</div>
-							<div className="detail">
+							<p className="lead text-center">
 								KoinKoin has partnered with Flutterwave to create a seamless
 								fiat-to-crypto gateway for Africa. Flutterwave provides access
 								to numerous regions in Africa allowing our users to take
 								advantage of local payment methods to purchase cryptocurrency at
 								Lightningfast speeds and over secure channels and gateways.
-							</div>
+							</p>
 						</div>
 					</div>
 				</div>

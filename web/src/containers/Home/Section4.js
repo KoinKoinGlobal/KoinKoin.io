@@ -32,12 +32,9 @@ const Section4 = ({ style = {} }) => {
 				<img src={'/assets/background-animate-pattern.jpg'} alt="" />
 			</div>
 
-			<div
-				className={classnames('f-1', ...FLEX_CENTER_CLASSES, 'flex-column')}
-				style={{ marginBottom: '150px' }}
-			>
+			<div className={classnames('f-1', ...FLEX_CENTER_CLASSES, 'flex-column')}>
 				<AnimationContainer>
-					<div className={'home-youtube-container'}>
+					<div className="my-3">
 						<YouTube videoId="juRNOzkJ6Qs" opts={opts} />
 					</div>
 				</AnimationContainer>
@@ -47,12 +44,12 @@ const Section4 = ({ style = {} }) => {
 						<div className="home-title text-capitalize">
 							NEW BEGINNINGS - BORDERLESS AFRICA
 						</div>
-						<div className="text-section text-center">
+						<p className="lead font-weight-bold text-center">
 							KoinKoin’s continuing mission is to bolster small businesses and
 							empower individuals using blockchain technology
-						</div>
+						</p>
 						<CommonButton
-							className="btn-open-trading-account"
+							className="btn-open-trading-account mt-5"
 							label="OPEN TRADING ACCOUNT"
 							onClick={onClickSignUpBtn}
 						/>

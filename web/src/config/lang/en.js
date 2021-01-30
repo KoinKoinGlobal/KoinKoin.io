@@ -82,6 +82,26 @@ const nestedContent = {
 		SECTION_3_BUTTON_LABEL: 'OPEN ACCOUNT',
 		SECTION_3_BUTTON_1: 'View Demo',
 		DASHBOARD: 'Dashboard',
+		SECTION_5_CARD_1_TITLE: 'Exclusive Access to the Best Deals',
+		SECTION_5_CARD_1_TEXT:
+			'Access quality, exclusive deals securely, right in our platform',
+		SECTION_5_CARD_2_TITLE: 'Blazing Speed',
+		SECTION_5_CARD_2_TEXT:
+			'Launch a desk that offers bespoke deals and transactions that settle instantly',
+		SECTION_5_CARD_3_TITLE: 'Each Portfolia insured to USD 5 million',
+		SECTION_5_CARD_3_TEXT:
+			'Get peace of mind from any loss due to theft, hacking, or malicious activity. Additional insurance is optionally available',
+		SECTION_5_CARD_4_TITLE:
+			'Auditable Transactions, Secure Trading Environment',
+		SECTION_5_CARD_4_TEXT:
+			'Perform bakground checks and verify each trade and user. Every transaction is audited.',
+		SECTION_5_CARD_5_TITLE: 'Strict Deal Confidentiality',
+		SECTION_5_CARD_5_TEXT:
+			'Implement strict confidentiality for every offer, deal, and counter-offer within the platform. All transactions handled with a high degree of privacy.',
+		SECTION_5_CARD_6_TITLE:
+			'Greater Liquidity with institutional Grade Compliance',
+		SECTION_5_CARD_6_TEXT:
+			'We partnered with PrimeTrust for compliance to ensure greater liquidity for our clients.',
 	},
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
