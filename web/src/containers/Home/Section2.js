@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import CommonButton from '../../components/CommonButton';
 import AnimationContainer from '../../components/AnimationContainer';
+import LeadingFeatures from './LeadingFeatures';
 
 const Section2 = ({ style }) => {
 	const onClickSignupBtn = () => {
@@ -22,7 +23,9 @@ const Section2 = ({ style }) => {
 					<div className="image">
 						<img src={'/assets/home/home_box.svg'} alt="" width="150px" />
 					</div>
-					<div className="title">ENGINEERED WITH THE LATEST TECHNOLOGY</div>
+					<h3 className="font-weight-bold mt-5 mb-0">
+						ENGINEERED WITH THE LATEST TECHNOLOGY
+					</h3>
 					<p className="lead text-muted">
 						Keeping ahead and staying up to date with the very best trading
 						technology available
@@ -42,7 +45,7 @@ const Section2 = ({ style }) => {
 					<div className="image">
 						<img src={'/assets/home/home_hand.png'} alt="" />
 					</div>
-					<div className="title">FOR EVERYONE</div>
+					<h3 className="font-weight-bold mt-4 mb-0">FOR EVERYONE</h3>
 					<p className="lead text-muted">
 						Building a Borderless World Through International Crypto exchange
 						trading
@@ -57,7 +60,7 @@ const Section2 = ({ style }) => {
 					<div className="image">
 						<img src={'/assets/home/home_search.png'} width="200px" alt="" />
 					</div>
-					<div className="title">BEST LIQUIDITY</div>
+					<h3 className="font-weight-bold mt-0 mb-0">BEST LIQUIDITY</h3>
 					<p className="lead text-muted">
 						Trade your local currencies against BTC and other major crypto
 						assets
@@ -67,12 +70,12 @@ const Section2 = ({ style }) => {
 					</div>
 				</div>
 			</AnimationContainer>
-
+			<LeadingFeatures></LeadingFeatures>
 			<AnimationContainer>
 				<div className="section-detail-item my-5 py-5">
-					<div className="title" style={{ fontSize: '24px' }}>
+					<h1 className="display-5 font-weight-bold my-5 text-uppercase">
 						KoinKoin Fiat Partners
-					</div>
+					</h1>
 					<div className="supported-cards-row m-5 d-flex col-md-9 col-sm-12">
 						<div className="supported-card-item">
 							<div className="logo">

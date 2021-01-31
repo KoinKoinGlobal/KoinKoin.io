@@ -37,7 +37,6 @@ import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
 import Section4 from './Section4';
-import LeadingFeatures from './LeadingFeatures';
 
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
@@ -135,8 +134,9 @@ class Home extends Component {
 								style.minHeight > MIN_HEIGHT ? style.minHeight : MIN_HEIGHT,
 						}}
 					/>
+
 					<Section2 style={style} />
-					<LeadingFeatures />
+
 					<Section3 style={style} />
 
 					<Section4

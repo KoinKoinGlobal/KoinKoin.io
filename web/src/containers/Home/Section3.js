@@ -86,9 +86,9 @@ const Section = ({ style, onClickDemo, token }) => (
 		className={classnames(...FLEX_CENTER_CLASSES, 'section_3')}
 		style={style}
 	>
-		<div className="text-center features-title">
+		<h1 className="display-4 font-weight-bold">
 			{STRINGS['HOME.SECTION_3_TITLE']}
-		</div>
+		</h1>
 		<div className="image-desktop">
 			<img src="/assets/home/home_desktop.jpg" alt="" />
 		</div>
