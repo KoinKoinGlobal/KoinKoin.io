@@ -119,9 +119,12 @@ const Section1 = ({ style = {}, constants }) => {
 						'content'
 					)}
 				>
-					<div className="home-title text-capitalize">
+					<h1
+						className="display-3 font-weight-bold text-white"
+						style={{ fontFamily: 'custom_9010' }}
+					>
 						{STRINGS['HOME.SECTION_1_TITLE']}
-					</div>
+					</h1>
 					<div className="text-center mb-4">
 						<p className="lead font-weight-bold m-0">
 							{STRINGS['HOME.SECTION_1_TEXT_1']}
