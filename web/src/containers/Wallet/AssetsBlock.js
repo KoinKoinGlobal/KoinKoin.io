@@ -170,14 +170,9 @@ const AssetsBlock = ({
 					{sortedSearchResults.map(
 						([
 							key,
-							{
-								min,
-								allow_deposit,
-								allow_withdrawal,
-								oraclePrice,
-								meta: { is_fiat },
-							},
+							{ min, allow_deposit, allow_withdrawal, oraclePrice, type },
 						]) => {
+							const is_fiat = type === 'fiat';
 							const balanceValue = balance[`${key}_balance`];
 							const pair = findPair(key);
 							const { fullname, symbol = '' } = coins[key] || DEFAULT_COIN_DATA;

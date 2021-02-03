@@ -37,6 +37,9 @@ import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
 import Section4 from './Section4';
+import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
+import CommonButton from '../../components/CommonButton';
+import Dialog from '../../components/Dialog';
 
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
@@ -48,6 +51,7 @@ class Home extends Component {
 		style: {
 			minHeight: MIN_HEIGHT,
 		},
+		openCookieModal: _shouldShowPopup(),
 	};
 	componentDidMount() {
 		this.props.getExchangeInfo();
@@ -72,6 +76,13 @@ class Home extends Component {
 	};
 	onChangeLanguage = (language) => () => {
 		return this.props.changeLanguage(language);
+	};
+	cancelCookieAccept = () => {
+		this.setState({ openCookieModal: false });
+	};
+	onClickCookieAcceptBtn = () => {
+		_setCookie('KoinKoin', 1, 365);
+		this.setState({ openCookieModal: false });
 	};
 	render() {
 		const { activeLanguage, activeTheme, constants = {} } = this.props;
@@ -103,18 +114,36 @@ class Home extends Component {
 					{isLoggedIn() ? (
 						<div className="sign-in-up-buttons">
 							<Link className="btn-login" to="/summary">
-								{STRINGS['HOME.DASHBOARD']}
+								{STRINGS['HOME.DASHBOARD']}&nbsp;/&nbsp;
 							</Link>
+							<a
+								className="btn-login"
+								href="https://koinkoin.otctrade.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{' '}
+								{'OTC'}
+							</a>
 						</div>
 					) : (
 						<div className="sign-in-up-buttons">
 							<Link className="btn-login" to="/login">
 								{STRINGS['LOGIN_TEXT']}&nbsp;/&nbsp;
 							</Link>
-							<Link className="btn-signup" to="/signup">
+							<Link className="btn-login" to="/signup">
 								{' '}
-								{STRINGS['SIGNUP_TEXT']}
+								{STRINGS['SIGNUP_TEXT']}&nbsp;/&nbsp;
 							</Link>
+							<a
+								className="btn-login"
+								href="https://koinkoin.otctrade.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{' '}
+								{STRINGS['FOOTER.SECTIONS.SECTION_7_LINK_1']}
+							</a>
 						</div>
 					)}
 				</div>
@@ -152,6 +181,22 @@ class Home extends Component {
 						activeLanguage={activeLanguage}
 						constants={constants}
 					/> */}
+					<Dialog
+						isOpen={this.state.openCookieModal}
+						label="hollaex-modal"
+						className={classnames('app-dialog', {
+							'app-dialog-flex': true,
+						})}
+						onCloseDialog={this.cancelCookieAccept}
+					>
+						<div style={{ padding: '10px' }}></div>
+						<h2>Cookie Information and Consent Request</h2>
+						{/* <h4>Cookie Policy</h4> */}
+						<CommonButton
+							label="Accept"
+							onClick={this.onClickCookieAcceptBtn}
+						/>
+					</Dialog>
 				</div>
 			</div>
 		);

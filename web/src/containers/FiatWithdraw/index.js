@@ -66,9 +66,10 @@ class Withdraw extends Component {
 	}
 
 	validateRoute = (currency, bank_account, coins) => {
-		const {
-			meta: { is_fiat },
-		} = coins[currency] || false;
+		// const {
+		// 	meta: { is_fiat },
+		// } = coins[currency] || false;
+		const is_fiat = coins[currency]['type'] === 'fiat';
 
 		if (is_fiat && this.props.balance) {
 			const balanceAvailable = this.props.balance[`${currency}_available`];

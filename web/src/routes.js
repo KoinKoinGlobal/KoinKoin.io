@@ -19,7 +19,7 @@ import {
 	Withdraw,
 	TransactionsHistory,
 	Trade,
-	Legal,
+	// Legal,
 	AuthContainer,
 	RequestResetPassword,
 	ResetPassword,
@@ -53,6 +53,7 @@ import {
 	Tiers,
 	Roles,
 	Resources,
+	StaticPage,
 } from './containers';
 import chat from './containers/Admin/Chat';
 
@@ -227,6 +228,26 @@ function withAdminProps(Component, key) {
 
 export default (
 	<Router history={browserHistory}>
+		<Route
+			path="/contact_us"
+			name="Home"
+			component={() => <StaticPage path={'contact_us'} />}
+		/>
+		<Route
+			path="/about_us"
+			name="Home"
+			component={() => <StaticPage path={'about_us'} />}
+		/>
+		<Route
+			path="/terms"
+			name="Home"
+			component={() => <StaticPage path={'terms'} />}
+		/>
+		<Route
+			path="/policy"
+			name="Home"
+			component={() => <StaticPage path={'policy'} />}
+		/>
 		<Route path="lang/:locale" component={createLocalizedRoutes} />
 		<Route component={AuthContainer} {...noAuthRoutesCommonProps}>
 			{isMobile ? (
@@ -495,7 +516,7 @@ export default (
 				component={withAdminProps(Resources, 'resources')}
 			/>
 		</Route>
-		<Route
+		{/* <Route
 			path="privacy-policy"
 			component={Legal}
 			content="legal"
@@ -506,7 +527,7 @@ export default (
 			component={Legal}
 			content="terms"
 			onEnter={requireAuth}
-		/>
+		/> */}
 		<Route path="admin-login" name="admin-login" component={AdminLogin} />
 		<Route path="init" name="initWizard" component={Init} />
 		<Route path="*" component={NotFound} />
