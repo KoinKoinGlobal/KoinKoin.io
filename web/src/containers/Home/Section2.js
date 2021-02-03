@@ -77,7 +77,7 @@ const Section2 = ({ style }) => {
 						KoinKoin Fiat Partners
 					</h1>
 					<div className="supported-cards-row m-5 d-flex col-md-9 col-sm-12">
-						<div className="supported-card-item">
+						<div className="supported-card-item shadow-lg bg-white rounded">
 							<div className="logo">
 								<img src={'/assets/home/paystack.png'} alt="" />
 							</div>
@@ -90,7 +90,7 @@ const Section2 = ({ style }) => {
 								success rates in the market.
 							</p>
 						</div>
-						<div className="supported-card-item">
+						<div className="supported-card-item shadow-lg bg-white rounded">
 							<div className="logo">
 								<img
 									src={'/assets/home/koinal.png'}
@@ -108,7 +108,7 @@ const Section2 = ({ style }) => {
 								and advanced encryption.
 							</p>
 						</div>
-						<div className="supported-card-item">
+						<div className="supported-card-item shadow-lg bg-white rounded">
 							<div className="logo">
 								<img src={'/assets/home/ipaytotal.png'} alt="" />
 							</div>
@@ -119,7 +119,7 @@ const Section2 = ({ style }) => {
 								purchase cryptocurrency from any location in the world.
 							</p>
 						</div>
-						<div className="supported-card-item">
+						<div className="supported-card-item shadow-lg bg-white rounded">
 							<div className="logo">
 								<img src={'/assets/home/flutterwave.png'} alt="" />
 							</div>
