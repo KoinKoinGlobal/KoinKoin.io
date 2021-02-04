@@ -119,8 +119,7 @@ class AboutUs extends Component {
 								<p>
 									If you are interested in cooperation or have any suggestions
 									for us, drop a message to{' '}
-									<a href="mailto:support@koinkoin.com">support@koinkoin.com</a>
-									.
+									<a href="mailto:support@koinkoin.io">support@koinkoin.io</a>.
 								</p>
 							</div>
 						</div>

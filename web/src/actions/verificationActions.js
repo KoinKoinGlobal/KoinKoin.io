@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { PLUGIN_URL } from 'config/constants';
 import querystring from 'query-string';
-import { PLUGIN_URL } from '../config/constants';
 
 const VERIFICATION_ENDPOINTS = {
 	VERIFY_SMS_CODE: `${PLUGIN_URL}/plugins/sms/verify`,

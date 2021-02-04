@@ -1014,7 +1014,10 @@ const Terms = () => {
 								address indicated in the User Personal Cabinet;
 								<br />
 								<i className="small fa fa-circle" /> for KOINKOIN:{' '}
-								<a className="bright_color">support@koinkoin.com</a>.<br />
+								<a className="bright_color" href="mailto:support@koinkoin.io">
+									support@koinkoin.io
+								</a>
+								.<br />
 							</p>
 							<p>
 								18.2. KOINKOIN and all legal relations concerning it are

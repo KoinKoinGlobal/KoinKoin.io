@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 const emailValidation = (data, type) => {
 	let errors = {};
 	const regExp = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-	const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	if (!data.email.length) {
 		errors.email = 'This field is required';
 	} else if (!re.test(data.email.toLowerCase())) {
@@ -194,6 +194,7 @@ class ContactUs extends Component {
 												height="450"
 												frameBorder="0"
 												allowFullScreen
+												title="map-section2"
 											/>
 										</section>
 									</div>
@@ -352,6 +353,7 @@ class ContactUs extends Component {
 												height="450"
 												frameBorder="0"
 												allowFullScreen
+												title="map-section"
 											/>
 										</section>
 									</div>
