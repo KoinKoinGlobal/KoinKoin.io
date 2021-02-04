@@ -2,6 +2,8 @@ import axios from 'axios';
 import ICONS from 'config/icons';
 import STRINGS from '../config/localizedStrings';
 import { playBackgroundAudioNotification } from '../utils/utils';
+import { WS_URL } from '../config/constants';
+import { requestAuthenticated } from '../utils';
 
 // Set orders from websocket
 export function setUserOrders(orders) {
@@ -72,3 +74,13 @@ export const cancelAllOrders = (symbol = '', settings) => (dispatch) => {
 		})
 		.catch((err) => {});
 };
+
+// koinal actions
+export function buyCoin(data) {
+	const options = {
+		method: 'POST',
+		body: JSON.stringify(data),
+	};
+
+	return requestAuthenticated('/plugins/koinal/quotes', options, null, WS_URL);
+}

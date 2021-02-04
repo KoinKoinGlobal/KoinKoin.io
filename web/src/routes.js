@@ -19,7 +19,7 @@ import {
 	Withdraw,
 	TransactionsHistory,
 	Trade,
-	Legal,
+	// Legal,
 	AuthContainer,
 	RequestResetPassword,
 	ResetPassword,
@@ -53,6 +53,7 @@ import {
 	Tiers,
 	Roles,
 	Resources,
+	StaticPage,
 } from './containers';
 import chat from './containers/Admin/Chat';
 
@@ -74,6 +75,8 @@ import {
 } from './utils/string';
 import { checkUserSessionExpired } from './utils/utils';
 import { getExchangeInitialized, getSetupCompleted } from './utils/initialize';
+import FiatDeposit from 'containers/FiatDeposit';
+import FiatWithdraw from 'containers/FiatWithdraw';
 
 ReactGA.initialize('UA-154626247-1'); // Google analytics. Set your own Google Analytics values
 browserHistory.listen((location) => {
@@ -225,7 +228,26 @@ function withAdminProps(Component, key) {
 
 export default (
 	<Router history={browserHistory}>
-		<Route path="/" name="Home" component={Home} onEnter={checkLanding} />
+		<Route
+			path="/contact_us"
+			name="Home"
+			component={() => <StaticPage path={'contact_us'} />}
+		/>
+		<Route
+			path="/about_us"
+			name="Home"
+			component={() => <StaticPage path={'about_us'} />}
+		/>
+		<Route
+			path="/terms"
+			name="Home"
+			component={() => <StaticPage path={'terms'} />}
+		/>
+		<Route
+			path="/policy"
+			name="Home"
+			component={() => <StaticPage path={'policy'} />}
+		/>
 		<Route path="lang/:locale" component={createLocalizedRoutes} />
 		<Route component={AuthContainer} {...noAuthRoutesCommonProps}>
 			{isMobile ? (
@@ -258,6 +280,13 @@ export default (
 			/>
 		</Route>
 		<Route component={Container}>
+			<Route
+				path="/"
+				name="Home"
+				component={Home}
+				onEnter={checkLanding}
+				isHome={true}
+			/>
 			{isMobile ? (
 				<Route
 					path="/home"
@@ -326,9 +355,21 @@ export default (
 				onEnter={requireAuth}
 			/>
 			<Route
+				path="fiat/:currency/deposit"
+				name="FiatDeposit"
+				component={FiatDeposit}
+				onEnter={requireAuth}
+			/>
+			<Route
 				path="wallet/:currency/withdraw"
 				name="Withdraw"
 				component={Withdraw}
+				onEnter={requireAuth}
+			/>
+			<Route
+				path="fiat/:currency/withdraw"
+				name="FiatWithdraw"
+				component={FiatWithdraw}
 				onEnter={requireAuth}
 			/>
 			<Route
@@ -475,7 +516,7 @@ export default (
 				component={withAdminProps(Resources, 'resources')}
 			/>
 		</Route>
-		<Route
+		{/* <Route
 			path="privacy-policy"
 			component={Legal}
 			content="legal"
@@ -486,7 +527,7 @@ export default (
 			component={Legal}
 			content="terms"
 			onEnter={requireAuth}
-		/>
+		/> */}
 		<Route path="admin-login" name="admin-login" component={AdminLogin} />
 		<Route path="init" name="initWizard" component={Init} />
 		<Route path="*" component={NotFound} />

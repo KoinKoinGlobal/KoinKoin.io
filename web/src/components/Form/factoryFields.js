@@ -7,6 +7,7 @@ import DropdownField from './FormFields/DropdownField';
 import DateField from './FormFields/DateField';
 import DropdownDateField from './FormFields/DropdownDateField';
 import CheckField from './FormFields/CheckField';
+import RadioField from './FormFields/RadioField';
 import EditableInputField from './FormFields/EditableInputField';
 import CaptchaField from './FormFields/Captcha';
 import ToggleField from './FormFields/ToggleField';
@@ -15,7 +16,7 @@ const renderFields = (fields = {}, callback) => {
 	return (
 		<div>
 			{Object.keys(fields).map((key, index) => {
-				const { type, validate = [], ...rest } = fields[key];
+				const { type, validate = [], choices, ...rest } = fields[key];
 				const commonProps = {
 					callback,
 					key,
@@ -29,12 +30,7 @@ const renderFields = (fields = {}, callback) => {
 					case 'captcha':
 						return <Field component={CaptchaField} {...commonProps} />;
 					case 'hidden':
-						return (
-							<Field
-								component={() => <div className="hidden" />}
-								{...commonProps}
-							/>
-						);
+						return <Field component="input" {...commonProps} />;
 					case 'file':
 						return <Field component={FileField} {...commonProps} />;
 					case 'select':
@@ -52,6 +48,22 @@ const renderFields = (fields = {}, callback) => {
 						return <Field component={DateField} {...commonProps} />;
 					case 'checkbox':
 						return <Field component={CheckField} {...commonProps} />;
+					case 'radio':
+						return (
+							<div key={key} style={{ margin: '1rem 0' }}>
+								{choices.map((c) => {
+									commonProps.key = `${c.value}`;
+									return (
+										<Field
+											component={RadioField}
+											label={c.label}
+											value={c.value.toString()}
+											{...commonProps}
+										/>
+									);
+								})}
+							</div>
+						);
 					case 'editable':
 						return <Field component={EditableInputField} {...commonProps} />;
 					case 'textarea':

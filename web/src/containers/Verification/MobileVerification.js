@@ -169,7 +169,6 @@ class MobileVerification extends Component {
 			);
 			requestSmsCode(phone)
 				.then(({ data }) => {
-					// alert(STRINGS.formatString(STRINGS["SMS_SENT_TO"], phone).join(''));
 					this.setState(
 						{
 							codeRequested: true,

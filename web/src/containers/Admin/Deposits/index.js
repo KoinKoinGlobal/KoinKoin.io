@@ -54,7 +54,7 @@ class Deposits extends Component {
 		isRemaining: true,
 	};
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		const { initialData, queryParams = {} } = this.props;
 		if (Object.keys(queryParams).length) {
 			this.requestDeposits(

@@ -12,6 +12,7 @@ const nestedContent = {
 	ACTIVE_TRADES: 'You must {0} to access your active trades',
 	CANCEL_BASE_WITHDRAWAL: 'Cancel {0} Withdrawal',
 	CANCEL_WITHDRAWAL: 'Cancel Withdrawal',
+	WITHDRAWAL_INFO: 'Withdrawal info',
 	CANCEL_WITHDRAWAL_POPUP_CONFIRM:
 		'Do you want to cancel your pending withdrawal of:',
 	CANT_BE_CANCELLED: '-',
@@ -35,8 +36,9 @@ const nestedContent = {
 	HELPFUL_RESOURCES_TEXT: 'Helpful resources',
 	HELP_RESOURCE_GUIDE_TEXT:
 		'Feel free to contact us for more information and any issues by sending us an email',
-	HELP_TELEGRAM_TEXT: 'Check out open API documentation:',
-	HELP_TELEGRAM_LINK: 'https://apidocs.hollaex.com',
+	HELP_TELEGRAM_TEXT: 'Check out our Knowledge Base:',
+	HELP_TELEGRAM_LINK: 'https://koinkoin.zendesk.com',
+	HELP_EXIR_TUTORIAL_LINK: 'support@koinkoin.com',
 	NEED_HELP_TEXT: 'Need help?', // new
 	HELP_TEXT: 'help',
 	SUCCESS_TEXT: 'Success',
@@ -51,22 +53,23 @@ const nestedContent = {
 	VIEW_INFO: 'View info page', // new
 	APPLY_HERE: 'Apply Here', // new
 	HOME: {
-		SECTION_1_TITLE: 'Welcome to HollaEx Exchange Kit!',
+		SECTION_1_TITLE: 'CRYPTOCURRENCY MADE EASY FOR EVERYONE',
+		SECTION_1_BUTTON_LABEL: 'OPEN TRADING ACCOUNT',
 		SECTION_1_TEXT_1:
-			'Build your own scalable digital asset exchange with HollaEx Kit and be part of the future of finance.',
+			'Security First | Best prices at Lightningfast Speeds| Powered for A Borderless Africa & A Borderless World.',
 		SECTION_1_TEXT_2:
-			'We strive to bring the financial technology forward through affordable and simple access to trading technology.',
+			'We strive to bring Financial Inclusion through affordable and simple access to financial technology',
 		SECTION_1_BUTTON_1: 'Learn more',
-		SECTION_3_TITLE: 'Features',
-		SECTION_3_CARD_1_TITLE: 'SCALABLE MATCHING ENGINE',
+		SECTION_3_TITLE: 'TRADE CRYPTO WITH LOCAL CURRENCY EASILY',
+		SECTION_3_CARD_1_TITLE: '1 . OPEN ACCOUNT',
 		SECTION_3_CARD_1_TEXT:
-			'High performance and scalable order matching engine using the most efficient algorithms',
-		SECTION_3_CARD_2_TITLE: 'BANK INTEGRATION',
+			'Come as you are. No requirments but your email to open account.',
+		SECTION_3_CARD_2_TITLE: '2 . DEPOSIT CRYPTO / CURRENCY',
 		SECTION_3_CARD_2_TEXT:
-			'Plugins with customizable modules available for bank integration. We know the traditional finance and can help you to make your exchange local',
-		SECTION_3_CARD_3_TITLE: 'STRONG SECURITY',
+			'Deposit your local currency or Simply transfer your crypto to your KoinKoin address',
+		SECTION_3_CARD_3_TITLE: '3 . BUY / SELL CRYPTO',
 		SECTION_3_CARD_3_TEXT:
-			'HollaEx uses the best security practices and the most secure and reliable algorithms for keeping the funds secure. It is our top priority and we took a very special extra care of it.',
+			'Start trading. Buy, sell and transfer the largest crypto assets.',
 		SECTION_3_CARD_4_TITLE: 'ADVANCED REPORTING',
 		SECTION_3_CARD_4_TEXT:
 			'Admin panel with customizable email and reports for notifying support and administrator about the status of the system and transactions.',
@@ -76,7 +79,29 @@ const nestedContent = {
 		SECTION_3_CARD_6_TITLE: 'KYC INTEGRATION',
 		SECTION_3_CARD_6_TEXT:
 			'Flexible and integrable modules to apply KYC and user verification methods in different jurisdiction.',
+		SECTION_3_BUTTON_LABEL: 'OPEN ACCOUNT',
 		SECTION_3_BUTTON_1: 'View Demo',
+		DASHBOARD: 'Dashboard',
+		SECTION_5_CARD_1_TITLE: 'Exclusive Access to the Best Deals',
+		SECTION_5_CARD_1_TEXT:
+			'Access quality, exclusive deals securely, right in our platform.',
+		SECTION_5_CARD_2_TITLE: 'Blazing Speed',
+		SECTION_5_CARD_2_TEXT:
+			'Our OTC portal offers bespoke deals and transactions that settle instantly.',
+		SECTION_5_CARD_3_TITLE: 'Each Portfolio Insured to USD 5 million',
+		SECTION_5_CARD_3_TEXT:
+			'Get peace of mind from any loss due to theft, hacking, or malicious activity. Additional insurance is optionally available.',
+		SECTION_5_CARD_4_TITLE:
+			'Auditable Transactions, Secure Trading Environment',
+		SECTION_5_CARD_4_TEXT:
+			'All traders using our platform are fully vetted ensuring a safe and secure trading ecosystem',
+		SECTION_5_CARD_5_TITLE: 'Strict Deal Confidentiality',
+		SECTION_5_CARD_5_TEXT:
+			'KoinKoin has implemented strict confidentiality for every offer, deal, and counter-offer within the platform. All transactions handled with a high degree of privacy.',
+		SECTION_5_CARD_6_TITLE:
+			'Greater Liquidity with Institutional Grade Compliance',
+		SECTION_5_CARD_6_TEXT:
+			'We partnered with OTCTrade for compliance and to ensure greater liquidity for our clients.',
 	},
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
@@ -121,6 +146,8 @@ const nestedContent = {
 			SECTION_6_LINK_7: 'Helpdesk', // new
 			SECTION_6_LINK_8: 'Information', // new
 			SECTION_6_LINK_9: 'YouTube', // new
+			SECTION_7_TITLE: 'OTC Trading',
+			SECTION_7_LINK_1: 'Corporate',
 		},
 		XHT_DESCRIPTION:
 			'HollaEx Kit is an open source trading platform built by bitHolla Inc. You can create and list any digital assets and onboard users to trade on your exchange using this exchange Kit. In order to simply run one yourself {1}.',
@@ -307,6 +334,7 @@ const nestedContent = {
 		ORDERS_SINGULAR: 'order',
 		HOLD_ORDERS:
 			'You have {0} open {1}, resulting in a hold of {2} {3} placed on your {4} balance',
+		NOT_SELECTED_NOTICE: 'You should define wallet address for this crypto',
 	},
 	REQUEST_RESET_PASSWORD: {
 		TITLE: 'Account Recovery',
@@ -420,6 +448,7 @@ const nestedContent = {
 		ADD_ANOTHER_BANK_ACCOUNT: 'Add Another Bank Account',
 		BANK_NAME: 'Bank Name',
 		ACCOUNT_NUMBER: 'Account Number',
+		PAYSTACK_BUTTON: 'Pay Using Paystack',
 		CARD_NUMBER: 'Card Number',
 		BANK_VERIFICATION_HELP_TEXT:
 			'In order for this section to be verified you must complete the {0} section.',
@@ -575,6 +604,16 @@ const nestedContent = {
 					WARNING:
 						'Selfie with a different passport with uploaded content will be rejected',
 				},
+			},
+		},
+		PAYMENT_ACCOUNT_FORM: {
+			VALIDATIONS: {
+				COUNTRY_MAX_LENGTH: 'The country may not be greater than 2 characters.',
+				MOBILE_MAX_LENGTH: 'Enter valid number',
+				CURRENCY_MAX_LENGTH:
+					'The currency may not be greater than 3 characters',
+				FRISTNAME: 'Numbers and special characters are not allowed.',
+				ZIPCODE: 'Enter valid zipcode',
 			},
 		},
 		BANK_ACCOUNT_FORM: {
@@ -860,6 +899,7 @@ const nestedContent = {
 	WITHDRAWALS_FORM_DESTINATION_TAG_PLACEHOLDER: 'Type the destination tag', // new
 	WITHDRAWALS_FORM_MEMO_PLACEHOLDER: 'Type the transaction memo', // new
 	WITHDRAWALS_FORM_AMOUNT_LABEL: '{0} amount to withdraw',
+	WITHDRAWALS_FORM_TOTAL_AMOUNT_LABEL: '{0} total amount to withdraw',
 	WITHDRAWALS_FORM_AMOUNT_PLACEHOLDER:
 		'Type the amount of {0} you wish to withdraw',
 	WITHDRAWALS_FORM_FEE_COMMON_LABEL: 'Transaction fee',
@@ -902,6 +942,8 @@ const nestedContent = {
 	QUOTE_SUCCESS_REVIEW_MESSAGE: 'You have successfully {0} {1} {2} for {3} {4}', // you have successfully buy 1 btc from x toman
 	COUNTDOWN_ERROR_MESSAGE: 'Countdown is finished',
 	WITHDRAW_PAGE: {
+		WITHDRAW_ORDER_SUBMITTED: 'Withdraw Order Submitted',
+		WITHDRAW_OVERVIEW: 'Withdraw Overview',
 		BANK_TO_WITHDRAW: 'Bank to Withdraw to',
 		MESSAGE_ABOUT_SEND: 'You are about to send',
 		MESSAGE_BTC_WARNING:
@@ -1135,6 +1177,10 @@ const nestedContent = {
 	SEARCH_TXT: 'Search',
 	SEARCH_ASSETS: 'Search Assets',
 	TOTAL_ASSETS_VALUE: 'Total assets value in {0}: {1}',
+	QUICK_BUY: 'Quick Buy',
+	CRYPTOCURRENCY_AMOUNT_REQUIRED:
+		'The cryptocurrenty amount must be greater than 0',
+	BUY_COIN_INSTANTLY: 'Buy coin instantly',
 	SUMMARY: {
 		TITLE: 'Summary',
 		TINY_PINK_SHRIMP_TRADER: 'Tiny Pink Shrimp Trader',
@@ -1190,6 +1236,7 @@ const nestedContent = {
 		TRADING_FEE_STRUCTURE: 'Trading fee structure',
 		WITHDRAWAL: 'Withdrawal',
 		DEPOSIT: 'Deposit',
+		WITHDRAW: 'Withdraw',
 		TAKER: 'Taker',
 		MAKER: 'Maker',
 		WEBSITE: 'website',
@@ -1349,7 +1396,10 @@ const nestedContent = {
 	},
 	USER_LEVEL: 'User level', // new
 	LIMIT_AMOUNT: 'Limit amount', // new
+	LIMIT_AMOUNT_NOTICE:
+		'The amount you have entered is below the minimum amount you can purchase',
 	FEE_AMOUNT: 'Fee amount', // new
+	NOTE_FOR_MINIMUM_AMOUNT: 'Note: Minimum amount is {0}',
 	COINS: 'Coins', // new
 	PAIRS: 'Pairs', // new
 	NOTE_FOR_EDIT_COIN:

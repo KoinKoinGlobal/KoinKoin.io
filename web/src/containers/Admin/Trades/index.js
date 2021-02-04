@@ -22,7 +22,7 @@ import UserListTrades from './userListTrades';
 // const Form = AdminHocForm('USER_REQUEST_FORM');
 
 class Trades extends Component {
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		// requestTrades(1)
 		//
 		// const { search } = this.props.location;

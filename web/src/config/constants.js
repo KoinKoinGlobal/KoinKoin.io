@@ -28,7 +28,7 @@ export const SOCIAL_ICONS = {
 	INSTAGRAM: '/assets/icons/instagram.svg',
 	TELEGRAM: '/assets/icons/telegram.png',
 	GOOGLE: '/assets/icons/google.png',
-	YOUTUBE: '/assets/icons/youtube.png'
+	YOUTUBE: '/assets/icons/youtube.png',
 };
 
 export const FEATURES_ICONS = {
@@ -37,7 +37,7 @@ export const FEATURES_ICONS = {
 	SECURITY: '/assets/images/features-lock-icons.svg',
 	REPORTING: '/assets/images/features-data-icons.svg',
 	SUPPORT: '/assets/images/features-support-icons.svg',
-	LEGAL: '/assets/images/features-legal-icons.svg'
+	LEGAL: '/assets/images/features-legal-icons.svg',
 };
 
 export const SUMMMARY_ICON = {
@@ -48,7 +48,7 @@ export const SUMMMARY_ICON = {
 	LEVEL_3: '/assets/summary/level-3.png',
 	LEVEL_3_DARK: '/assets/summary/level-3-dark.png',
 	LEVEL_4: '/assets/summary/level-4.png',
-	LEVEL_4_DARK: '/assets/summary/level-4-dark.png'
+	LEVEL_4_DARK: '/assets/summary/level-4-dark.png',
 };
 
 export const HOLLAEX_LOGO =
@@ -201,7 +201,7 @@ export const TIME_ZONE = process.env.REACT_APP_TIMEZONE || 'GMT';
 export const TOKEN_EMAIL = 'token::email';
 export const TOKEN_MAX_AGE = 23 * 60 * 60;
 
-export const DISPLAY_LANDING = false;
+export const DISPLAY_LANDING = true;
 export const DEFAULT_URL = '/';
 
 // minimum level for a user to be able to create api tokens
@@ -298,3 +298,31 @@ export const SHOW_TOTAL_ASSETS = false;
 export const IS_XHT = false;
 export const FIT_SCREEN_HEIGHT = ['trade'];
 export const SIMPLE_FORMAT_MIN = '0.1';
+
+export const FIAT_CURRENCY = [
+	'usd',
+	'ngn',
+	'gbp',
+	'eur',
+	'aed',
+	'zar',
+	'etb',
+	'kes',
+	'ghs',
+	'rwf',
+	'tzs',
+	'ugx',
+	'idr',
+	'vnd',
+	'myr',
+	'thb',
+];
+
+export const FIAT_WITHDRAW_COUNTRIES = [
+	{ label: 'Nigeria', value: 'NG', currency: 'ngn' },
+	{ label: 'Ghana', value: 'GH', currency: 'ghs' },
+	{ label: 'Kenya', value: 'KE', currency: 'kes' },
+	{ label: 'Uganda', value: 'UG', currency: 'ugx' },
+	{ label: 'South Africa', value: 'ZA', currency: 'zar' },
+	{ label: 'Tanzania', value: 'TZ', currency: 'tzs' },
+];

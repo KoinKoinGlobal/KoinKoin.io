@@ -114,6 +114,8 @@ const nestedIcons = {
 		TELEGRAM: '/assets/icons/telegram.png',
 		GOOGLE: '/assets/icons/google.png',
 		YOUTUBE: '/assets/icons/youtube.png',
+		INSTAGRAM_PNG: '/assets/icons/instagram.png',
+		GITHUB: '/assets/icons/github.png',
 	},
 
 	SUMMARY: {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PLUGIN_URL } from 'config/constants';
 import querystring from 'query-string';
 // import { all } from 'bluebird';
 
@@ -38,6 +39,7 @@ const ENDPOINTS = {
 	WITHDRAW_FEE: (currency) => `/user/withdrawal?currency=${currency}`,
 	CANCEL_WITHDRAWAL: '/user/withdrawal',
 	CONFIRM_WITHDRAWAL: '/user/confirm-withdrawal',
+	WITHDRAWALS_FW_UPDATE_STATUS: '/plugins/withdraw/update-status',
 };
 
 export const performWithdraw = (currency, values) => {
@@ -358,4 +360,8 @@ export const setDeposit = (deposit) => {
 	return (dispatch) => {
 		dispatch({ type: ACTION_KEYS.DEPOSIT_STATUS_SUCCESS, payload: deposit });
 	};
+};
+
+export const refresh_flutterwave_withdrawal_status = () => {
+	axios.get(ENDPOINTS.WITHDRAWALS_FW_UPDATE_STATUS, { baseURL: PLUGIN_URL });
 };

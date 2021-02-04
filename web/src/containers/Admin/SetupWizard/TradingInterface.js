@@ -29,7 +29,7 @@ const Features = ({ initialValues = {}, handleNext, updateConstants }) => {
 				onFinish={handleSubmit}
 			>
 				<div className="interface-box">
-    					<Item name="pro_trade" valuePropName="checked">
+					<Item name="pro_trade" valuePropName="checked">
 						<Checkbox className="mt-3">
 							<div className="d-flex align-items-center">
 								<ReactSVG
@@ -65,7 +65,7 @@ const Features = ({ initialValues = {}, handleNext, updateConstants }) => {
 											(Simple buy/sell interface with wallet)
 										</div>
 									</div>
-  </div>
+								</div>
 							</div>
 						</Checkbox>
 					</Item>

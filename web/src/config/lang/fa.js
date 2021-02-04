@@ -652,7 +652,8 @@ const nestedContent = {
 		WITHDRAWALS: 'برداشت ها',
 	},
 	ACCOUNT_SECURITY: {
-		TITLE_TEXT:'Adjust the security settings for your account. From Two-factor authentication, password, API keys and other security related functions.',
+		TITLE_TEXT:
+			'Adjust the security settings for your account. From Two-factor authentication, password, API keys and other security related functions.',
 		OTP: {
 			TITLE: 'رمز یکبار مصرف',
 			OTP_ENABLED: 'رمز یکبار مصرف را فعال کنید',
@@ -682,7 +683,8 @@ const nestedContent = {
 				DISABLE: 'غیر فعال کردن رمز یکبار مصرف',
 				SECRET_1: 'Enter yor secret key',
 				SECRET_2: 'Please enter your secret key to confirm you wrote it down.',
-				SECRET_3: 'This secret key will help you recover your account if you lost access to your phone.',
+				SECRET_3:
+					'This secret key will help you recover your account if you lost access to your phone.',
 				INPUT_1: 'Secret Key',
 
 				TITLE_2: 'Enter One-Time Password (OTP)',

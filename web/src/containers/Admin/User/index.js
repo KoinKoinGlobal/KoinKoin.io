@@ -32,7 +32,7 @@ const TabPane = Tabs.TabPane;
 class App extends Component {
 	state = INITIAL_STATE;
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		const { search } = this.props.location;
 		if (search) {
 			const qs = querystring.parse(search);
