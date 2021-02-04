@@ -266,7 +266,7 @@ class Chat extends Component {
 			isActive,
 		} = this.state;
 		return (
-			<div className="app_container-content">
+			<div className="app_container-content admin-chat-feature-wrapper">
 				{!ready ? (
 					<Spin size="large" />
 				) : (

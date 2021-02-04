@@ -236,6 +236,7 @@ class AppWrapper extends React.Component {
 	};
 
 	renderMenuItem = ({ path, label, routeKey, ...rest }, index) => {
+		const { constants: { logo_image } = {} } = this.props;
 		let showLabel = label;
 		if (routeKey === 'main') {
 			showLabel = this.props.constants.api_name || '';
@@ -250,8 +251,15 @@ class AppWrapper extends React.Component {
 							}
 						>
 							<ReactSVG
-								src={STATIC_ICONS.HEX_PATTERN_ICON}
+								src={logo_image || STATIC_ICONS.HEX_PATTERN_ICON}
 								className="sidebar-icon"
+								fallback={() => (
+									<img
+										src={logo_image || STATIC_ICONS.HEX_PATTERN_ICON}
+										alt="exchange-logo"
+										className="sidebar-icon"
+									/>
+								)}
 							/>
 							<div>
 								<div>DASHBOARD</div>
@@ -464,7 +472,7 @@ class AppWrapper extends React.Component {
 								alt="Link-icon"
 							/>{' '}
 							<a
-								href="https://dash.testnet.bitholla.com/"
+								href="https://dash.bitholla.com/"
 								target="_blank"
 								rel="noopener noreferrer"
 							>

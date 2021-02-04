@@ -43,10 +43,12 @@ import {
 	setSnackDialog,
 	setConfig,
 	setInfo,
+	setPlugins,
+	requestPlugins,
 	requestInitial,
 	requestConstant,
 } from '../../actions/appActions';
-
+import { hasTheme } from 'utils/theme';
 import { playBackgroundAudioNotification } from '../../utils/utils';
 import { getToken, isLoggedIn } from '../../utils/token';
 
@@ -70,6 +72,9 @@ class Container extends Component {
 		if (!this.props.fetchingAuth) {
 			this.initSocketConnections();
 		}
+		requestPlugins().then(({ data = {} }) => {
+			if (data.data && data.data.length !== 0) this.props.setPlugins(data.data);
+		});
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
@@ -139,8 +144,9 @@ class Container extends Component {
 					this.props.setConfig(res.data);
 					if (res.data.defaults) {
 						const themeColor = localStorage.getItem('theme');
+						const isThemeValid = hasTheme(themeColor, res.data.color);
 						const language = localStorage.getItem(LANGUAGE_KEY);
-						if (!themeColor && res.data.defaults.theme) {
+						if (res.data.defaults.theme && (!themeColor || !isThemeValid)) {
 							this.props.changeTheme(res.data.defaults.theme);
 							localStorage.setItem('theme', res.data.defaults.theme);
 						}
@@ -721,6 +727,7 @@ const mapDispatchToProps = (dispatch) => ({
 	setConfig: bindActionCreators(setConfig, dispatch),
 	setInfo: bindActionCreators(setInfo, dispatch),
 	getMe: bindActionCreators(getMe, dispatch),
+	setPlugins: bindActionCreators(setPlugins, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);

@@ -20,10 +20,9 @@ const InterfaceForm = ({ initialValues = {}, handleSaveInterface }) => {
 	};
 	return (
 		<div className="general-wrapper mb-4">
-			<div className="sub-title">Trading Interface</div>
+			<div className="sub-title">Features</div>
 			<div className="description">
-				Select the trading interface that will be available on your exchange.
-				All interfaces includes a crypto wallet.
+				Select the features that will be available on your exchange.
 			</div>
 			<Form
 				name="interface-form"
