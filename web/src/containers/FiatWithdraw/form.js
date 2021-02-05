@@ -81,7 +81,7 @@ class Form extends Component {
 	};
 
 	onClickCancel = () => {
-		this.props.router.push('/cashdeposit');
+		this.props.router.push('/wallet');
 	};
 
 	onReset = () => {

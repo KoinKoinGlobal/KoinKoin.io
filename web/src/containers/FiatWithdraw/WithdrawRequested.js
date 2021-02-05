@@ -5,7 +5,7 @@ import CommonButton from '../../components/CommonButton';
 
 class WithdrawRequested extends Component {
 	onGoMainpage = () => {
-		this.props.router.push('/cashdeposit');
+		this.props.router.push('/wallet');
 	};
 
 	render() {

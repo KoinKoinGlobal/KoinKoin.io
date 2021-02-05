@@ -137,8 +137,7 @@ class ConfirmBankContent extends Component {
 			this.props.fiatWithdraw.status === ACTIONS.PENDING_FIAT_WITHDRAW_PROCESS
 		) {
 			this.props.history.push('/transactions');
-		} else
-			this.props.history.push(`/cashdeposit/${this.props.currency}/withdraw`);
+		} else this.props.history.push(`/fiat/${this.props.currency}/withdraw`);
 	};
 
 	render() {

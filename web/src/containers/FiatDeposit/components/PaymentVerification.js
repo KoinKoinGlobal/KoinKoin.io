@@ -13,7 +13,7 @@ import { Button } from '../../../components';
 import { paymentData } from '../../../actions/verificationActions';
 import { isMobile } from 'react-device-detect';
 import STRINGS from '../../../config/localizedStrings';
-import { WS_URL } from '../../../config/constants';
+import { PLUGIN_URL } from '../../../config/constants';
 
 const FORM_NAME = 'PaymentVerification';
 
@@ -21,8 +21,8 @@ class PaymentVerification extends Component {
 	state = {
 		formFields: {},
 		paymentStaticData: {
-			response_url: `${window.location.origin}/cashdeposit`,
-			webhook_url: `${WS_URL}/plugins/deposit/credit/pg-ipaytotal`,
+			response_url: `${window.location.origin}/wallet`,
+			webhook_url: `${PLUGIN_URL}/plugins/deposit/credit/pg-ipaytotal`,
 			sulte_apt_no: this.props.userId,
 		},
 	};

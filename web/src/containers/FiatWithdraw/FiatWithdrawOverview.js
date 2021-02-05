@@ -33,7 +33,7 @@ class FiatWithdrawOverview extends Component {
 				this.props.processPendingFiatWithdraw();
 				if (res.status == 'success') {
 					this.props.router.push(
-						`/cashdeposit/${data['currency']}/withdraw/submitted`
+						`/fiat/${data['currency']}/withdraw/submitted`
 					);
 				} else {
 					alert(res.message || 'Failed to withdraw');
@@ -42,14 +42,12 @@ class FiatWithdrawOverview extends Component {
 			.catch((err) => {
 				alert(err.message || 'Error Occured when requesting withdraw');
 				this.props.processRequestingFailedFiatWithdraw();
-				this.props.router.push(`/cashdeposit/${data['currency']}/withdraw`);
+				this.props.router.push(`/fiat/${data['currency']}/withdraw`);
 			});
 	};
 
 	onClickCancel = () => {
-		this.props.router.push(
-			`/cashdeposit/${this.props.routeParams.currency}/withdraw`
-		);
+		this.props.router.push(`/fiat/${this.props.routeParams.currency}/withdraw`);
 	};
 
 	render() {

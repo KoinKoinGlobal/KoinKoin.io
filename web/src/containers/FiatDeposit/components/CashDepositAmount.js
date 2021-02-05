@@ -107,7 +107,7 @@ class CashDepositAmount extends Component {
 				return payStackCredit(obj)
 					.then(({ data }) => {
 						console.log(data, 'payStack');
-						browserHistory.push(`/cashdeposit`);
+						browserHistory.push(`/wallet`);
 					})
 					.catch((err) => {
 						console.log(err, 'err');
@@ -122,7 +122,7 @@ class CashDepositAmount extends Component {
 					});
 			},
 			onClose: () => {
-				browserHistory.push(`/cashdeposit`);
+				browserHistory.push(`/wallet`);
 			},
 		};
 		const { currency } = this.props;
@@ -154,8 +154,7 @@ class CashDepositAmount extends Component {
 				};
 				return flutterwaveCredit(obj)
 					.then(({ data }) => {
-						console.log(data, 'flutterwaveCredit');
-						browserHistory.push(`/cashdeposit`);
+						browserHistory.push(`/wallet`);
 					})
 					.catch((err) => {
 						console.log(err, 'err');
@@ -170,7 +169,7 @@ class CashDepositAmount extends Component {
 					});
 			},
 			onClose: () => {
-				browserHistory.push(`/cashdeposit`);
+				browserHistory.push(`/wallet`);
 			},
 		};
 

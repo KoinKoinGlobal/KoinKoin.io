@@ -2,7 +2,7 @@ import axios from 'axios';
 import ICONS from 'config/icons';
 import STRINGS from '../config/localizedStrings';
 import { playBackgroundAudioNotification } from '../utils/utils';
-import { WS_URL } from '../config/constants';
+import { PLUGIN_URL } from '../config/constants';
 import { requestAuthenticated } from '../utils';
 
 // Set orders from websocket
@@ -82,5 +82,10 @@ export function buyCoin(data) {
 		body: JSON.stringify(data),
 	};
 
-	return requestAuthenticated('/plugins/koinal/quotes', options, null, WS_URL);
+	return requestAuthenticated(
+		'/plugins/koinal/quotes',
+		options,
+		null,
+		PLUGIN_URL
+	);
 }
