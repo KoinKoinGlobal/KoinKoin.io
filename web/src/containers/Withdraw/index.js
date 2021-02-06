@@ -38,7 +38,7 @@ class Withdraw extends Component {
 		checked: false,
 	};
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		// if (
 		// 	this.props.verification_level >= MIN_VERIFICATION_LEVEL_TO_WITHDRAW &&
 		// 	this.props.verification_level <= MAX_VERIFICATION_LEVEL_TO_WITHDRAW
