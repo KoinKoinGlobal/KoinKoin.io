@@ -131,7 +131,7 @@ const SelectSearchBox = (props) => {
 					<span className="arrow-down"></span>
 				</div>
 				{crytoDropdownListOpen && (
-					<div className="dropdown-list">{renderOptions()}</div>
+					<div className="dropdown-list show-scroll">{renderOptions()}</div>
 				)}
 			</OutsideAlerter>
 		</div>

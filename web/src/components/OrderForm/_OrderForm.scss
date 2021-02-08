@@ -53,6 +53,26 @@
 				top: 46px;
 				width: 100%;
 				max-height: 200px;
+				border: 1px solid gray;
+			}
+			/* width */
+			.dropdown-list::-webkit-scrollbar {
+				width: 3px;
+			}
+
+			/* Track */
+			.dropdown-list::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			/* Handle */
+			.dropdown-list::-webkit-scrollbar-thumb {
+				background: #888;
+			}
+
+			/* Handle on hover */
+			.dropdown-list::-webkit-scrollbar-thumb:hover {
+				background: #555;
 			}
 			.coin-price-container {
 				display: flex;
