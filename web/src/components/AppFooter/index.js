@@ -84,7 +84,8 @@ const AppFooter = ({
 									className={classnames(
 										'd-flex',
 										'flex-column',
-										'footer-links-group'
+										'footer-links-group',
+										{ 'mb-3': isMobile }
 									)}
 								>
 									<div className="footer-links-section--title">{TITLE}</div>

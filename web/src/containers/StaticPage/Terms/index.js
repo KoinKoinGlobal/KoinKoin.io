@@ -2,8 +2,8 @@ import React from 'react';
 
 const Terms = () => {
 	return (
-		<section className="contact_us py-5 my-5" style={{ fontSize: '15px' }}>
-			<div className="container text-dark">
+		<section className="text-dark py-5 my-5">
+			<div className="container">
 				<header>
 					<h1 className="page_title text-dark">Terms & Conditions</h1>
 				</header>

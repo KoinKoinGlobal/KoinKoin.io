@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import ReactGA from 'react-ga';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 
 import { DISPLAY_LANDING } from './config/constants';
 
@@ -250,14 +250,14 @@ export default (
 		/>
 		<Route path="lang/:locale" component={createLocalizedRoutes} />
 		<Route component={AuthContainer} {...noAuthRoutesCommonProps}>
-			{isMobile ? (
+			{/* {isMobile ? (
 				<Route
 					path="/"
 					name="Login"
 					component={Login}
 					{...noAuthRoutesCommonProps}
 				/>
-			) : null}
+			) : null} */}
 			<Route path="login" name="Login" component={Login} />
 			<Route path="signup" name="signup" component={Signup} />
 		</Route>
@@ -287,14 +287,14 @@ export default (
 				onEnter={checkLanding}
 				isHome={true}
 			/>
-			{isMobile ? (
+			{/* {isMobile ? (
 				<Route
 					path="/home"
 					name="Home"
 					component={MobileHome}
 					onEnter={requireAuth}
 				/>
-			) : null}
+			) : null} */}
 			<Route
 				path="account"
 				name="Account"

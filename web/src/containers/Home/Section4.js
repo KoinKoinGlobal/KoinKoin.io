@@ -8,6 +8,7 @@ import CommonButton from '../../components/CommonButton';
 
 import YouTube from 'react-youtube';
 import AnimationContainer from '../../components/AnimationContainer';
+import { isMobile } from 'react-device-detect';
 
 const Section4 = ({ style = {} }) => {
 	const onClickSignUpBtn = () => {
@@ -15,8 +16,8 @@ const Section4 = ({ style = {} }) => {
 	};
 
 	const opts = {
-		height: '390',
-		width: '640',
+		height: isMobile ? '240' : '480',
+		width: isMobile ? '426' : '854',
 		playerVars: {
 			// https://developers.google.com/youtube/player_parameters
 			autoplay: 1,
@@ -25,7 +26,12 @@ const Section4 = ({ style = {} }) => {
 
 	return (
 		<div
-			className={classnames(...FLEX_CENTER_CLASSES, 'flex-column', 'section_4')}
+			className={classnames(
+				...FLEX_CENTER_CLASSES,
+				'flex-column',
+				'section_4',
+				'p-5'
+			)}
 			style={style}
 		>
 			<div className="animate-container">

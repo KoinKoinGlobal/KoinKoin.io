@@ -500,13 +500,13 @@ class App extends Component {
 			? ''
 			: this.getClassForActivePath(this.props.location.pathname);
 		const isMenubar = true;
-		const isHomePage = () => {
-			var location = router.getCurrentLocation();
-			if (location.pathname === '/') {
-				return true;
-			}
-			return false;
-		};
+		let isHomePage = false;
+		console.log('location', location);
+		// var location = router.getCurrentLocation();
+		if (location.pathname === '/' || location.pathname === '') {
+			isHomePage = true;
+		}
+
 		return (
 			<ThemeProvider>
 				<div>
@@ -533,7 +533,7 @@ class App extends Component {
 							fontClass,
 							languageClasses[0],
 							{
-								'layout-mobile': isMobile,
+								'layout-mobile': isMobile && !isHomePage,
 								'layout-desktop': isBrowser,
 								'layout-edit': isEditMode && isBrowser,
 							}
@@ -549,7 +549,7 @@ class App extends Component {
 								fontClass,
 								languageClasses[0],
 								{
-									'layout-mobile': isMobile,
+									'layout-mobile': isMobile && !isHomePage,
 									'layout-desktop': isBrowser,
 									'layout-edit': isEditMode && isBrowser,
 								}
@@ -564,7 +564,7 @@ class App extends Component {
 								onKeyPress={this.resetTimer}
 							/>
 							<div className="d-flex flex-column f-1">
-								{!isHomePage() ? (
+								{!isHomePage ? (
 									<AppBar
 										router={router}
 										location={location}
@@ -579,7 +579,7 @@ class App extends Component {
 									</AppBar>
 								) : null}
 
-								{isBrowser && !isHomePage() && isLoggedIn() && (
+								{isBrowser && !isHomePage && isLoggedIn() && (
 									<PairTabs
 										activePath={activePath}
 										location={location}
@@ -695,7 +695,7 @@ class App extends Component {
 										/>
 									)}
 								</div>
-								{isMobile && (
+								{!isHomePage && isMobile && (
 									<div className="app_container-bottom_bar">
 										<SidebarBottom
 											isLogged={isLoggedIn()}
@@ -716,7 +716,7 @@ class App extends Component {
 							getThemeClass(activeTheme),
 							languageClasses[0],
 							{
-								'layout-mobile': isMobile,
+								'layout-mobile': isMobile && !isHomePage,
 								'layout-desktop': isBrowser,
 							}
 						)}

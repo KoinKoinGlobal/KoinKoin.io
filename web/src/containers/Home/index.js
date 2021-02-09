@@ -40,6 +40,7 @@ import Section4 from './Section4';
 import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
 import CommonButton from '../../components/CommonButton';
 import Dialog from '../../components/Dialog';
+import Image from 'components/Image';
 
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
@@ -105,11 +106,15 @@ class Home extends Component {
 			>
 				<EventListener target="window" onResize={this.onResize} />
 				<div className={'koinkoin-app_bar'}>
-					<div className={classnames('app_bar-icon', 'text-uppercase')}>
-						<div
+					<div className="app_bar-icon text-uppercase d-flex justify-content-center align-items-center">
+						{/* <div
 							style={{ backgroundImage: `url(${BACKGROUND_PATH})` }}
 							className="app_bar-icon-logo"
-						></div>
+						></div> */}
+						<Image
+							icon={BACKGROUND_PATH}
+							wrapperClassName="app_bar-icon-logo"
+						/>
 					</div>
 					{isLoggedIn() ? (
 						<div className="sign-in-up-buttons">

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { isMobile } from 'react-device-detect';
 const emailValidation = (data, type) => {
 	let errors = {};
 	const regExp = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
@@ -144,7 +145,7 @@ class ContactUs extends Component {
 		return (
 			<Fragment>
 				{!status ? (
-					<main className="inner-page my-5 py-5">
+					<main className="inner-page my-5 pt-5">
 						<div id="hero-inner">
 							<div className="container">
 								<div className="row align-items-center justify-content-center text-center">
@@ -200,7 +201,7 @@ class ContactUs extends Component {
 									</div>
 								</div>
 
-								<div className="contact-form">
+								<div className="contact-form mt-5">
 									<div className="form-row">
 										<div className="form-group col-md-6">
 											<div
@@ -349,8 +350,8 @@ class ContactUs extends Component {
 										<section className="map-section">
 											<iframe
 												src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7921591150603!2d-0.08001438422966867!3d51.5170289796367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cb30d422641%3A0x379c04e7c3045bb8!2s8+Devonshire+Square%2C+London+EC2M+4PL%2C+UK!5e0!3m2!1sen!2sin!4v1553492769136"
-												width="600"
-												height="450"
+												width={isMobile ? '420' : '600'}
+												height={isMobile ? '220' : '450'}
 												frameBorder="0"
 												allowFullScreen
 												title="map-section"

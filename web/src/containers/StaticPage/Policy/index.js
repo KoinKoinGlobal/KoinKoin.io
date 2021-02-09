@@ -2,16 +2,12 @@ import React from 'react';
 
 const Policy = () => {
 	return (
-		<div className="content text-dark mx-auto py-5 py-3">
-			<section className="contact_us">
-				<div className="container">
-					<div className="main_title">
-						<h1 className="text-dark mb-3">Privacy Policy</h1>
-					</div>
-				</div>
-			</section>
+		<div className="text-dark py-5 my-5">
 			<div className="container">
-				<div className="about_us_text_wrap">
+				<header>
+					<h1 className="page_title text-dark">Privacy Policy</h1>
+				</header>
+				<div className="about_us_text_wrap mx-auto">
 					<div className="about_us_text">
 						<div className="policy_text_inner">
 							<p>

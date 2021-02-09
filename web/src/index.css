@@ -1027,7 +1027,6 @@ table th {
   .home_container .koinkoin-app_bar {
     position: relative;
     width: 100%;
-    min-height: 36px;
     height: 36px;
     display: flex;
     font-size: 0.9rem;
@@ -1041,7 +1040,6 @@ table th {
     width: 100%;
     background: #fff; }
     .home_container .koinkoin-app_bar .app_bar-icon-logo {
-      height: 4rem;
       width: 10rem;
       background-size: contain;
       background-position: center;
@@ -1051,7 +1049,6 @@ table th {
         padding-left: 10px;
         padding-right: 10px; }
         .home_container .koinkoin-app_bar .app_bar-icon-logo {
-          height: 6rem;
           width: 12rem; } }
     .home_container .koinkoin-app_bar .sign-in-up-buttons {
       display: flex;
@@ -9218,7 +9215,11 @@ foreignObject {
       padding-left: 5px;
       padding-right: 20px;
       color: #000;
-      position: relative; }
+      position: relative;
+      /* width */
+      /* Track */
+      /* Handle */
+      /* Handle on hover */ }
       .order-form-container .order-form .select-search-box .select-search-box-btn {
         display: flex;
         align-items: center;
@@ -9230,7 +9231,16 @@ foreignObject {
         left: 0;
         top: 46px;
         width: 100%;
-        max-height: 200px; }
+        max-height: 200px;
+        border: 1px solid gray; }
+      .order-form-container .order-form .select-search-box .dropdown-list::-webkit-scrollbar {
+        width: 3px; }
+      .order-form-container .order-form .select-search-box .dropdown-list::-webkit-scrollbar-track {
+        background: #f1f1f1; }
+      .order-form-container .order-form .select-search-box .dropdown-list::-webkit-scrollbar-thumb {
+        background: #888; }
+      .order-form-container .order-form .select-search-box .dropdown-list::-webkit-scrollbar-thumb:hover {
+        background: #555; }
       .order-form-container .order-form .select-search-box .coin-price-container {
         display: flex;
         align-items: center;

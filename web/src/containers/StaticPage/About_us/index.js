@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
+import { isMobile } from 'react-device-detect';
 
 class AboutUs extends Component {
 	render() {
@@ -67,7 +69,11 @@ class AboutUs extends Component {
 									complete business in these regions.
 								</p>
 							</div>
-							<div className="col col-12 col-md-3">
+							<div
+								className={classnames('col col-12', 'col-md-3', {
+									'd-none': isMobile,
+								})}
+							>
 								<img
 									src="/assets/images/unique-koinkoin.png"
 									alt="koin koin what makes us unique"

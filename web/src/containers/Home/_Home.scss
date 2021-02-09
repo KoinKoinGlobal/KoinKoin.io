@@ -171,7 +171,7 @@ $no-background--color: white;
 	.koinkoin-app_bar {
 		position: relative;
 		width: 100%;
-		min-height: $navigation_bar-height;
+		// min-height: $navigation_bar-height;
 		height: $navigation_bar-height;
 		display: flex;
 		font-size: $navigation_bar-font_size;
@@ -182,7 +182,7 @@ $no-background--color: white;
 		padding-left: 50px;
 		padding-right: 50px;
 		.app_bar-icon-logo {
-			height: 4rem;
+			// height: 4rem;
 			width: 10rem;
 			background-size: contain;
 			background-position: center;
@@ -192,7 +192,7 @@ $no-background--color: white;
 			padding-left: 10px;
 			padding-right: 10px;
 			.app_bar-icon-logo {
-				height: 6rem;
+				// height: 6rem;
 				width: 12rem;
 			}
 		}

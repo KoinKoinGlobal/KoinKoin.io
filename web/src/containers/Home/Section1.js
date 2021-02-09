@@ -120,7 +120,7 @@ const Section1 = ({ style = {}, constants }) => {
 					)}
 				>
 					<h1
-						className="display-3 font-weight-bold text-white"
+						className="display-3 font-weight-bold text-white my-3"
 						style={{ fontFamily: 'custom_9010' }}
 					>
 						{STRINGS['HOME.SECTION_1_TITLE']}
