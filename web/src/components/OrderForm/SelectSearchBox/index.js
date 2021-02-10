@@ -29,66 +29,77 @@ const SelectSearchBox = (props) => {
 		options.forEach((element, i) => {
 			const symbol = element.symbol.toUpperCase();
 
-			if (type === 'cryto') {
-				if (element.isCryto) {
-					arr.push(
-						<div
-							key={i}
-							className={classes.dropdownListItem}
-							onClick={() => {
-								onSelectItem(element);
-							}}
-						>
-							<div className="coin-price-container">
-								{/* <ReactSVG src={element.icon} className="coin-price" /> */}
-								<Image
-									iconId={
-										icons[`${symbol}_ICON`] ? `${symbol}_ICON` : 'DEFAULT_ICON'
-									}
-									icon={
-										icons[`${symbol}_ICON`]
-											? icons[`${symbol}_ICON`]
-											: icons['DEFAULT_ICON']
-									}
-									wrapperClassName="coin-price"
-								/>
+			switch (type) {
+				case 'cryto':
+					if (element.isCryto) {
+						if (symbol === 'akoin' || symbol === 'xht' || symbol === 'usdt') {
+							return;
+						}
+						arr.push(
+							<div
+								key={i}
+								className={classes.dropdownListItem}
+								onClick={() => {
+									onSelectItem(element);
+								}}
+							>
+								<div className="coin-price-container">
+									{/* <ReactSVG src={element.icon} className="coin-price" /> */}
+									<Image
+										iconId={
+											icons[`${symbol}_ICON`]
+												? `${symbol}_ICON`
+												: 'DEFAULT_ICON'
+										}
+										icon={
+											icons[`${symbol}_ICON`]
+												? icons[`${symbol}_ICON`]
+												: icons['DEFAULT_ICON']
+										}
+										wrapperClassName="coin-price"
+									/>
+								</div>
+								<div className="cryto-symbol">{symbol}</div>
 							</div>
-							<div className="cryto-symbol">{symbol}</div>
-						</div>
-					);
-				}
-			}
-			if (type === 'cash') {
-				if (!element.isCryto) {
-					arr.push(
-						<div
-							key={i}
-							className={classes.dropdownListItem}
-							onClick={() => {
-								onSelectItem(element);
-							}}
-						>
-							<div className="coin-price-container">
-								{/* <ReactSVG
-									src={icons[`${symbol}_ICON`]}
-									className="coin-price"
-								/> */}
-								<Image
-									iconId={
-										icons[`${symbol}_ICON`] ? `${symbol}_ICON` : 'DEFAULT_ICON'
-									}
-									icon={
-										icons[`${symbol}_ICON`]
-											? icons[`${symbol}_ICON`]
-											: icons['DEFAULT_ICON']
-									}
-									wrapperClassName="coin-price"
-								/>
+						);
+					}
+					break;
+				case 'cash':
+					if (!element.isCryto) {
+						arr.push(
+							<div
+								key={i}
+								className={classes.dropdownListItem}
+								onClick={() => {
+									onSelectItem(element);
+								}}
+							>
+								<div className="coin-price-container">
+									{/* <ReactSVG
+										src={icons[`${symbol}_ICON`]}
+										className="coin-price"
+									/> */}
+									<Image
+										iconId={
+											icons[`${symbol}_ICON`]
+												? `${symbol}_ICON`
+												: 'DEFAULT_ICON'
+										}
+										icon={
+											icons[`${symbol}_ICON`]
+												? icons[`${symbol}_ICON`]
+												: icons['DEFAULT_ICON']
+										}
+										wrapperClassName="coin-price"
+									/>
+								</div>
+								<div className="cryto-symbol">{symbol}</div>
 							</div>
-							<div className="cryto-symbol">{symbol}</div>
-						</div>
-					);
-				}
+						);
+					}
+					break;
+				default:
+					break;
 			}
 		});
 
