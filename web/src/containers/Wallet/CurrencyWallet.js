@@ -85,6 +85,9 @@ class Wallet extends Component {
 			coins
 		);
 
+		const { type } = coins[currency];
+		const is_fiat = type === 'fiat';
+
 		return (
 			<div>
 				{isMobile && (
@@ -109,14 +112,18 @@ class Wallet extends Component {
 							{coins[currency].allow_deposit ? (
 								<ButtonLink
 									label={depositText}
-									link={`/wallet/${currency}/deposit`}
+									link={
+										(is_fiat ? '/fiat/' : '/wallet/') + `${currency}/deposit`
+									}
 								/>
 							) : null}
 							<div className="separator" />
 							{coins[currency].allow_withdrawal ? (
 								<ButtonLink
 									label={withdrawText}
-									link={`/wallet/${currency}/withdraw`}
+									link={
+										(is_fiat ? '/fiat/' : '/wallet/') + `${currency}/withdraw`
+									}
 								/>
 							) : null}
 						</div>

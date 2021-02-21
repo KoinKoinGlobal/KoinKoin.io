@@ -199,22 +199,27 @@ export const generateWalletActionsText = (
 	coins,
 	useFullName = false
 ) => {
-	const { fullname } = coins[symbol] || DEFAULT_COIN_DATA;
+	const { fullname, type } = coins[symbol] || DEFAULT_COIN_DATA;
 	const name = fullname;
-
+	let is_fiat = type === 'fiat';
 	const nameToDisplay = useFullName ? fullname : name;
-
-	const depositText = `${
-		symbol === BASE_CURRENCY
-			? STRINGS['WALLET_BUTTON_BASE_DEPOSIT']
-			: STRINGS['WALLET_BUTTON_CRYPTOCURRENCY_DEPOSIT']
-	} ${nameToDisplay}`;
-
-	const withdrawText = `${
-		symbol === BASE_CURRENCY
-			? STRINGS['WALLET_BUTTON_BASE_WITHDRAW']
-			: STRINGS['WALLET_BUTTON_CRYPTOCURRENCY_WITHDRAW']
-	} ${nameToDisplay}`;
+	let depositText = '';
+	let withdrawText = '';
+	if (is_fiat) {
+		depositText = `${STRINGS['WALLET_BUTTON_BASE_DEPOSIT']} ${nameToDisplay}`;
+		withdrawText = `${STRINGS['WALLET_BUTTON_BASE_WITHDRAW']} ${nameToDisplay}`;
+	} else {
+		depositText = `${
+			symbol === BASE_CURRENCY
+				? STRINGS['WALLET_BUTTON_BASE_DEPOSIT']
+				: STRINGS['WALLET_BUTTON_CRYPTOCURRENCY_DEPOSIT']
+		} ${nameToDisplay}`;
+		withdrawText = `${
+			symbol === BASE_CURRENCY
+				? STRINGS['WALLET_BUTTON_BASE_WITHDRAW']
+				: STRINGS['WALLET_BUTTON_CRYPTOCURRENCY_WITHDRAW']
+		} ${nameToDisplay}`;
+	}
 
 	const stringId_withdraw =
 		symbol === BASE_CURRENCY
