@@ -7,6 +7,7 @@ import app from './appReducer';
 import wallet from './walletReducer';
 import asset from './assetReducer';
 import { reducer as formReducer } from 'redux-form';
+import fiatWithdraw from './fiatWithdrawReducer';
 
 const appReducer = combineReducers({
 	app,
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
 	orderbook,
 	wallet,
 	asset,
+	fiatWithdraw,
 	form: formReducer,
 });
 
