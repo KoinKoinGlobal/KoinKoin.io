@@ -7,32 +7,12 @@ import { getClasesForLanguage } from '../../utils/string';
 import { getThemeClass } from '../../utils/theme';
 import EventListener from 'react-event-listener';
 import STRINGS from '../../config/localizedStrings';
-// import { AppFooter } from '../../components';
+import { AppFooter } from '../../components';
 import { Link } from 'react-router';
-import {
-	// isLoggedIn,
-	// getToken,
-	isLoggedIn,
-} from '../../utils/token';
+import { isLoggedIn } from '../../utils/token';
 // Actions
 import { logout } from '../../actions/authAction';
-// import { setMe } from '../../actions/userAction';
-import {
-	// setPairs,
-	// changePair,
-	// setCurrencies,
-	// setOrderLimits,
-	// setValidBaseCurrency,
-	// setConfig,
-	setLanguage,
-	// changeTheme,
-	// requestAvailPlugins,
-	getExchangeInfo,
-} from '../../actions/appActions';
-// import {
-// 	setPairsData
-// } from '../../actions/orderbookAction';
-// Components
+import { getExchangeInfo } from '../../actions/appActions';
 import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
@@ -41,6 +21,9 @@ import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
 import CommonButton from '../../components/CommonButton';
 import Dialog from '../../components/Dialog';
 import Image from 'components/Image';
+import Socket from '../App/Socket';
+import GetSocketState from '../App/GetSocketState';
+import withConfig from 'components/ConfigProvider/withConfig';
 
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
@@ -52,11 +35,20 @@ class Home extends Component {
 		style: {
 			minHeight: MIN_HEIGHT,
 		},
+		publicSocket: undefined,
+		privateSocket: undefined,
+		appLoaded: false,
+		isSocketDataReady: false,
 		openCookieModal: _shouldShowPopup(),
 	};
 	componentDidMount() {
 		this.props.getExchangeInfo();
 		// this.initSocketConnections();
+	}
+	componentWillUnmount() {
+		if (this.state.publicSocket) {
+			this.state.publicSocket.close();
+		}
 	}
 	onResize = () => {
 		if (this.container) {
@@ -85,10 +77,28 @@ class Home extends Component {
 		_setCookie('KoinKoin', 1, 365);
 		this.setState({ openCookieModal: false });
 	};
-	render() {
-		const { activeLanguage, activeTheme, constants = {} } = this.props;
+	connectionCallBack = (value) => {
+		this.setState({ appLoaded: value });
+	};
 
-		const { style } = this.state;
+	socketDataCallback = (value = false) => {
+		this.setState({ isSocketDataReady: value });
+	};
+	logout = (message = '') => {
+		this.setState({ appLoaded: false }, () => {
+			this.props.logout(typeof message === 'string' ? message : '');
+		});
+	};
+	render() {
+		const {
+			activeLanguage,
+			activeTheme,
+			constants = { captcha: {} },
+			router,
+			location,
+		} = this.props;
+		console.log('constants', this.props);
+		const { style, isSocketDataReady } = this.state;
 
 		return (
 			<div
@@ -104,6 +114,17 @@ class Home extends Component {
 					}
 				)}
 			>
+				<Socket
+					router={router}
+					location={location}
+					logout={this.logout}
+					connectionCallBack={this.connectionCallBack}
+				/>
+				<GetSocketState
+					router={router}
+					isDataReady={isSocketDataReady}
+					socketDataCallback={this.socketDataCallback}
+				/>
 				<EventListener target="window" onResize={this.onResize} />
 				<div className={'koinkoin-app_bar'}>
 					<div className="app_bar-icon text-uppercase d-flex justify-content-center align-items-center">
@@ -180,12 +201,12 @@ class Home extends Component {
 						activeLanguage={activeLanguage}
 						constants={constants}
 					/>
-					{/* <AppFooter
+					<AppFooter
 						theme={activeTheme}
 						onChangeLanguage={this.onChangeLanguage}
 						activeLanguage={activeLanguage}
 						constants={constants}
-					/> */}
+					/>
 					<Dialog
 						isOpen={this.state.openCookieModal}
 						label="hollaex-modal"
@@ -196,7 +217,6 @@ class Home extends Component {
 					>
 						<div style={{ padding: '10px' }}></div>
 						<h2>Cookie Information and Consent Request</h2>
-						{/* <h4>Cookie Policy</h4> */}
 						<CommonButton
 							label="Accept"
 							onClick={this.onClickCookieAcceptBtn}
@@ -209,30 +229,15 @@ class Home extends Component {
 }
 
 const mapStateToProps = (store) => ({
-	// fetchingAuth: store.auth.fetching,
-	// pair: store.app.pair,
-	// token: store.auth.token,
-	// verifyToken: store.auth.verifyToken,
 	activeLanguage: store.app.language,
-	// info: store.app.info,
 	activeTheme: store.app.theme,
+	info: store.app.info,
 	constants: store.app.constants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
 	getExchangeInfo: bindActionCreators(getExchangeInfo, dispatch),
-	// changePair: bindActionCreators(changePair, dispatch),
-	// setPairs: bindActionCreators(setPairs, dispatch),
-	// setPairsData: bindActionCreators(setPairsData, dispatch),
-	// setCurrencies: bindActionCreators(setCurrencies, dispatch),
-	// setConfig: bindActionCreators(setConfig, dispatch),
-	// setValidBaseCurrency: bindActionCreators(setValidBaseCurrency, dispatch),
-	// setOrderLimits: bindActionCreators(setOrderLimits, dispatch),
-	// setMe: bindActionCreators(setMe, dispatch),
-	changeLanguage: bindActionCreators(setLanguage, dispatch),
-	// changeTheme: bindActionCreators(changeTheme, dispatch),
-	// requestAvailPlugins: bindActionCreators(requestAvailPlugins, dispatch),
 	logout: bindActionCreators(logout, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withConfig(Home));

@@ -500,12 +500,6 @@ class App extends Component {
 			? ''
 			: this.getClassForActivePath(this.props.location.pathname);
 		const isMenubar = true;
-		let isHomePage = false;
-		console.log('location', location);
-		// var location = router.getCurrentLocation();
-		if (location.pathname === '/' || location.pathname === '') {
-			isHomePage = true;
-		}
 
 		return (
 			<ThemeProvider>
@@ -533,7 +527,7 @@ class App extends Component {
 							fontClass,
 							languageClasses[0],
 							{
-								'layout-mobile': isMobile && !isHomePage,
+								'layout-mobile': isMobile,
 								'layout-desktop': isBrowser,
 								'layout-edit': isEditMode && isBrowser,
 							}
@@ -549,7 +543,7 @@ class App extends Component {
 								fontClass,
 								languageClasses[0],
 								{
-									'layout-mobile': isMobile && !isHomePage,
+									'layout-mobile': isMobile,
 									'layout-desktop': isBrowser,
 									'layout-edit': isEditMode && isBrowser,
 								}
@@ -564,22 +558,20 @@ class App extends Component {
 								onKeyPress={this.resetTimer}
 							/>
 							<div className="d-flex flex-column f-1">
-								{!isHomePage ? (
-									<AppBar
-										router={router}
-										location={location}
-										goToDashboard={this.goToDashboard}
-										logout={this.logout}
-										activePath={activePath}
-										onHelp={openHelpfulResourcesForm}
-									>
-										{isBrowser && isMenubar && isLoggedIn() && (
-											<AppMenuBar router={router} location={location} />
-										)}
-									</AppBar>
-								) : null}
+								<AppBar
+									router={router}
+									location={location}
+									goToDashboard={this.goToDashboard}
+									logout={this.logout}
+									activePath={activePath}
+									onHelp={openHelpfulResourcesForm}
+								>
+									{isBrowser && isMenubar && isLoggedIn() && (
+										<AppMenuBar router={router} location={location} />
+									)}
+								</AppBar>
 
-								{isBrowser && !isHomePage && isLoggedIn() && (
+								{isBrowser && isLoggedIn() && (
 									<PairTabs
 										activePath={activePath}
 										location={location}
@@ -695,7 +687,7 @@ class App extends Component {
 										/>
 									)}
 								</div>
-								{!isHomePage && isMobile && (
+								{isMobile && (
 									<div className="app_container-bottom_bar">
 										<SidebarBottom
 											isLogged={isLoggedIn()}
@@ -716,7 +708,7 @@ class App extends Component {
 							getThemeClass(activeTheme),
 							languageClasses[0],
 							{
-								'layout-mobile': isMobile && !isHomePage,
+								'layout-mobile': isMobile,
 								'layout-desktop': isBrowser,
 							}
 						)}

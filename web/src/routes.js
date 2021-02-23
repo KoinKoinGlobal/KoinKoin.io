@@ -229,6 +229,13 @@ function withAdminProps(Component, key) {
 export default (
 	<Router history={browserHistory}>
 		<Route
+			path="/"
+			name="Home"
+			component={Home}
+			onEnter={checkLanding}
+			isHome={true}
+		/>
+		<Route
 			path="/contact_us"
 			name="Home"
 			component={() => <StaticPage path={'contact_us'} />}
@@ -280,13 +287,6 @@ export default (
 			/>
 		</Route>
 		<Route component={Container}>
-			<Route
-				path="/"
-				name="Home"
-				component={Home}
-				onEnter={checkLanding}
-				isHome={true}
-			/>
 			{/* {isMobile ? (
 				<Route
 					path="/home"
