@@ -1,17 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import { browserHistory } from 'react-router';
-
-// import { ReactSVG } from 'react-svg';
 import STRINGS from '../../config/localizedStrings';
-
-import { FLEX_CENTER_CLASSES } from '../../config/constants';
+import { FLEX_CENTER_CLASSES, THEME_DEFAULT } from '../../config/constants';
 import CommonButton from '../../components/CommonButton';
 import OrderForm from '../../components/OrderForm';
 import ICONS from 'config/icons';
-import { getTheme } from 'utils/theme';
 
-const Section1 = ({ style = {}, constants }) => {
+const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 	const renderSocialLinkBar = () => {
 		if (constants.links) {
 			const {
@@ -22,8 +18,6 @@ const Section1 = ({ style = {}, constants }) => {
 				youtube,
 				twitter,
 			} = constants.links;
-			const current_theme = getTheme();
-
 			return (
 				<nav>
 					<ul>

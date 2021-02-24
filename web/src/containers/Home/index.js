@@ -188,6 +188,7 @@ class Home extends Component {
 							height:
 								style.minHeight > MIN_HEIGHT ? style.minHeight : MIN_HEIGHT,
 						}}
+						current_theme={activeTheme}
 					/>
 
 					<Section2 style={style} />
