@@ -75,7 +75,6 @@ export default {
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
 		FOOTER_LANGUAGE_TEXT: 'LANGUAGE',
-		FOOTER_COPYRIGHT: 'Powered by bitHolla',
 		SECTIONS: {
 			SECTION_1_TITLE: 'ABOUT',
 			SECTION_1_LINK_1: 'About Us',
@@ -751,7 +750,7 @@ export default {
 	RECENT_TRADES: '最近交易', // ToDo
 	PUBLIC_SALES: '实时成交', // ToDo
 	REMAINING: 'Remaining',
-	FULLFILLED: '{0} % Fullfilled',
+	FULLFILLED: '{0} % Filled',
 	PRICE_CURRENCY: 'PRICE ({0})',
 	AMOUNT_SYMBOL: 'AMOUNT ({0})',
 	MARKET_PRICE: '市场价格',

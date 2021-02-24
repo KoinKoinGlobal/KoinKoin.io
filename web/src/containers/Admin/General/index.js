@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, message, Collapse, Spin } from 'antd';
+import { Switch, Button, Modal, message, Collapse, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 import FooterConfig from './FooterConfig';
 import Description from './Description';
 import InterfaceForm from './InterfaceForm';
+import EmailVerificationForm from './EmailVerificationForm';
+import DisableSignupsConfirmation from './DisableSignupsConfirmation';
 import { EmailSettingsForm } from '../Settings/SettingsForm';
 import { AdminHocForm } from '../../../components';
 import Image from '../../../components/Image';
@@ -37,8 +39,12 @@ class General extends Component {
 			initialThemeValues: {},
 			initialEmailValues: {},
 			initialLinkValues: {},
+			initialEmailVerificationValues: {},
 			pendingPublishIcons: {},
+			showDisableSignUpsConfirmation: false,
+			isSignUpActive: true,
 			loading: false,
+			loadingButton: false,
 		};
 	}
 
@@ -71,15 +77,28 @@ class General extends Component {
 		let initialNameValues = { ...this.state.initialNameValues };
 		let initialLanguageValues = { ...this.state.initialLanguageValues };
 		let initialThemeValues = { ...this.state.initialThemeValues };
+		let initialEmailVerificationValues = {
+			...this.state.initialEmailVerificationValues,
+		};
 		const { kit = {}, secrets = { smtp: {}, captcha: {}, emails: {} } } =
 			this.state.constants || {};
-		const { api_name, defaults = {}, links = {} } = kit;
+		const {
+			api_name,
+			defaults = {},
+			links = {},
+			new_user_is_activated: isSignUpActive,
+			email_verification_required,
+		} = kit;
 		initialNameValues = { ...initialNameValues, api_name };
 		initialLanguageValues = {
 			...initialLanguageValues,
 			language: defaults.language,
 		};
 		initialThemeValues = { ...initialThemeValues, theme: defaults.theme };
+		initialEmailVerificationValues = {
+			...initialEmailVerificationValues,
+			email_verification_required,
+		};
 
 		const { configuration = {} } = this.state.initialEmailValues || {};
 		const initialEmailValues = {
@@ -94,6 +113,9 @@ class General extends Component {
 			initialThemeValues,
 			initialEmailValues,
 			initialLinkValues,
+			isSignUpActive,
+			initialEmailVerificationValues,
+			showDisableSignUpsConfirmation: false,
 		});
 	};
 
@@ -101,10 +123,6 @@ class General extends Component {
 		const { currentIcon } = this.state;
 		const { updateIcons } = this.props;
 		const icons = {};
-
-		this.setState({
-			loading: true,
-		});
 
 		for (const themeKey in currentIcon) {
 			if (currentIcon.hasOwnProperty(themeKey)) {
@@ -129,9 +147,6 @@ class General extends Component {
 								icons[themeKey][key] = path;
 								this.setState({ currentIcon: {} });
 							} catch (error) {
-								this.setState({
-									loading: false,
-								});
 								message.error('Something went wrong!');
 								return;
 							}
@@ -142,7 +157,6 @@ class General extends Component {
 		}
 		this.setState((prevState) => ({
 			...prevState,
-			loading: false,
 			pendingPublishIcons: merge({}, prevState.pendingPublishIcons, {
 				[iconKey]: icons,
 			}),
@@ -266,12 +280,48 @@ class General extends Component {
 		this.handleSubmitGeneral(formValues);
 	};
 
+	handleSubmitReferralBadge = (formProps) => {
+		this.handleSubmitGeneral({
+			kit: {
+				links: {
+					...formProps,
+				},
+			},
+		});
+	};
+
+	handleSubmitTOSlinks = (formProps) => {
+		this.handleSubmitGeneral({
+			kit: {
+				links: {
+					...formProps,
+				},
+			},
+		});
+	};
+
 	handleSubmitHelpDesk = (formProps) => {
 		this.handleSubmitGeneral({
 			kit: {
 				links: {
 					...formProps,
 				},
+			},
+		});
+	};
+
+	handleSubmitEmailVerification = (formProps) => {
+		this.handleSubmitGeneral({
+			kit: {
+				...formProps,
+			},
+		});
+	};
+
+	handleSubmitSignUps = (new_user_is_activated) => {
+		return this.handleSubmitGeneral({
+			kit: {
+				new_user_is_activated,
 			},
 		});
 	};
@@ -309,14 +359,41 @@ class General extends Component {
 		const {
 			pendingPublishIcons: { [id]: published = {} },
 		} = this.state;
+
+		this.setState({ loadingButton: true });
 		const iconsOverwrites = JSON.parse(localStorage.getItem('icons') || '{}');
 
 		const icons = merge({}, iconsOverwrites, published);
 		const configs = { icons };
-		publish(configs).then(this.reload);
+		publish(configs)
+			.then(() => {
+				localStorage.setItem('icons', JSON.stringify(icons));
+				this.setState({ pendingPublishIcons: {} });
+				message.success('Updated successfully');
+			})
+			.catch((err) => {
+				let error = err && err.data ? err.data.message : err.message;
+				message.error(error);
+			})
+			.finally(() => {
+				this.setState({ loadingButton: false });
+			});
 	};
 
-	reload = () => window.location.reload(false);
+	handleSignUpsSwitch = () => {
+		const { isSignUpActive } = this.state;
+		if (isSignUpActive) {
+			this.setState({
+				showDisableSignUpsConfirmation: true,
+			});
+		} else {
+			this.handleSubmitSignUps(true);
+		}
+	};
+
+	disableSignUpsConfirmation = () => {
+		this.handleSubmitSignUps(false);
+	};
 
 	render() {
 		const {
@@ -325,7 +402,11 @@ class General extends Component {
 			initialLanguageValues,
 			initialThemeValues,
 			initialLinkValues,
+			initialEmailVerificationValues,
 			loading,
+			isSignUpActive,
+			showDisableSignUpsConfirmation,
+			loadingButton,
 		} = this.state;
 		const { kit = {} } = this.state.constants;
 		const { coins, themeOptions } = this.props;
@@ -450,7 +531,11 @@ class General extends Component {
 								</Collapse.Panel>
 								<Collapse.Panel
 									showArrow={false}
-									header="Theme Specific Icons"
+									header={
+										<span className="underline-text">
+											Theme Specific Graphics
+										</span>
+									}
 									key="2"
 								>
 									<div className="file-wrapper">
@@ -466,9 +551,10 @@ class General extends Component {
 						<Button
 							type="primary"
 							className="green-btn minimal-btn"
+							loading={loadingButton}
 							onClick={() => this.handlePublish('EXCHANGE_LOGO')}
 						>
-							Save
+							Publish
 						</Button>
 					</div>
 					<div className="divider"></div>
@@ -488,7 +574,11 @@ class General extends Component {
 								</Collapse.Panel>
 								<Collapse.Panel
 									showArrow={false}
-									header="Theme Specific Icons"
+									header={
+										<span className="underline-text">
+											Theme Specific Graphics
+										</span>
+									}
 									key="2"
 								>
 									{themeOptions
@@ -502,9 +592,10 @@ class General extends Component {
 						<Button
 							type="primary"
 							className="green-btn minimal-btn"
+							loading={loadingButton}
 							onClick={() => this.handlePublish('EXCHANGE_LOADER')}
 						>
-							Save
+							Publish
 						</Button>
 					</div>
 					<div className="divider"></div>
@@ -525,14 +616,68 @@ class General extends Component {
 						<Button
 							type="primary"
 							className="green-btn minimal-btn"
+							loading={loadingButton}
 							onClick={() => this.handlePublish('EXCHANGE_FAV_ICON')}
 						>
-							Save
+							Publish
 						</Button>
 					</div>
 					<div className="divider"></div>
 					<div>
-						<div className="sub-title">Onboarding background image</div>
+						<h2>Onboarding</h2>
+						<div className="description">
+							Setup the login and sign up section of your platform.
+						</div>
+						<div className="sub-title pt-4">Allow new sign ups</div>
+						<div className="small-text ml-0">
+							(Turning on sign ups will allow new users to sign up on your
+							platforms)
+						</div>
+						<div className="admin-chat-feature-wrapper pt-4">
+							<div className="switch-wrapper mb-5">
+								<div className="d-flex">
+									<span
+										className={
+											!isSignUpActive
+												? 'switch-label'
+												: 'switch-label label-inactive'
+										}
+									>
+										Off
+									</span>
+									<Switch
+										checked={isSignUpActive}
+										onClick={this.handleSignUpsSwitch}
+									/>
+									<span
+										className={
+											isSignUpActive
+												? 'switch-label'
+												: 'switch-label label-inactive'
+										}
+									>
+										On
+									</span>
+								</div>
+							</div>
+						</div>
+						<EmailVerificationForm
+							initialValues={initialEmailVerificationValues}
+							handleSaveEmailVerification={this.handleSubmitEmailVerification}
+						/>
+
+						<DisableSignupsConfirmation
+							visible={showDisableSignUpsConfirmation}
+							onCancel={() =>
+								this.setState({ showDisableSignUpsConfirmation: false })
+							}
+							onConfirm={this.disableSignUpsConfirmation}
+						/>
+
+						<div className="sub-title mt-5">Onboarding background image</div>
+						<div className="description">
+							(The image displayed in the background on your onboarding page)
+						</div>
 						<div className="file-wrapper">
 							<Collapse defaultActiveKey={['1']} bordered={false} ghost>
 								<Collapse.Panel showArrow={false} key="1" disabled={true}>
@@ -550,7 +695,11 @@ class General extends Component {
 								</Collapse.Panel>
 								<Collapse.Panel
 									showArrow={false}
-									header="Theme Specific Icons"
+									header={
+										<span className="underline-text">
+											Theme Specific Graphics
+										</span>
+									}
 									key="2"
 								>
 									<div className="file-wrapper">
@@ -570,9 +719,10 @@ class General extends Component {
 						<Button
 							type="primary"
 							className="green-btn minimal-btn"
+							loading={loadingButton}
 							onClick={() => this.handlePublish('EXCHANGE_BOARDING_IMAGE')}
 						>
-							Save
+							Publish
 						</Button>
 					</div>
 					<div className="divider"></div>
@@ -589,8 +739,19 @@ class General extends Component {
 						descriptionFields={generalFields.section_5}
 						descriptionInitialValues={{ description: kit.description }}
 						footerFields={generalFields.section_6}
-						footerInitialValues={{ description: kit.footer_description }}
+						ReferralBadgeFields={generalFields.section_8}
+						ReferralBadgeInitialValues={{
+							hide_referral_badge: initialLinkValues.hide_referral_badge,
+							referral_label: initialLinkValues.referral_label,
+							referral_link: initialLinkValues.referral_link,
+						}}
+						footerInitialValues={{
+							terms: initialLinkValues.terms,
+							privacy: initialLinkValues.privacy,
+						}}
 						handleSubmitDescription={this.handleSubmitName}
+						handleSubmitFooterText={this.handleSubmitTOSlinks}
+						handleSubmitReferralBadge={this.handleSubmitReferralBadge}
 					/>
 					<div className="divider"></div>
 				</div>

@@ -951,7 +951,8 @@ table th {
     min-height: 500px;
     overflow-x: hidden; }
     .home_container .section_1-content .content {
-      z-index: 10; }
+      z-index: 10;
+      width: 100% !important; }
     .home_container .section_1-content video {
       position: absolute;
       top: 0;
@@ -1101,7 +1102,7 @@ table th {
   margin-right: 0.75rem; }
 
 .dark-theme.home_container .section_1-content .content {
-  width: 100%; }
+  width: 100% !important; }
 
 @media screen and (max-width: 500px) {
   .dark-theme.home_container {
@@ -1225,9 +1226,14 @@ table th {
     display: flex;
     align-items: center;
     justify-content: center; }
-    .section_4 .mobile-app-icons img {
-      width: 200px;
-      margin: 5px; }
+    .section_4 .mobile-app-icons div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 250px; }
+      .section_4 .mobile-app-icons div img {
+        width: 90%;
+        margin: 5px; }
 
 .text-section a {
   text-decoration: none;
@@ -1343,7 +1349,8 @@ ul li:hover a span {
     width: 50px; }
 
 .width-50px {
-  width: 50px; }
+  width: 50px;
+  height: 50px; }
 
 .layout-mobile .button-container {
   min-height: 4.5rem; }
@@ -1776,6 +1783,26 @@ ul li:hover a span {
   background-color: var(--trading_buying-related-elements);
   color: var(--calculated_trading_buying-related-text); }
 
+.cell_box-type.fullfilled .cell-wrapper {
+  border: 1px solid var(--calculated_important-border);
+  margin: 0;
+  padding: 1px;
+  min-width: 5rem;
+  max-width: 7rem; }
+  .cell_box-type.fullfilled .cell-wrapper > .cell_value-wrapper {
+    padding: 0 0.15rem;
+    position: relative;
+    width: 100%;
+    color: var(--labels_secondary-inactive-label-text-graphics);
+    z-index: 2; }
+    .cell_box-type.fullfilled .cell-wrapper > .cell_value-wrapper .cell_value-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: var(--calculated_specials_highlight-box);
+      z-index: -1; }
+
 .amount_text .positive {
   color: var(--specials_checks-okay-done); }
 
@@ -1847,7 +1874,7 @@ ul li:hover a span {
   .trade-container .trade-col_main_wrapper .trade-main_content {
     flex: 6;
     min-height: 25vh;
-    max-height: 67vh; }
+    max-height: 78vh; }
   .trade-container .trade-col_main_wrapper .trade-tabs_content {
     flex: 3;
     height: 30vh; }
@@ -2122,7 +2149,14 @@ ul li:hover a span {
   .trade_order_entry-wrapper.order_side-selector-sell .trade_order_entry-form_inputs-wrapper .form-error {
     margin: 0.5rem 0; }
   .trade_order_entry-wrapper.order_side-selector-sell .trade_order_entry-form_fields-wrapper {
-    margin-bottom: 0.5rem !important; }
+    margin-bottom: 0.2rem !important; }
+    .trade_order_entry-wrapper.order_side-selector-sell .trade_order_entry-form_fields-wrapper .ant-collapse-header {
+      text-align: right;
+      color: var(--labels_secondary-inactive-label-text-graphics);
+      padding: 0;
+      font-size: 12px; }
+    .trade_order_entry-wrapper.order_side-selector-sell .trade_order_entry-form_fields-wrapper .ant-collapse-content-box {
+      padding: 0; }
 
 .trade_order_entry-wrapper.order_side-selector-buy {
   flex: 1;
@@ -2183,7 +2217,14 @@ ul li:hover a span {
   .trade_order_entry-wrapper.order_side-selector-buy .trade_order_entry-form_inputs-wrapper .form-error {
     margin: 0.5rem 0; }
   .trade_order_entry-wrapper.order_side-selector-buy .trade_order_entry-form_fields-wrapper {
-    margin-bottom: 0.5rem !important; }
+    margin-bottom: 0.2rem !important; }
+    .trade_order_entry-wrapper.order_side-selector-buy .trade_order_entry-form_fields-wrapper .ant-collapse-header {
+      text-align: right;
+      color: var(--labels_secondary-inactive-label-text-graphics);
+      padding: 0;
+      font-size: 12px; }
+    .trade_order_entry-wrapper.order_side-selector-buy .trade_order_entry-form_fields-wrapper .ant-collapse-content-box {
+      padding: 0; }
 
 .risky-trade-wrapper {
   width: 32rem; }
@@ -4190,26 +4231,46 @@ ul li:hover a span {
   background-color: var(--base_top-bar-navigation);
   color: var(--calculated_base_top-bar-navigation_text);
   width: 100%;
-  padding: 0.5rem 0.5rem 0.8rem 0.5rem; }
+  padding: 0.5rem 0.5rem 0.8rem 0.5rem;
+  justify-content: space-evenly; }
   .sidebar-bottom-wrapper .sidebar-bottom-button {
-    flex: 1; }
-    .sidebar-bottom-wrapper .sidebar-bottom-button.active {
-      background-color: var(--base_background); }
-      .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg {
-        fill: var(--base_top-bar-navigation);
-        stroke: var(--base_top-bar-navigation); }
-        .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .post-icon {
-          fill: var(--base_top-bar-navigation);
-          stroke: var(--base_top-bar-navigation); }
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 20%; }
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .post-icon,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .wallet-selected-2,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .chat-0,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .account-svg-1,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .quick-trade-tab-active {
+      fill: var(--calculated_base_top-bar-navigation_text-inactive); }
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .trade-active-2,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .chat-0,
+    .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon svg .quick-trade-tab-active {
+      stroke: var(--calculated_base_top-bar-navigation_text-inactive); }
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .post-icon,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .wallet-selected-2,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .chat-0,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .account-svg-1,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .quick-trade-tab-active {
+      fill: var(--calculated_base_top-bar-navigation_text); }
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .trade-active-2,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .chat-0,
+    .sidebar-bottom-wrapper .sidebar-bottom-button.active .sidebar-bottom-icon svg .quick-trade-tab-active {
+      stroke: var(--calculated_base_top-bar-navigation_text); }
     .sidebar-bottom-wrapper .sidebar-bottom-button .bottom-bar-text {
-      font-size: 12px;
+      font-size: 10px;
       text-align: center;
       margin-top: -17px;
       font-weight: lighter;
-      color: var(--calculated_base_top-bar-navigation_text);
-      white-space: nowrap; }
+      color: var(--calculated_base_top-bar-navigation_text-inactive);
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis; }
     .sidebar-bottom-wrapper .sidebar-bottom-button .bottom-text-acttive {
-      color: var(--labels_important-active-labels-text-graphics) !important;
+      color: var(--calculated_base_top-bar-navigation_text) !important;
       font-weight: bolder; }
     .sidebar-bottom-wrapper .sidebar-bottom-button .sidebar-bottom-icon {
       height: 100%; }
@@ -6438,6 +6499,15 @@ ul li:hover a span {
 .trade-form-select {
   width: 35% !important;
   transform: translateY(1.4rem); }
+
+.ant-slider-mark-text {
+  color: var(--labels_secondary-inactive-label-text-graphics);
+  font-family: 'Open Sans' !important;
+  font-size: 0.9rem !important; }
+
+.ant-slider-mark-text-active {
+  color: var(--labels_important-active-labels-text-graphics);
+  font-weight: bold; }
 
 .exir-button {
   width: 100%;
@@ -9208,6 +9278,9 @@ foreignObject {
       .order-form-container .order-form .input-select-box input {
         border-radius: 0px !important;
         border-right: solid 1px; }
+      @media only screen and (max-width: 560px) {
+        .order-form-container .order-form .input-select-box input {
+          width: 120px; } }
       .order-form-container .order-form .input-select-box .cryto-symbol {
         margin-right: 5px;
         margin-left: 5px; }

@@ -54,6 +54,7 @@ $no-background--color: white;
 
 		.content {
 			z-index: 10;
+			width: 100% !important;
 		}
 
 		video {
@@ -274,7 +275,7 @@ $no-background--color: white;
 .dark-theme {
 	&.home_container {
 		.section_1-content .content {
-			width: 100%;
+			width: 100% !important;
 			// background: url($background-image-dark);
 			// font-family: Arial Black !important;
 		}
@@ -467,9 +468,15 @@ $no-background--color: white;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		img {
-			width: 200px;
-			margin: 5px;
+		div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			max-width: 250px;
+			img {
+				width: 90%;
+				margin: 5px;
+			}
 		}
 	}
 }
@@ -651,4 +658,5 @@ ul li:hover a span {
 
 .width-50px {
 	width: 50px;
+	height: 50px;
 }

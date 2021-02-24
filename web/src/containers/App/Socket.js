@@ -47,10 +47,12 @@ import {
 	requestPlugins,
 	requestInitial,
 	requestConstant,
+	requestTiers,
 } from '../../actions/appActions';
 import { hasTheme } from 'utils/theme';
 import { playBackgroundAudioNotification } from '../../utils/utils';
 import { getToken, isLoggedIn } from '../../utils/token';
+import { NORMAL_CLOSURE_CODE, isIntentionalClosure } from 'utils/webSocket';
 
 class Container extends Component {
 	constructor(props) {
@@ -94,7 +96,7 @@ class Container extends Component {
 		}
 
 		if (this.state.privateSocket) {
-			this.state.privateSocket.close();
+			this.state.privateSocket.close(NORMAL_CLOSURE_CODE);
 		}
 
 		if (this.state.idleTimer) {
@@ -122,12 +124,8 @@ class Container extends Component {
 	resetTimer = debounce(this._resetTimer, 250);
 
 	initSocketConnections = () => {
-		let token = '';
 		this.setPublicWS();
-		if (isLoggedIn()) {
-			token = getToken();
-		}
-		this.setUserSocket(token);
+		this.setUserSocket();
 		this.setState({ appLoaded: true }, () => {
 			this.props.connectionCallBack(true);
 			this._resetTimer();
@@ -192,6 +190,8 @@ class Container extends Component {
 				}
 			})
 			.catch((err) => console.error(err));
+
+		this.props.requestTiers();
 	};
 
 	getUserDetails = () => {
@@ -254,8 +254,10 @@ class Container extends Component {
 			});
 	};
 
-	setUserSocket = (token) => {
+	setUserSocket = () => {
 		let url = `${WS_URL}/stream`;
+		const token = isLoggedIn() && getToken();
+
 		if (token) {
 			url = `${WS_URL}/stream?authorization=Bearer ${token}`;
 		}
@@ -439,6 +441,13 @@ class Container extends Component {
 			console.error('public socket error', evt);
 		};
 
+		privateSocket.onclose = (evt) => {
+			if (!isIntentionalClosure(evt)) {
+				setTimeout(() => {
+					this.setUserSocket();
+				}, 1000);
+			}
+		};
 		// privateSocket.on('error', (error) => {
 		// 	if (
 		// 		error &&
@@ -728,6 +737,7 @@ const mapDispatchToProps = (dispatch) => ({
 	setInfo: bindActionCreators(setInfo, dispatch),
 	getMe: bindActionCreators(getMe, dispatch),
 	setPlugins: bindActionCreators(setPlugins, dispatch),
+	requestTiers: bindActionCreators(requestTiers, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);

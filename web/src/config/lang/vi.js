@@ -79,7 +79,6 @@ export default {
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
 		FOOTER_LANGUAGE_TEXT: 'LANGUAGE',
-		FOOTER_COPYRIGHT: 'Powered by bitHolla',
 		SECTIONS: {
 			SECTION_1_TITLE: 'ABOUT',
 			SECTION_1_LINK_1: 'About Us',
@@ -823,7 +822,7 @@ export default {
 	RECENT_TRADES: 'Giao dịch gần đây của tôi', // ToDo
 	PUBLIC_SALES: 'BÁN CÔNG KHAI', // ToDo
 	REMAINING: 'Remaining',
-	FULLFILLED: '{0} % Fullfilled',
+	FULLFILLED: '{0} % Filled',
 	FILLED: 'Filled', // new
 	LOWEST_PRICE: 'Lowest Price ({0})', // new
 	PHASE: 'Phase', // new

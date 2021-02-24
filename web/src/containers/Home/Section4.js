@@ -17,7 +17,7 @@ const Section4 = ({ style = {} }) => {
 
 	const opts = {
 		height: isMobile ? '240' : '480',
-		width: isMobile ? '426' : '854',
+		width: isMobile ? '350' : '854',
 		playerVars: {
 			// https://developers.google.com/youtube/player_parameters
 			autoplay: 1,
@@ -61,8 +61,12 @@ const Section4 = ({ style = {} }) => {
 						/>
 
 						<div className="mobile-app-icons">
-							<img src="/assets/home/mobile_appstore.png" alt="" />
-							<img src="/assets/home/mobile_googlestore.png" alt="" />
+							<div>
+								<img src="/assets/home/mobile_appstore.png" alt="" />
+							</div>
+							<div>
+								<img src="/assets/home/mobile_googlestore.png" alt="" />
+							</div>
 						</div>
 					</div>
 				</AnimationContainer>

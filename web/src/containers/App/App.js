@@ -284,7 +284,7 @@ class App extends Component {
 	};
 
 	renderDialogContent = ({ type, data }, prices = {}) => {
-		const { icons: ICONS } = this.props;
+		const { icons: ICONS, config_level } = this.props;
 		switch (type) {
 			case NOTIFICATIONS.ORDERS:
 			case NOTIFICATIONS.TRADES:
@@ -357,6 +357,7 @@ class App extends Component {
 			case FEES_STRUCTURE_AND_LIMITS:
 				return (
 					<FeesAndLimits
+						tiers={config_level}
 						type={type}
 						data={data}
 						onClose={this.onCloseDialog}
@@ -570,8 +571,7 @@ class App extends Component {
 										<AppMenuBar router={router} location={location} />
 									)}
 								</AppBar>
-
-								{isBrowser && isLoggedIn() && (
+								{isBrowser && (
 									<PairTabs
 										activePath={activePath}
 										location={location}

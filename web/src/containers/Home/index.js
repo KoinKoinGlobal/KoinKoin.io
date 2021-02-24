@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { isBrowser, isMobile } from 'react-device-detect';
+// import { isBrowser, isMobile } from 'react-device-detect';
 import classnames from 'classnames';
-import { getClasesForLanguage } from '../../utils/string';
-import { getThemeClass } from '../../utils/theme';
+// import { getClasesForLanguage } from '../../utils/string';
+// import { getThemeClass } from '../../utils/theme';
 import EventListener from 'react-event-listener';
 import STRINGS from '../../config/localizedStrings';
 import { AppFooter } from '../../components';
@@ -96,6 +96,7 @@ class Home extends Component {
 			constants = { captcha: {} },
 			router,
 			location,
+			icons,
 		} = this.props;
 		console.log('constants', this.props);
 		const { style, isSocketDataReady } = this.state;
@@ -105,15 +106,16 @@ class Home extends Component {
 				className={classnames(
 					'app_container',
 					'home_container',
-					'app_background',
-					getClasesForLanguage(activeLanguage),
-					getThemeClass(activeTheme),
-					{
-						'layout-mobile': isMobile,
-						'layout-desktop': isBrowser,
-					}
+					'app_background'
+					// getClasesForLanguage(activeLanguage),
+					// getThemeClass(activeTheme),
+					// {
+					// 	'layout-mobile': isMobile,
+					// 	'layout-desktop': isBrowser,
+					// }
 				)}
 			>
+				{/* <div className="container-fluid"> */}
 				<Socket
 					router={router}
 					location={location}
@@ -188,7 +190,7 @@ class Home extends Component {
 							height:
 								style.minHeight > MIN_HEIGHT ? style.minHeight : MIN_HEIGHT,
 						}}
-						current_theme={activeTheme}
+						icons={icons}
 					/>
 
 					<Section2 style={style} />

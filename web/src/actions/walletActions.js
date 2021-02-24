@@ -31,6 +31,7 @@ export const ACTION_KEYS = {
 
 const ENDPOINTS = {
 	TRADES: '/user/trades',
+	ORDERS: '/orders',
 	DEPOSITS: '/user/deposits',
 	WITHDRAWALS: '/user/withdrawals',
 	DEPOSIT_BANK: '/user/deposit/bank',
@@ -213,7 +214,7 @@ export const getOrdersHistory = ({
 	return (dispatch) => {
 		dispatch({ type: ACTION_KEYS.ORDER_HISTORY_PENDING, payload: { page } });
 		axios
-			.get(`${ENDPOINTS.TRADES}?${query}`)
+			.get(`${ENDPOINTS.ORDERS}?${query}`)
 			.then((body) => {
 				dispatch({
 					type: ACTION_KEYS.ORDER_HISTORY_FULFILLED,
@@ -241,6 +242,9 @@ export const downloadUserTrades = (key) => {
 		format: 'csv',
 	});
 	let path = ENDPOINTS.TRADES;
+	if (key === 'orders') {
+		path = ENDPOINTS.ORDERS;
+	}
 	if (key === 'deposit') {
 		path = ENDPOINTS.DEPOSITS;
 	} else if (key === 'withdrawal') {

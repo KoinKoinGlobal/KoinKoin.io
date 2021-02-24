@@ -79,7 +79,6 @@ const nestedContent = {
 	FOOTER: {
 		FOOTER_LEGAL: ['Proudly made in Seoul, South Korea', 'bitHolla Inc.'],
 		FOOTER_LANGUAGE_TEXT: 'LANGUAGE',
-		FOOTER_COPYRIGHT: 'Powered by bitHolla',
 		SECTIONS: {
 			SECTION_1_TITLE: 'ABOUT',
 			SECTION_1_LINK_1: 'About Us',
@@ -784,7 +783,7 @@ const nestedContent = {
 	RECENT_TRADES: '최근 체결 내역', // ToDo
 	PUBLIC_SALES: 'public sales', // ToDo
 	REMAINING: 'Remaining',
-	FULLFILLED: '{0} % Fullfilled',
+	FULLFILLED: '{0} % Filled',
 	PRICE_CURRENCY: 'PRICE ({0})',
 	AMOUNT_SYMBOL: 'AMOUNT ({0})',
 	MARKET_PRICE: '시장가',

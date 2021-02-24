@@ -19,9 +19,16 @@ import {
 // import UserData from './UserData';
 import BankData from './BankData';
 import AboutData from './AboutData';
+import VerifyEmailConfirmation from './VerifyEmailConfirmation';
 import { isSupport, isKYC } from '../../../utils/token';
 import { STATIC_ICONS } from 'config/icons';
-import { deactivateOtp, flagUser, activateUser } from './actions';
+import {
+	deactivateOtp,
+	flagUser,
+	activateUser,
+	verifyUser,
+	requestTiers,
+} from './actions';
 
 // import Flagger from '../Flaguser';
 // import Notes from './Notes';
@@ -30,6 +37,25 @@ const TabPane = Tabs.TabPane;
 const { Item } = Breadcrumb;
 
 class UserContent extends Component {
+	state = {
+		showVerifyEmailModal: false,
+		userTiers: {},
+	};
+
+	componentDidMount() {
+		this.getTiers();
+	}
+
+	getTiers = () => {
+		requestTiers()
+			.then((userTiers = {}) => {
+				this.setState({ userTiers });
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	};
+
 	disableOTP = () => {
 		const { userInformation = {}, refreshData } = this.props;
 		const postValues = {
@@ -150,6 +176,30 @@ class UserContent extends Component {
 		});
 	};
 
+	verifyUserEmail = () => {
+		const { userInformation = {}, refreshData } = this.props;
+		const postValues = {
+			user_id: parseInt(userInformation.id, 10),
+		};
+
+		verifyUser(postValues)
+			.then((res) => {
+				refreshData(postValues);
+				this.setState({ showVerifyEmailModal: false });
+			})
+			.catch((err) => {
+				const _error =
+					err.data && err.data.message ? err.data.message : err.message;
+				message.error(_error);
+			});
+	};
+
+	openVerifyEmailModal = () => {
+		this.setState({
+			showVerifyEmailModal: true,
+		});
+	};
+
 	render() {
 		const {
 			coins,
@@ -161,6 +211,9 @@ class UserContent extends Component {
 			refreshAllData,
 			onChangeUserDataSuccess,
 		} = this.props;
+
+		const { showVerifyEmailModal, userTiers } = this.state;
+
 		const {
 			id,
 			// activated,
@@ -235,12 +288,14 @@ class UserContent extends Component {
 								user_id={userInformation.id}
 								userData={userInformation}
 								userImages={userImages}
+								userTiers={userTiers}
 								constants={constants}
 								refreshData={refreshData}
 								onChangeSuccess={onChangeUserDataSuccess}
 								disableOTP={this.disableOTP}
 								flagUser={this.flagUser}
 								freezeAccount={this.freezeAccount}
+								verifyEmail={this.openVerifyEmailModal}
 							/>
 						</div>
 					</TabPane>
@@ -319,6 +374,12 @@ class UserContent extends Component {
 						</TabPane>
 					)}
 				</Tabs>
+				<VerifyEmailConfirmation
+					visible={showVerifyEmailModal}
+					onCancel={() => this.setState({ showVerifyEmailModal: false })}
+					onConfirm={this.verifyUserEmail}
+					userData={userInformation}
+				/>
 			</div>
 		);
 	}

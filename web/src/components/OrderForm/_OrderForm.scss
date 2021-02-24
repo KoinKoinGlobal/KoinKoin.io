@@ -30,6 +30,11 @@
 				border-radius: 0px !important;
 				border-right: solid 1px;
 			}
+			@media only screen and(max-width: 560px) {
+				input {
+					width: 120px;
+				}
+			}
 			.cryto-symbol {
 				margin-right: 5px;
 				margin-left: 5px;

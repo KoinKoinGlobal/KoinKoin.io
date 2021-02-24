@@ -2,12 +2,11 @@ import React from 'react';
 import classnames from 'classnames';
 import { browserHistory } from 'react-router';
 import STRINGS from '../../config/localizedStrings';
-import { FLEX_CENTER_CLASSES, THEME_DEFAULT } from '../../config/constants';
+import { FLEX_CENTER_CLASSES } from '../../config/constants';
 import CommonButton from '../../components/CommonButton';
 import OrderForm from '../../components/OrderForm';
-import ICONS from 'config/icons';
 
-const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
+const Section1 = ({ style = {}, constants, icons = {} }) => {
 	const renderSocialLinkBar = () => {
 		if (constants.links) {
 			const {
@@ -25,7 +24,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={facebook}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_FACEBOOK']}
+									src={icons['SOCIAL_FACEBOOK']}
 									alt="facebook_icon"
 								/>
 								<span>Facebook</span>
@@ -35,7 +34,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={twitter}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_TWITTER']}
+									src={icons['SOCIAL_TWITTER']}
 									alt="twitter_icon"
 								/>
 								<span>Twitter</span>
@@ -45,7 +44,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={instagram}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_INSTAGRAM_PNG']}
+									src={icons['SOCIAL_INSTAGRAM_PNG']}
 									alt="instagram_icon"
 								/>
 								<span>Instagram</span>
@@ -55,7 +54,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={linkedin}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_LINKEDIN']}
+									src={icons['SOCIAL_LINKEDIN']}
 									alt="linkedin_icon"
 								/>
 								<span>Linkedin</span>
@@ -65,7 +64,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={github}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_GITHUB']}
+									src={icons['SOCIAL_GITHUB']}
 									alt="github_icon"
 								/>
 								<span>Github</span>
@@ -75,7 +74,7 @@ const Section1 = ({ style = {}, constants, current_theme = THEME_DEFAULT }) => {
 							<a className="social-link" href={youtube}>
 								<img
 									className="social-icon"
-									src={ICONS[current_theme]['SOCIAL_YOUTUBE']}
+									src={icons['SOCIAL_YOUTUBE']}
 									alt="youtube_icon"
 								/>
 								<span>Youtube</span>

@@ -82,7 +82,6 @@ const nestedContent = {
 	FOOTER: {
 		FOOTER_LEGAL: ['با افتخار توسعه داده شده در سئول ، کره جنوبی'],
 		FOOTER_LANGUAGE_TEXT: 'زبان',
-		FOOTER_COPYRIGHT: 'Powered by bitHolla',
 		SECTIONS: {
 			SECTION_1_TITLE: 'درباره',
 			SECTION_1_LINK_1: 'درباره ما',
