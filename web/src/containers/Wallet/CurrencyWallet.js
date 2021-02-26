@@ -16,14 +16,23 @@ import {
 } from '../../utils/currency';
 import STRINGS from '../../config/localizedStrings';
 import withConfig from 'components/ConfigProvider/withConfig';
+import Dialog from '../../components/Dialog';
 
 class Wallet extends Component {
 	state = {
 		currency: '',
+		isErrorDialog: false,
 	};
 
 	UNSAFE_componentWillMount() {
 		this.setCurrency(this.props.routeParams.currency);
+		console.log('props', this.props);
+		if (
+			this.props.location.query.status &&
+			this.props.location.query.status.toLowerCase() !== 'successful'
+		) {
+			this.setState({ isErrorDialog: true });
+		}
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
@@ -39,6 +48,10 @@ class Wallet extends Component {
 		} else {
 			this.props.router.push('/wallet');
 		}
+	};
+
+	cancelErrorModal = () => {
+		this.setState({ isErrorDialog: false });
 	};
 
 	renderWalletHeaderBlock = (symbol, price, balance, coins) => {
@@ -75,6 +88,7 @@ class Wallet extends Component {
 
 	render() {
 		const { balance, price, coins, icons: ICONS } = this.props;
+
 		const { currency } = this.state;
 		if (!currency) {
 			return <div />;
@@ -129,6 +143,18 @@ class Wallet extends Component {
 						</div>
 					</div>
 				</div>
+				<Dialog
+					isOpen={this.state.isErrorDialog}
+					label="error-alert-modal"
+					className={classnames('app-dialog', {
+						'app-dialog-flex': true,
+					})}
+					onCloseDialog={this.cancelErrorModal}
+				>
+					<h3 className="text-danger pt-4 pr-4">
+						Transaction {this.props.location.query.status}
+					</h3>
+				</Dialog>
 			</div>
 		);
 	}

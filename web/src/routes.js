@@ -237,22 +237,22 @@ export default (
 		/>
 		<Route
 			path="/contact_us"
-			name="Home"
+			name="Contact Us"
 			component={() => <StaticPage path={'contact_us'} />}
 		/>
 		<Route
 			path="/about_us"
-			name="Home"
+			name="About US"
 			component={() => <StaticPage path={'about_us'} />}
 		/>
 		<Route
 			path="/terms"
-			name="Home"
+			name="Terms"
 			component={() => <StaticPage path={'terms'} />}
 		/>
 		<Route
 			path="/policy"
-			name="Home"
+			name="Policy"
 			component={() => <StaticPage path={'policy'} />}
 		/>
 		<Route path="lang/:locale" component={createLocalizedRoutes} />
