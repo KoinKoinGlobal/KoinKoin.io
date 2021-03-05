@@ -142,17 +142,19 @@ $row--size: calc(#{$row--height} - #{$sidebar-sections-padding});
 			font-weight: bolder;
 		}
 		.sidebar-bottom-icon {
-			height: 100%;
+			@include size(3rem);
 			> div {
 				display: flex;
 				justify-content: center;
-				height: 100%;
 			}
 			svg {
 				@include size(3rem);
 				stroke: $colors-deactivate-color2;
 				fill: transparent;
 			}
+		}
+		img.sidebar-bottom-icon {
+			@include size(3rem);
 		}
 	}
 }
