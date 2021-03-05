@@ -3212,7 +3212,8 @@ ul li:hover a span {
 
 .market-list__container .market-list__block .market-list__coin-icons {
   width: 2.8rem;
-  margin: 0.3rem 0.3rem 0 0.3rem; }
+  margin: 0.3rem 0.3rem 0 0.3rem;
+  max-height: 50px; }
   .market-list__container .market-list__block .market-list__coin-icons svg .btc0,
   .market-list__container .market-list__block .market-list__coin-icons svg .btc1 {
     fill: var(--coin-btc); }

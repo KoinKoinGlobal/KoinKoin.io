@@ -101,7 +101,7 @@ class Audits extends Component {
 
 	render() {
 		const { audits, loading } = this.state;
-
+		console.log('audits', audits);
 		if (loading) {
 			return (
 				<div className="app_container-content">

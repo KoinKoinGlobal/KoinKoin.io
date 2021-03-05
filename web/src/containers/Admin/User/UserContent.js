@@ -19,6 +19,7 @@ import {
 // import UserData from './UserData';
 import BankData from './BankData';
 import AboutData from './AboutData';
+import VerificationStatus from './VerificationStatus';
 import VerifyEmailConfirmation from './VerifyEmailConfirmation';
 import { isSupport, isKYC } from '../../../utils/token';
 import { STATIC_ICONS } from 'config/icons';
@@ -313,6 +314,14 @@ class UserContent extends Component {
 								initialValues={userInformation}
 								onChangeSuccess={onChangeUserDataSuccess}
 								refreshData={refreshData}
+							/>
+						</div>
+					</TabPane>
+					<TabPane tab="Verification Status" key="verification-status">
+						<div>
+							<VerificationStatus
+								userTiers={userTiers}
+								verification_level={verification_level}
 							/>
 						</div>
 					</TabPane>
