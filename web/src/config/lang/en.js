@@ -1458,9 +1458,9 @@ const nestedContent = {
 		STATUS_DESCRIPTION:
 			'You can check the status of your deposit by passing the transaction ID (hash) below.',
 		TRANSACTION_ID: 'Transaction ID (hash)',
-		SEARCH_SUCCESS: 'Transaction found!',
-		SEARCH_ERROR:
-			'Transaction not found. Please check the ID and try again. If your believe there is a problem please contact support.',
+		SEARCH_SUCCESS: 'Search complete', // new
+		ADDRESS_FIELD_LABEL: 'Paste your address', // new
+		CURRENCY_FIELD_LABEL: 'Select the currency', // new
 	},
 	CANCEL_ORDERS: {
 		HEADING: 'Cancel orders',
@@ -1469,6 +1469,12 @@ const nestedContent = {
 		INFO_2: 'Are you sure you want to cancel all your open orders?',
 	},
 	AMOUNT_IN: 'Amount in',
+	LIMITS_BLOCK: {
+		HEADER_ROW_DESCRIPTION:
+			'Deposit and withdrawal allowance for all assets (level {0})',
+		HEADER_ROW_TYPE: 'Type (All assets)',
+		HEADER_ROW_AMOUNT: 'Amount ({0})',
+	},
 };
 
 const content = flatten(nestedContent, options);

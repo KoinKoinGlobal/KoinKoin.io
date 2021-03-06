@@ -26,7 +26,6 @@ export const ACTION_KEYS = {
 	WITHDRAWAL_CANCEL_PENDING: 'WITHDRAWAL_CANCEL_PENDING',
 	WITHDRAWAL_CANCEL_FULFILLED: 'WITHDRAWAL_CANCEL_FULFILLED',
 	WITHDRAWAL_CANCEL_REJECTED: 'WITHDRAWAL_CANCEL_REJECTED',
-	DEPOSIT_STATUS_SUCCESS: 'DEPOSIT_STATUS_SUCCESS',
 };
 
 const ENDPOINTS = {
@@ -40,6 +39,7 @@ const ENDPOINTS = {
 	WITHDRAW_FEE: (currency) => `/user/withdrawal?currency=${currency}`,
 	CANCEL_WITHDRAWAL: '/user/withdrawal',
 	CONFIRM_WITHDRAWAL: '/user/confirm-withdrawal',
+	CHECK_TRANSACTION: '/user/check-transaction',
 	WITHDRAWALS_FW_UPDATE_STATUS: '/plugins/withdraw/update-status',
 };
 
@@ -355,15 +355,9 @@ export const performConfirmWithdrawal = (token) => {
 	return axios.post(ENDPOINTS.CONFIRM_WITHDRAWAL, { token });
 };
 
-export const searchUserDeposits = (params) => {
+export const searchTransaction = (params) => {
 	const query = querystring.stringify(params);
-	return axios.get(`${ENDPOINTS.DEPOSITS}?${query}`);
-};
-
-export const setDeposit = (deposit) => {
-	return (dispatch) => {
-		dispatch({ type: ACTION_KEYS.DEPOSIT_STATUS_SUCCESS, payload: deposit });
-	};
+	return axios.get(`${ENDPOINTS.CHECK_TRANSACTION}?${query}`);
 };
 
 export const refresh_flutterwave_withdrawal_status = () => {

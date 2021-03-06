@@ -71,7 +71,6 @@ class Wallets extends Component {
 
 	render() {
 		const { balance, loading, error } = this.state;
-		// const { plugins = { enabled: '' } } = this.state.constants;
 		return (
 			<div className="app_container-content">
 				{error && (

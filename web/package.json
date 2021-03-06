@@ -1,6 +1,6 @@
 {
 	"name": "hollaex-kit",
-	"version": "2.0.6",
+	"version": "2.0.9",
 	"private": true,
 	"dependencies": {
 		"@ant-design/compatible": "1.0.5",
@@ -74,7 +74,6 @@
 		"react-svg": "11.2.2",
 		"react-transition-group": "4.4.1",
 		"react-truncate-markup": "3.0.1",
-		"react-youtube": "^7.13.0",
 		"redux": "4.0.1",
 		"redux-form": "8.1.0",
 		"redux-logger": "3.0.6",
