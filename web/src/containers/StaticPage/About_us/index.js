@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
-import { isMobile } from 'react-device-detect';
 
 class AboutUs extends Component {
 	render() {

@@ -43,7 +43,7 @@ const Policy = () => {
 					</div>
 					<div className="policy-text p-3">
 						<h1 className="display-4 text-uppercase mb-5">Policy</h1>
-						{(menuIndex == 0 || width < 768) && (
+						{(menuIndex === 0 || width < 768) && (
 							<div>
 								<p>
 									KoinKoin and its affiliates (hereinafter “KoinKoin”, “we”,
@@ -174,7 +174,7 @@ const Policy = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 1 || width < 768) && (
+						{(menuIndex === 1 || width < 768) && (
 							<div>
 								<h3>2. USE OF COOKIES</h3>
 								<p>
@@ -201,7 +201,7 @@ const Policy = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 2 || width < 768) && (
+						{(menuIndex === 2 || width < 768) && (
 							<div>
 								<h3>3. WHY WE USE YOUR PERSONAL DATA</h3>
 								<h4>
@@ -322,7 +322,7 @@ const Policy = () => {
 								</ul>
 							</div>
 						)}
-						{(menuIndex == 3 || width < 768) && (
+						{(menuIndex === 3 || width < 768) && (
 							<div>
 								<h3>4. DISCLOSURE OF YOUR PERSONAL DATA</h3>
 								<p>
@@ -405,7 +405,7 @@ const Policy = () => {
 								</ul>
 							</div>
 						)}
-						{(menuIndex == 4 || width < 768) && (
+						{(menuIndex === 4 || width < 768) && (
 							<>
 								<h3>5. SECURITY AND STORAGE OF PERSONAL DATA</h3>
 								<p>
@@ -448,7 +448,7 @@ const Policy = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 5 || width < 768) && (
+						{(menuIndex === 5 || width < 768) && (
 							<>
 								<h3> 6. BASIS FOR PERSONAL DATA PROCESSING</h3>
 								<p>
@@ -478,7 +478,7 @@ const Policy = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 6 || width < 768) && (
+						{(menuIndex === 6 || width < 768) && (
 							<>
 								<h3> 7. YOUR RIGHTS</h3>
 								<p>By contacting us you can use the following rights:</p>
@@ -537,7 +537,7 @@ const Policy = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 7 || width < 768) && (
+						{(menuIndex === 7 || width < 768) && (
 							<>
 								<h3>8. ACCESS TO PERSONAL DATA</h3>
 								<p>
@@ -549,7 +549,7 @@ const Policy = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 8 || width < 768) && (
+						{(menuIndex === 8 || width < 768) && (
 							<>
 								<h3>9. RETENTION OF PERSONAL DATA</h3>
 								<p>
@@ -570,7 +570,7 @@ const Policy = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 9 || width < 768) && (
+						{(menuIndex === 9 || width < 768) && (
 							<>
 								<h3>10. CHANGES TO THIS PRIVACY POLICY</h3>
 								<p>

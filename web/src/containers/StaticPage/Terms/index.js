@@ -54,7 +54,7 @@ const Terms = () => {
 						<h1 className="display-4 text-uppercase mb-5">
 							Terms & Conditions
 						</h1>
-						{(menuIndex == 0 || width < 768) && (
+						{(menuIndex === 0 || width < 768) && (
 							<div>
 								<p>
 									KOINKOIN and the third party using the site in the Internet
@@ -233,7 +233,7 @@ const Terms = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 1 || width < 768) && (
+						{(menuIndex === 1 || width < 768) && (
 							<div>
 								<h3>2. SUBJECT OF THE AGREEMENT</h3>
 								<p>
@@ -271,7 +271,7 @@ const Terms = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 2 || width < 768) && (
+						{(menuIndex === 2 || width < 768) && (
 							<div>
 								<h3>
 									3. ACCESS TO THE SYSTEM, REGISTRATION PROCESS AND CHAT USE
@@ -352,7 +352,7 @@ const Terms = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 3 || width < 768) && (
+						{(menuIndex === 3 || width < 768) && (
 							<div>
 								<h3>4. THE ACCOUNT</h3>
 								<p>
@@ -463,7 +463,7 @@ const Terms = () => {
 								</p>
 							</div>
 						)}
-						{(menuIndex == 4 || width < 768) && (
+						{(menuIndex === 4 || width < 768) && (
 							<>
 								<h3>5. TRADING DEALS</h3>
 								<p>
@@ -547,7 +547,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 5 || width < 768) && (
+						{(menuIndex === 5 || width < 768) && (
 							<>
 								<h3>6. TYPES OF ORDERS</h3>
 								<p>6.1. Simple buy order</p>
@@ -663,7 +663,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 6 || width < 768) && (
+						{(menuIndex === 6 || width < 768) && (
 							<>
 								<h3>7. MARGIN DEALS</h3>
 								<p>
@@ -753,7 +753,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 7 || width < 768) && (
+						{(menuIndex === 7 || width < 768) && (
 							<>
 								<h3>
 									8. DETECTION AND PREVENTION OF ILLEGAL SITE AND SYSTEM USE
@@ -789,7 +789,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 8 || width < 768) && (
+						{(menuIndex === 8 || width < 768) && (
 							<>
 								<h3>9. RISK WARNING</h3>
 								<p>
@@ -855,7 +855,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 9 || width < 768) && (
+						{(menuIndex === 9 || width < 768) && (
 							<>
 								<h3>
 									10. INTELLECTUAL PROPERTY AND RESTRICTIONS ON SITE AND SYSTEM
@@ -905,7 +905,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 10 || width < 768) && (
+						{(menuIndex === 10 || width < 768) && (
 							<>
 								<h3>11. RESPONSIBILITIES OF THE PARTIES</h3>
 								<p>
@@ -953,7 +953,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 11 || width < 768) && (
+						{(menuIndex === 11 || width < 768) && (
 							<>
 								<h3>12. SPECIAL CONDITIONS</h3>
 								<p>
@@ -1000,7 +1000,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 12 || width < 768) && (
+						{(menuIndex === 12 || width < 768) && (
 							<>
 								<h3>13. WARRANTIES</h3>
 								<p>
@@ -1018,7 +1018,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 13 || width < 768) && (
+						{(menuIndex === 13 || width < 768) && (
 							<>
 								<h3>14. LIMITATION OF LIABILITY</h3>
 								<p>
@@ -1042,7 +1042,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 14 || width < 768) && (
+						{(menuIndex === 14 || width < 768) && (
 							<>
 								<h3>15. INDEMNIFICATION</h3>
 								<p>
@@ -1075,7 +1075,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 15 || width < 768) && (
+						{(menuIndex === 15 || width < 768) && (
 							<>
 								<h3>16. DISPUTE SETTLEMENT</h3>
 								<p>
@@ -1104,7 +1104,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 16 || width < 768) && (
+						{(menuIndex === 16 || width < 768) && (
 							<>
 								<h3>17. AMENDMENTS OF THE AGREEMENT</h3>
 								<p>
@@ -1131,7 +1131,7 @@ const Terms = () => {
 								</p>
 							</>
 						)}
-						{(menuIndex == 17 || width < 768) && (
+						{(menuIndex === 17 || width < 768) && (
 							<>
 								<h3>18. CONCLUDING PROVISIONS</h3>
 								<p>

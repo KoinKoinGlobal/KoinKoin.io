@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { isMobile } from 'react-device-detect';
 import { FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { IoMailSharp } from 'react-icons/io5';
 
