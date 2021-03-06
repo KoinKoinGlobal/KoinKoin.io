@@ -4,7 +4,7 @@ class AboutUs extends Component {
 	render() {
 		return (
 			<main className="about-us-page py-5">
-				<div class="container">
+				<div className="container">
 					<div className="contact-header d-flex justify-content-center text-center p-4">
 						<h1 className="display-4 text-uppercase m-0">About Us</h1>
 					</div>
@@ -12,7 +12,7 @@ class AboutUs extends Component {
 						<div className="row justify-content-center text-center">
 							<div className="col col-12 col-md-10 col-lg-8">
 								{/* <h1 className="page-title mt-5 mb-5">ABOUT US</h1> */}
-								<p class="mt-5">
+								<p className="mt-5">
 									KoinKoin was created by a team of individuals who are
 									passionate about business in Africa & Asia and it is our
 									intention to meet as many individual traders across both
@@ -66,7 +66,7 @@ class AboutUs extends Component {
 					</div>
 					<div className="features row mt-5">
 						<div className="col col-12 col-md-4 text-center mb-3">
-							<div class="feature-card">
+							<div className="feature-card">
 								<span className="single-image">
 									<img
 										src="/assets/images/compliance-and-security.png"
@@ -82,7 +82,7 @@ class AboutUs extends Component {
 							</div>
 						</div>
 						<div className="col col-12 col-md-4 text-center mb-3">
-							<div class="feature-card">
+							<div className="feature-card">
 								<span className="single-image">
 									<img
 										src="/assets/images/the-future.png"
@@ -99,7 +99,7 @@ class AboutUs extends Component {
 							</div>
 						</div>
 						<div className="col col-12 col-md-4 text-center mb-3">
-							<div class="feature-card">
+							<div className="feature-card">
 								<span className="single-image">
 									<img
 										src="/assets/images/get-in-touch.png"

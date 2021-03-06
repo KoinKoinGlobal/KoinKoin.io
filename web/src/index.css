@@ -4192,7 +4192,9 @@ ul li:hover a span {
       width: 100px;
       font-size: 2rem;
       display: flex;
-      padding: 5px; }
+      padding: 5px;
+      justify-content: center;
+      align-items: center; }
     .contact-us-page .contact-body .contact-info .info-body {
       font-size: 1.3rem;
       display: flex;

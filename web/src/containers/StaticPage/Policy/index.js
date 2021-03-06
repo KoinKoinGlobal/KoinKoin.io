@@ -33,7 +33,8 @@ const Policy = () => {
 					<div className="left-menu p-3">
 						{menu.map((link, index) => (
 							<div
-								class="link-item my-3 d-flex"
+								key={index}
+								className="link-item my-3 d-flex"
 								onClick={() => setMenuIndex(index)}
 							>
 								<span>{index + 1}.</span>

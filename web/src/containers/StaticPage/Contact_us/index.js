@@ -153,7 +153,7 @@ class ContactUs extends Component {
 								<h1 className="display-4 text-uppercase m-0">Contact Us</h1>
 							</div>
 							<div className="contact-body p-4 mt-5">
-								<div class="message">
+								<div className="message">
 									We're here to help and answer any question you might have. We
 									look forward to hearing from you.
 								</div>
@@ -169,32 +169,32 @@ class ContactUs extends Component {
 										/>
 									</div>
 									<div className="col col-12 col-md-5 offset-md-1">
-										<div class="contact-info mt-5">
-											<div class="info-icon">
+										<div className="contact-info mt-5">
+											<div className="info-icon">
 												<FaMapMarkerAlt></FaMapMarkerAlt>
 											</div>
-											<div class="info-body">
-												<p class="m-0">
+											<div className="info-body">
+												<p className="m-0">
 													<b>KoinKoin Ltd</b> <br />
 													<span>8 Devonshire Square London, UK, EC2M 4YF</span>
 												</p>
 											</div>
 										</div>
-										<div class="contact-info">
-											<div class="info-icon">
+										<div className="contact-info">
+											<div className="info-icon">
 												<IoMailSharp></IoMailSharp>
 											</div>
-											<div class="info-body">
+											<div className="info-body">
 												<a href="mailto:support@koinkoin.com">
 													support@koinkoin.com
 												</a>
 											</div>
 										</div>
-										<div class="contact-info">
-											<div class="info-icon">
+										<div className="contact-info">
+											<div className="info-icon">
 												<FaPhoneAlt></FaPhoneAlt>
 											</div>
-											<div class="info-body">
+											<div className="info-body">
 												<a href="tel:+442076600741">+442076600741</a>
 											</div>
 										</div>
