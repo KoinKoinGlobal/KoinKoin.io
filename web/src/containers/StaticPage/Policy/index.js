@@ -43,7 +43,7 @@ const Policy = () => {
 						))}
 					</div>
 					<div className="policy-text p-3">
-						<h1 className="display-4 text-uppercase mb-5">Policy</h1>
+						<h1 className="display-4 text-uppercase mb-5">Privacy Policy</h1>
 						{(menuIndex === 0 || width < 768) && (
 							<div>
 								<p>
