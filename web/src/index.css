@@ -925,6 +925,39 @@ table th {
   min-height: calc( 100vh - 4rem);
   max-height: calc( 100vh - 4rem); }
 
+.download-bar {
+  height: 50px;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  background: #36a7c9;
+  justify-content: space-between; }
+  @media screen and (max-width: 560px) {
+    .download-bar {
+      padding-left: 10px;
+      padding-right: 10px; } }
+  .download-bar .app_bar-icon {
+    display: flex;
+    align-items: center; }
+    .download-bar .app_bar-icon .app_bar-icon-logo {
+      width: 12rem;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat; }
+    .download-bar .app_bar-icon span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-left: 5px;
+      margin-top: 1px; }
+  .download-bar .btn-wrapper {
+    display: flex; }
+    .download-bar .btn-wrapper .btn-download {
+      font-size: 2rem;
+      color: #f9ca16; }
+    .download-bar .btn-wrapper .btn-close {
+      font-size: 2rem;
+      color: white; }
+
 .home_container {
   background: #fff;
   background-repeat: no-repeat;
