@@ -270,12 +270,15 @@ class Home extends Component {
 						})}
 						onCloseDialog={this.cancelCookieAccept}
 					>
-						<div style={{ padding: '10px' }}></div>
-						<h2>Cookie Information and Consent Request</h2>
-						<CommonButton
-							label="Accept"
-							onClick={this.onClickCookieAcceptBtn}
-						/>
+						<div className="w-100 text-center p-3">
+							<h3 className="text-dark">
+								Cookie Information and Consent Request
+							</h3>
+							<CommonButton
+								label="Accept"
+								onClick={this.onClickCookieAcceptBtn}
+							/>
+						</div>
 					</Dialog>
 				</div>
 			</div>
