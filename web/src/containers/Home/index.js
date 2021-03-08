@@ -26,6 +26,7 @@ import GetSocketState from '../App/GetSocketState';
 import withConfig from 'components/ConfigProvider/withConfig';
 
 import { FaDownload, FaTimes } from 'react-icons/fa';
+import { isIOS, isAndroid } from 'react-device-detect';
 
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
@@ -103,9 +104,15 @@ class Home extends Component {
 	};
 
 	openDownloadLink() {
-		window.open(
-			'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.koinkoin'
-		);
+		if (isAndroid) {
+			window.open(
+				'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.koinkoin'
+			);
+		} else if (isIOS) {
+			window.open(
+				'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433'
+			);
+		}
 	}
 
 	closeDownloadBar = () => {

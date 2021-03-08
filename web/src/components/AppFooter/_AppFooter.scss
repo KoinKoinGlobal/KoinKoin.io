@@ -31,6 +31,7 @@ $footer-logo-color: $trade-tabs-inactive-color;
 					font-weight: bold;
 					margin-bottom: 0.25rem;
 					text-transform: uppercase;
+					font-size: 1.1rem;
 				}
 
 				.footer-links-section--list {
@@ -45,6 +46,8 @@ $footer-logo-color: $trade-tabs-inactive-color;
 						&:hover {
 							color: grey;
 						}
+						text-transform: uppercase;
+						opacity: 0.8;
 					}
 				}
 			}
