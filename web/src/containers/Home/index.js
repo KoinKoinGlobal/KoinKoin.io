@@ -105,13 +105,13 @@ class Home extends Component {
 
 	openDownloadLink() {
 		if (isAndroid) {
-			window.open(
-				'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.koinkoin'
-			);
+			// window.open(
+			// 	'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.koinkoin'
+			// );
+			window.location.href = 'market://details?id=com.koinkoin';
 		} else if (isIOS) {
-			window.open(
-				'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433'
-			);
+			window.location.href =
+				'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
 		}
 	}
 
