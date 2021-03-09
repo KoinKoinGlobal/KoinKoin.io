@@ -15,6 +15,49 @@ $no-background--color: white;
 	}
 }
 
+.download-bar {
+	height: 50px;
+	padding: 0 50px;
+	display: flex;
+	align-items: center;
+	background: #36a7c9;
+	justify-content: space-between;
+
+	@media screen and (max-width: 560px) {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.app_bar-icon {
+		display: flex;
+		align-items: center;
+		.app_bar-icon-logo {
+			// height: 4rem;
+			width: 12rem;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		span {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-left: 5px;
+			margin-top: 1px;
+		}
+	}
+
+	.btn-wrapper {
+		display: flex;
+		.btn-download {
+			font-size: 2rem;
+			color: #f9ca16;
+		}
+		.btn-close {
+			font-size: 2rem;
+			color: white;
+		}
+	}
+}
+
 .home_container {
 	background: #fff;
 	background-repeat: no-repeat;

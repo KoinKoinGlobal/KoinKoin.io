@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classnames from 'classnames';
 import { isMobile } from 'react-device-detect';
 // import { PUBLIC_URL } from '../../config/constants';
@@ -45,6 +45,10 @@ const AppFooter = ({
 	icons: ICONS,
 	isEditMode,
 }) => {
+	useEffect(() => {
+		console.log(constants.links);
+	}, []);
+
 	return (
 		<div
 			className={classnames(
