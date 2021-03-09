@@ -105,14 +105,19 @@ class Home extends Component {
 
 	openDownloadLink() {
 		if (isAndroid) {
-			// window.open(
-			// 	'https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.koinkoin'
-			// );
-			window.location.href = 'market://details?id=com.koinkoin';
+			this.openAndroidDownload();
 		} else if (isIOS) {
-			window.location.href =
-				'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
+			this.openIOSDownload();
 		}
+	}
+
+	openAndroidDownload() {
+		window.location.href = 'market://details?id=com.koinkoin';
+	}
+
+	openIOSDownload() {
+		window.location.href =
+			'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
 	}
 
 	closeDownloadBar = () => {

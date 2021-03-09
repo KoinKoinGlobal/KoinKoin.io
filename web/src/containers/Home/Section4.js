@@ -24,6 +24,16 @@ const Section4 = ({ style = {} }) => {
 	// 	},
 	// };
 
+	const openAndroidDownload = () => {
+		window.location.href =
+			'https://play.google.com/store/apps/details?id=com.koinkoin';
+	};
+
+	const openIOSDownload = () => {
+		window.location.href =
+			'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
+	};
+
 	return (
 		<div
 			className={classnames(
@@ -67,10 +77,10 @@ const Section4 = ({ style = {} }) => {
 						/>
 
 						<div className="mobile-app-icons">
-							<div>
+							<div onClick={openIOSDownload}>
 								<img src="/assets/home/mobile_appstore.png" alt="" />
 							</div>
-							<div>
+							<div onClick={openAndroidDownload}>
 								<img src="/assets/home/mobile_googlestore.png" alt="" />
 							</div>
 						</div>
