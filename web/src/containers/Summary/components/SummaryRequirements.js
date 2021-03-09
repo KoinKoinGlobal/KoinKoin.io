@@ -13,52 +13,49 @@ const createMarkup = (msg) => {
 	return { __html: msg };
 };
 
-// const SucessStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
-// 	<div className="d-flex">
-// 		{isAccountDetails && (
-// 			<div className="requirement-verified mr-2">
-// 				{STRINGS["USER_VERIFICATION.COMPLETE"].toUpperCase()}
-// 			</div>
-// 		)}
-// 		<ReactSVG
-// 			src={ICONS["GREEN_CHECK"]}
-// 			className="requirement-stauts"
-// 		/>
-// 	</div>
-// );
+const SucessStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
+	<div className="d-flex">
+		{isAccountDetails && (
+			<div className="requirement-verified mr-2">
+				{STRINGS['USER_VERIFICATION.COMPLETE'].toUpperCase()}
+			</div>
+		)}
+		<ReactSVG src={ICONS['GREEN_CHECK']} className="requirement-stauts" />
+	</div>
+);
 
-// const IncompleteStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
-// 	<div className="d-flex">
-// 		{isAccountDetails ? (
-// 			<div className="requirement-incomplete mr-2">
-// 				{STRINGS["USER_VERIFICATION.INCOMPLETED"].toUpperCase()}
-// 			</div>
-// 		) : (
-// 				<ReactSVG
-// 					src={ICONS["VERIFICATION_INCOMPLETE"]}
-// 					className="requirement-stauts"
-// 				/>
-// 			)}
-// 	</div>
-// );
+const IncompleteStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
+	<div className="d-flex">
+		{isAccountDetails ? (
+			<div className="requirement-incomplete mr-2">
+				{STRINGS['USER_VERIFICATION.INCOMPLETED'].toUpperCase()}
+			</div>
+		) : (
+			<ReactSVG
+				src={ICONS['VERIFICATION_INCOMPLETE']}
+				className="requirement-stauts"
+			/>
+		)}
+	</div>
+);
 
-// const PendingStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
-// 	<div className="d-flex">
-// 		<ReactSVG
-// 			src={ICONS["VERIFICATION_PENDING"]}
-// 			className="requirement-stauts"
-// 		/>
-// 	</div>
-// );
+const PendingStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
+	<div className="d-flex">
+		<ReactSVG
+			src={ICONS['VERIFICATION_PENDING']}
+			className="requirement-stauts"
+		/>
+	</div>
+);
 
-// const RejectedStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
-// 	<div className="d-flex">
-// 		<ReactSVG
-// 			src={ICONS["VERIFICATION_REJECTED"]}
-// 			className="requirement-stauts"
-// 		/>
-// 	</div>
-// );
+const RejectedStatus = ({ isAccountDetails, icons: ICONS = {} }) => (
+	<div className="d-flex">
+		<ReactSVG
+			src={ICONS['VERIFICATION_REJECTED']}
+			className="requirement-stauts"
+		/>
+	</div>
+);
 
 // const checkMonth = (currentDate, month) => {
 // 	const diffMonth = moment().diff(moment(currentDate), 'months');
@@ -241,23 +238,48 @@ export const getRequirements = (user, level, balance = {}, coins) => {
 	return verificationObj[`level_${level}`] || {};
 };
 
-// const getStatusClass = (status_code, completed) => {
-// 	switch (status_code) {
-// 		case 0:
-// 			return 'requirement-not-verified';
-// 		case 1:
-// 			return 'requirement-pending';
-// 		case 2:
-// 			return 'requirement-rejected';
-// 		case 3:
-// 			return 'requirement-verified';
-// 		default:
-// 			if (status_code === undefined && completed === false) {
-// 				return 'requirement-not-verified';
-// 			}
-// 			return '';
-// 	}
-// };
+export const formatRequirement = (levelData, verfiication_status) => {
+	const found = levelData.note.match(/<li>.+<\/li>/g);
+
+	var verificationObj = [];
+	for (var i = 0; i < found.length; i++) {
+		var status = false;
+		console.log(levelData, verfiication_status, 'FAAAA');
+		if (
+			levelData.id < verfiication_status.current_level ||
+			(levelData.id === verfiication_status.current_level &&
+				verfiication_status.current_index.includes(i))
+		) {
+			status = true;
+		}
+
+		verificationObj.push({
+			// title: found[i],
+			completed: status,
+			status: status ? 3 : 0,
+		});
+	}
+
+	return verificationObj;
+};
+
+const getStatusClass = (status_code, completed) => {
+	switch (status_code) {
+		case 0:
+			return 'requirement-not-verified';
+		case 1:
+			return 'requirement-pending';
+		case 2:
+			return 'requirement-rejected';
+		case 3:
+			return 'requirement-verified';
+		default:
+			if (status_code === undefined && completed === false) {
+				return 'requirement-not-verified';
+			}
+			return '';
+	}
+};
 
 // const getAllCompleted = (requirement) => {
 // 	return (
@@ -267,31 +289,44 @@ export const getRequirements = (user, level, balance = {}, coins) => {
 // 	);
 // };
 
-// const getStatusIcon = (reqObj, isAccountDetails, icons) => {
-// 	if (isAccountDetails) {
-// 		return reqObj.completed ? (
-// 			<SucessStatus isAccountDetails={isAccountDetails} icons={icons} />
-// 		) : (
-// 				<IncompleteStatus isAccountDetails={isAccountDetails} icons={icons} />
-// 			);
-// 	} else {
-// 		switch (reqObj.status) {
-// 			case 0:
-// 				return <IncompleteStatus isAccountDetails={isAccountDetails} icons={icons} />;
-// 			case 1:
-// 				return <PendingStatus isAccountDetails={isAccountDetails} icons={icons} />;
-// 			case 2:
-// 				return <RejectedStatus isAccountDetails={isAccountDetails} icons={icons} />;
-// 			case 3:
-// 				return <SucessStatus isAccountDetails={isAccountDetails} icons={icons} />;
-// 			default:
-// 				if (reqObj.status === undefined && reqObj.completed === false) {
-// 					return <IncompleteStatus isAccountDetails={isAccountDetails} icons={icons} />;
-// 				}
-// 				return '';
-// 		}
-// 	}
-// };
+const getStatusIcon = (reqObj, isAccountDetails, icons) => {
+	if (isAccountDetails) {
+		return reqObj.completed ? (
+			<SucessStatus isAccountDetails={isAccountDetails} icons={icons} />
+		) : (
+			<IncompleteStatus isAccountDetails={isAccountDetails} icons={icons} />
+		);
+	} else {
+		switch (reqObj.status) {
+			case 0:
+				return (
+					<IncompleteStatus isAccountDetails={isAccountDetails} icons={icons} />
+				);
+			case 1:
+				return (
+					<PendingStatus isAccountDetails={isAccountDetails} icons={icons} />
+				);
+			case 2:
+				return (
+					<RejectedStatus isAccountDetails={isAccountDetails} icons={icons} />
+				);
+			case 3:
+				return (
+					<SucessStatus isAccountDetails={isAccountDetails} icons={icons} />
+				);
+			default:
+				if (reqObj.status === undefined && reqObj.completed === false) {
+					return (
+						<IncompleteStatus
+							isAccountDetails={isAccountDetails}
+							icons={icons}
+						/>
+					);
+				}
+				return '';
+		}
+	}
+};
 
 const SummaryRequirements = ({
 	coins,
@@ -321,6 +356,10 @@ const SummaryRequirements = ({
 	// 	? getBonusRequirements(user, coins, affiliation)
 	// 	: getRequirements(user, selectedLevel, balance, coins);
 	// let requirementResolved = getAllCompleted(requirement);
+	const requirements = formatRequirement(config[selectedLevel], {
+		current_level: user.verification_level,
+		current_index: [],
+	});
 	return (
 		<div className="d-flex">
 			{!isAccountDetails && !isBonusSection ? (
@@ -338,8 +377,35 @@ const SummaryRequirements = ({
 					'summary-content-txt'
 				)}
 			>
-				<div className="my-2">
+				<div className="my-2 d-flex justify-content-between">
 					<div dangerouslySetInnerHTML={createMarkup(accountData.note)} />
+					<div>
+						<ol>
+							{requirements.map((el, idx) => {
+								return (
+									<li
+										key={idx}
+										className={classnames(
+											// 'd-flex',
+											// 'justify-content-between',
+											{
+												[getStatusClass(
+													el.status,
+													el.completed
+												)]: !isAccountDetails,
+											}
+										)}
+									>
+										{getStatusIcon(
+											el,
+											isAccountDetails || isBonusSection,
+											ICONS
+										)}
+									</li>
+								);
+							})}
+						</ol>
+					</div>
 				</div>
 				{/* <div className="my-2">
 					{Object.keys(requirement).map((step, index) => {
@@ -358,12 +424,12 @@ const SummaryRequirements = ({
 									}
 								)}
 							>
-							<div className="requirement-step">{step}. {reqObj.title}</div>
+								<div className="requirement-step">{step}. {reqObj.title}</div>
 								<div>{getStatusIcon(reqObj, isAccountDetails || isBonusSection, ICONS)}</div>
 							</div>
 						);
 					})}
-				</div>*/}
+				</div> */}
 				{!isAccountDetails && !isBonusSection && !user.otp_enabled && (
 					<div className="trade-account-link mb-2">
 						<Link to="/security">

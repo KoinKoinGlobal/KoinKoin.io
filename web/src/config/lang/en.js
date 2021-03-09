@@ -400,6 +400,7 @@ const nestedContent = {
 			'* Verification for the identity section require you to {0} certain documents.',
 		DOCUMENTATIONS: 'upload',
 		COMPLETED: 'Completed',
+		COMPLETE: 'Completed',
 		PENDING_VERIFICATION: 'Pending verification',
 		TITLE_EMAIL: 'Email',
 		MY_EMAIL: 'My Email',

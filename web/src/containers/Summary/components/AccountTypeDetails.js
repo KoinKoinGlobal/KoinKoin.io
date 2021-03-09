@@ -53,7 +53,7 @@ const AccountTypeDetails = ({
 								? STRINGS['SUMMARY.ONE_REQUIREMENT']
 								: STRINGS['SUMMARY.REQUIREMENTS']}
 						</div>
-						<div className="status-header">{STRINGS['STATUS']}</div>
+						<div className="status-header text-center">{STRINGS['STATUS']}</div>
 					</div>
 					<SummaryRequirements
 						user={user}
