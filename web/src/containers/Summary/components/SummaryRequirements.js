@@ -242,23 +242,24 @@ export const formatRequirement = (levelData, verfiication_status) => {
 	const found = levelData.note.match(/<li>.+<\/li>/g);
 
 	var verificationObj = [];
-	for (var i = 0; i < found.length; i++) {
-		var status = false;
-		console.log(levelData, verfiication_status, 'FAAAA');
-		if (
-			levelData.id < verfiication_status.current_level ||
-			(levelData.id === verfiication_status.current_level &&
-				verfiication_status.current_index.includes(i))
-		) {
-			status = true;
-		}
+	if (found)
+		for (var i = 0; i < found.length; i++) {
+			var status = false;
+			console.log(levelData, verfiication_status, 'FAAAA');
+			if (
+				levelData.id < verfiication_status.current_level ||
+				(levelData.id === verfiication_status.current_level &&
+					verfiication_status.current_index.includes(i))
+			) {
+				status = true;
+			}
 
-		verificationObj.push({
-			// title: found[i],
-			completed: status,
-			status: status ? 3 : 0,
-		});
-	}
+			verificationObj.push({
+				// title: found[i],
+				completed: status,
+				status: status ? 3 : 0,
+			});
+		}
 
 	return verificationObj;
 };
