@@ -15,25 +15,6 @@ const Section4 = ({ style = {} }) => {
 		browserHistory.push('/signup');
 	};
 
-	// const opts = {
-	// 	height: isMobile ? '240' : '480',
-	// 	width: isMobile ? '350' : '854',
-	// 	playerVars: {
-	// 		// https://developers.google.com/youtube/player_parameters
-	// 		autoplay: 0
-	// 	},
-	// };
-
-	const openAndroidDownload = () => {
-		window.location.href =
-			'https://play.google.com/store/apps/details?id=com.koinkoin';
-	};
-
-	const openIOSDownload = () => {
-		window.location.href =
-			'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
-	};
-
 	return (
 		<div
 			className={classnames(

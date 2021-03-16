@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { browserHistory } from 'react-router';
 // import STRINGS from '../../config/localizedStrings';
 
 import { FLEX_CENTER_CLASSES } from '../../config/constants';
@@ -9,19 +8,6 @@ import { FLEX_CENTER_CLASSES } from '../../config/constants';
 import AnimationContainer from '../../components/AnimationContainer';
 
 const Section6 = ({ style = {} }) => {
-	const onClickSignUpBtn = () => {
-		browserHistory.push('/signup');
-	};
-
-	// const opts = {
-	// 	height: isMobile ? '240' : '480',
-	// 	width: isMobile ? '350' : '854',
-	// 	playerVars: {
-	// 		// https://developers.google.com/youtube/player_parameters
-	// 		autoplay: 0
-	// 	},
-	// };
-
 	const openAndroidDownload = () => {
 		window.location.href =
 			'https://play.google.com/store/apps/details?id=com.koinkoin';
