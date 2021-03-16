@@ -18,6 +18,7 @@ import Section2 from './Section2';
 import Section3 from './Section3';
 import Section4 from './Section4';
 import Section5 from './Section5';
+import Section6 from './Section6';
 import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
 import CommonButton from '../../components/CommonButton';
 import Dialog from '../../components/Dialog';
@@ -251,6 +252,8 @@ class Home extends Component {
 						icons={icons}
 					/>
 
+					<Section5 style={style} theme={activeTheme} constants={constants} />
+					<Section6 style={style} theme={activeTheme} constants={constants} />
 					<Section2 style={style} />
 
 					<Section3 style={style} />
@@ -262,8 +265,6 @@ class Home extends Component {
 						activeLanguage={activeLanguage}
 						constants={constants}
 					/>
-
-					<Section5 style={style} theme={activeTheme} constants={constants} />
 
 					<AppFooter
 						theme={activeTheme}

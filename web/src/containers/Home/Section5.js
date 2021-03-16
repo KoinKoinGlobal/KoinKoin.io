@@ -51,7 +51,12 @@ const Section = ({ style, onClickDemo, token }) => {
 			style={style}
 		>
 			<AnimationContainer animationType="scale">
-				<div className="row p-5">
+				<div className="row px-5">
+					<div className="col-12 mb-5">
+						<h1 className="display-5 font-weight-bold my-5 text-uppercase text-center">
+							How it Works
+						</h1>
+					</div>
 					<div className="col col-12 col-xl-5">
 						{steps.map((step, index) => (
 							<div
