@@ -75,7 +75,9 @@ const Section4 = ({ style = {} }) => {
 							label="OPEN TRADING ACCOUNT"
 							onClick={onClickSignUpBtn}
 						/>
-
+						<div className="app-banner">
+							<img src="assets/images/app-banner.png" alt=""></img>
+						</div>
 						<div className="mobile-app-icons">
 							<div onClick={openIOSDownload}>
 								<img src="/assets/home/mobile_appstore.png" alt="" />

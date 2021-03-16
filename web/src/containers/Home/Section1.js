@@ -16,7 +16,7 @@ const Section1 = ({ style = {}, constants, icons = {} }) => {
 				linkedin,
 				youtube,
 				twitter,
-			} = constants.links;
+			} = constants.links.section_6.content;
 			return (
 				<nav>
 					<ul>
