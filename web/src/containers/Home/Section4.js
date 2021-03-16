@@ -80,10 +80,10 @@ const Section4 = ({ style = {} }) => {
 						</div>
 						<div className="mobile-app-icons">
 							<div onClick={openIOSDownload}>
-								<img src="/assets/home/mobile_appstore.png" alt="" />
+								<img src="/assets/home/app-store.png" alt="" />
 							</div>
 							<div onClick={openAndroidDownload}>
-								<img src="/assets/home/mobile_googlestore.png" alt="" />
+								<img src="/assets/home/google-store.png" alt="" />
 							</div>
 						</div>
 					</div>
