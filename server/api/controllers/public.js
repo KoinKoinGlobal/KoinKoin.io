@@ -34,6 +34,7 @@ const getConstants = (req, res) => {
 
 const getKitConfigurations = (req, res) => {
 	try {
+		loggerPublic.verbose('controller/public/getKitConfigurations', toolsLib.getKitConfig());
 		return res.json(toolsLib.getKitConfig());
 	} catch (err) {
 		loggerPublic.verbose('controller/public/getKitConfigurations', err.message);

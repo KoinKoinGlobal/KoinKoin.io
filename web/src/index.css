@@ -1256,6 +1256,10 @@ table th {
   color: #fff;
   background-color: #0f1114;
   overflow: hidden; }
+  .section_4 .app-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; }
   .section_4 .mobile-app-icons {
     display: flex;
     align-items: center;
@@ -1268,6 +1272,53 @@ table th {
       .section_4 .mobile-app-icons div img {
         width: 90%;
         margin: 5px; }
+
+.section_5 .step-card {
+  display: flex;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 150px; }
+  @media screen and (max-width: 1199px) {
+    .section_5 .step-card {
+      flex-direction: column;
+      align-items: center; }
+      .section_5 .step-card p {
+        text-align: center; }
+      .section_5 .step-card .image-wrapper {
+        padding-bottom: 1rem; }
+      .section_5 .step-card .step-body p {
+        max-width: 500px; } }
+  @media screen and (min-width: 1200px) {
+    .section_5 .step-card {
+      flex-direction: row;
+      margin-bottom: 24px;
+      padding: 16px; }
+      .section_5 .step-card.selected {
+        background-color: #1c8aff;
+        box-shadow: 0 9px 10px 2px #d3d3d35e; }
+        .section_5 .step-card.selected p {
+          color: white !important; }
+      .section_5 .step-card .image-wrapper {
+        padding-right: 32px; } }
+  .section_5 .step-card .image-wrapper img {
+    width: 72px;
+    height: 72px;
+    border-radius: 36px;
+    box-shadow: 0 6px 10px 2px #d3d3d35e;
+    background: white; }
+  .section_5 .step-card .step-body .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px; }
+  .section_5 .step-card .step-body .desc {
+    font-size: 1.1rem;
+    color: #768493;
+    margin: 0; }
+
+.section_5 .step-image {
+  width: 120%;
+  height: 120%;
+  object-fit: contain; }
 
 .text-section a {
   text-decoration: none;
