@@ -50,21 +50,37 @@ module.exports = {
       },
       {
           content: "Do you have an understanding of the risks associated with cryptocurrency?",
-          type: "INPUT_TEXT"
-      },
-      {
-          content: "Do you have an understanding of the risks associated with cryptocurrency?",
           type: "CHOICE",
           choices: JSON.stringify([
-              {label: "Low risk", value:0},
-              {label: "Medium risk", value:1},
-              {label: "High risk", value:2}
+              {label: "Yes", value:0},
+              {label: "No", value:1},
           ])
       },
       {
-          content: "Do you have an understanding of the risks associated with cryptocurrency?",
-          type: "INPUT_TEXT"
-      }]);   
+        content: "Are you aware that you can make profits and/or losses by buying and selling cryptocurrency?",
+        type: "CHOICE",
+        choices: JSON.stringify([
+            {label: "Yes", value:0},
+            {label: "No", value:1},
+        ])
+      },
+      {
+        content: "Have you traded other instruments before e.g. forex, stocks and options?",
+        type: "CHOICE",
+        choices: JSON.stringify([
+            {label: "Yes", value:0},
+            {label: "No", value:1},
+        ])
+      },
+      {
+        content: "Have you been trained professionally on how to trade financial instruments?",
+        type: "CHOICE",
+        choices: JSON.stringify([
+            {label: "Yes", value:0},
+            {label: "No", value:1},
+        ])
+      },
+    ]);   
   },
 
   down: (queryInterface, Sequelize) => {

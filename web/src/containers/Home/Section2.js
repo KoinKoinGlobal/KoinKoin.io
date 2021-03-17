@@ -77,7 +77,7 @@ const Section2 = ({ style }) => {
 					className="d-flex justify-content-center align-items-center flex-column text-dark my-5"
 					style={{ fontSize: '15px' }}
 				>
-					<h1 className="display-5 font-weight-bold my-5 text-uppercase">
+					<h1 className="display-5 font-weight-bold my-5 text-uppercase text-center">
 						KoinKoin Corporate OTC Trading
 					</h1>
 					<div className="d-flex flex-column text-center mt-2 mx-5 px-5">
