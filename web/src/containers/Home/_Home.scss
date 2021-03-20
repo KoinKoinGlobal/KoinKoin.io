@@ -599,6 +599,23 @@ $no-background--color: white;
 		object-fit: contain;
 	}
 }
+.section_7 {
+	position: relative;
+	overflow: hidden;
+	h2 {
+		color: black;
+	}
+	.combine-wallet {
+		img {
+			width: 50vw;
+			height: auto;
+			object-fit: contain;
+			min-width: 300px;
+			object-fit: contain;
+		}
+	}
+}
+
 .text-section a {
 	text-decoration: none;
 	color: rgb(0, 120, 255) !important;

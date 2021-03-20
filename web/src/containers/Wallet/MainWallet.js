@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { isMobile } from 'react-device-detect';
+
 import {
 	IconTitle,
 	Dialog,
@@ -10,6 +11,7 @@ import {
 	MobileBarTabs,
 } from 'components';
 import { TransactionsHistory } from 'containers';
+
 import { changeSymbol } from 'actions/orderbookAction';
 import { NOTIFICATIONS } from 'actions/appActions';
 import { createAddress, cleanCreateAddress } from 'actions/userAction';
@@ -33,6 +35,9 @@ class Wallet extends Component {
 		isOpen: true,
 		dialogIsOpen: false,
 		selectedCurrency: '',
+		payStatus: '',
+		payMessage: '',
+		orderId: '',
 	};
 
 	componentDidMount() {
@@ -48,6 +53,12 @@ class Wallet extends Component {
 			this.props.totalAsset,
 			this.props.oraclePrices
 		);
+		const search = this.props.location.search;
+		this.setState({
+			payStatus: new URLSearchParams(search).get('status'),
+			payMessage: new URLSearchParams(search).get('message'),
+			orderId: new URLSearchParams(search).get('order_id'),
+		});
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
@@ -233,8 +244,13 @@ class Wallet extends Component {
 			selectedCurrency,
 			activeTab,
 			mobileTabs,
+			payStatus,
+			payMessage,
+			orderId,
 		} = this.state;
 		const { activeTheme, addressRequest, coins } = this.props;
+
+		console.log({ payStatus, payMessage, orderId });
 		if (mobileTabs.length === 0) {
 			return <div />;
 		}
@@ -284,6 +300,28 @@ class Wallet extends Component {
 							coins={coins}
 						/>
 					)}
+				</Dialog>
+				<Dialog
+					isOpen={payStatus && payMessage && orderId}
+					label="hollaex-modal"
+					className="app-dialog"
+					onCloseDialog={() => {
+						this.setState({
+							payStatus: '',
+							payMessage: '',
+							orderId: '',
+						});
+						this.props.router.push('/wallet');
+					}}
+					shouldCloseOnOverlayClick={true}
+					theme={activeTheme}
+					showCloseText={true}
+					style={{ 'z-index': 100 }}
+				>
+					<Notification
+						type={NOTIFICATIONS.PAYMENT_STATUS}
+						data={{ status: payStatus, message: payMessage, orderId }}
+					/>
 				</Dialog>
 			</div>
 		);

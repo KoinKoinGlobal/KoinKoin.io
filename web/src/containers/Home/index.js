@@ -19,6 +19,7 @@ import Section3 from './Section3';
 import Section4 from './Section4';
 import Section5 from './Section5';
 import Section6 from './Section6';
+import Section7 from './Section7';
 import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
 import CommonButton from '../../components/CommonButton';
 import Dialog from '../../components/Dialog';
@@ -220,9 +221,9 @@ class Home extends Component {
 							</Link>
 							<Link className="btn-login" to="/signup">
 								{' '}
-								{STRINGS['SIGNUP_TEXT']}&nbsp;/&nbsp;
+								{STRINGS['SIGNUP_TEXT']}
 							</Link>
-							<a
+							{/* <a
 								className="btn-login"
 								href="https://koinkoin.otctrade.com/"
 								target="_blank"
@@ -230,7 +231,7 @@ class Home extends Component {
 							>
 								{' '}
 								{STRINGS['FOOTER.SECTIONS.SECTION_7_LINK_1']}
-							</a>
+							</a> */}
 						</div>
 					)}
 				</div>
@@ -253,7 +254,8 @@ class Home extends Component {
 					/>
 
 					<Section5 style={style} theme={activeTheme} constants={constants} />
-					<Section6 style={style} theme={activeTheme} constants={constants} />
+					<Section6 theme={activeTheme} constants={constants} />
+					<Section7 theme={activeTheme} constants={constants} />
 					<Section2 style={style} />
 
 					<Section3 style={style} />
