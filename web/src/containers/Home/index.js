@@ -220,9 +220,9 @@ class Home extends Component {
 							</Link>
 							<Link className="btn-login" to="/signup">
 								{' '}
-								{STRINGS['SIGNUP_TEXT']}&nbsp;/&nbsp;
+								{STRINGS['SIGNUP_TEXT']}
 							</Link>
-							<a
+							{/* <a
 								className="btn-login"
 								href="https://koinkoin.otctrade.com/"
 								target="_blank"
@@ -230,7 +230,7 @@ class Home extends Component {
 							>
 								{' '}
 								{STRINGS['FOOTER.SECTIONS.SECTION_7_LINK_1']}
-							</a>
+							</a> */}
 						</div>
 					)}
 				</div>
