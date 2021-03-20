@@ -1320,6 +1320,18 @@ table th {
   height: 120%;
   object-fit: contain; }
 
+.section_7 {
+  position: relative;
+  overflow: hidden; }
+  .section_7 h2 {
+    color: black; }
+  .section_7 .combine-wallet img {
+    width: 50vw;
+    height: auto;
+    object-fit: contain;
+    min-width: 300px;
+    object-fit: contain; }
+
 .text-section a {
   text-decoration: none;
   color: #0078ff !important;

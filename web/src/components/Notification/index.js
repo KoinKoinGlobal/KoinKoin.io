@@ -13,6 +13,7 @@ import GenerateAddressNotification from './GenerateAddress';
 import InviteFriends from './InviteFriends';
 import StakeToken from './StakeToken';
 import ReferralSuccess from './ReferralSuccess';
+import PaymentStatus from './PaymentStatus';
 import { GenerateApiKey, CreatedApiKey } from './GenerateApiKey';
 import withConfig from 'components/ConfigProvider/withConfig';
 
@@ -46,6 +47,8 @@ const generateNotificationContent = ({ type, data, ...rest }) => {
 			return <InviteFriends data={data} {...rest} />;
 		case NOTIFICATIONS.STAKE_TOKEN:
 			return <StakeToken data={data} {...rest} />;
+		case NOTIFICATIONS.PAYMENT_STATUS:
+			return <PaymentStatus data={data} />;
 		default:
 			break;
 	}

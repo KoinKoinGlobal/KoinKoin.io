@@ -20,6 +20,7 @@ class Dialog extends PureComponent {
 	};
 
 	onRequestClose = (e) => {
+		console.log('close', e);
 		if (this.props.onCloseDialog) {
 			this.props.onCloseDialog(e);
 		}
