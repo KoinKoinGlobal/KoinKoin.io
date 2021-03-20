@@ -21,8 +21,8 @@ const Section7 = ({ style = {} }) => {
 			<div className={classnames('f-1', ...FLEX_CENTER_CLASSES, 'flex-column')}>
 				<AnimationContainer>
 					<div className={'section-detail-item'}>
-						<div className="combine-wallet d-flex justify-content-center">
-							<img src="assets/home/combined-wallets.jpg	" alt=""></img>
+						<div className="combine-wallet d-flex justify-content-center mt-5">
+							<img src="assets/home/shield-wallet.png" alt=""></img>
 						</div>
 						<div>
 							<h2 className="font-weight-bold mt-5 mb-0 text-center">
