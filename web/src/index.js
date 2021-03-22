@@ -60,6 +60,20 @@ const drawFavIcon = (url) => {
 	head.appendChild(linkEl);
 };
 
+const addTrackScript = (url) => {
+	const script1 = document.createElement('script');
+	const script2 = document.createElement('script');
+
+	script1.src = 'https://use.typekit.net/foobar.js';
+	script1.async = true;
+
+	script2.innerHTML =
+		"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-135625192-1');";
+
+	document.body.appendChild(script1);
+	document.body.appendChild(script2);
+};
+
 const getConfigs = async () => {
 	const localVersions = getLocalVersions();
 
@@ -118,6 +132,7 @@ const bootstrapApp = (appConfig) => {
 		},
 	} = appConfig;
 	drawFavIcon(EXCHANGE_FAV_ICON);
+	addTrackScript();
 	initializeStrings();
 	// window.appConfig = { ...appConfig }
 
