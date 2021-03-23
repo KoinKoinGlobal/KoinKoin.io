@@ -64,7 +64,7 @@ const addTrackScript = (url) => {
 	const script1 = document.createElement('script');
 	const script2 = document.createElement('script');
 
-	script1.src = 'https://use.typekit.net/foobar.js';
+	script1.src = 'https://www.googletagmanager.com/gtag/js?id=UA-135625192-1';
 	script1.async = true;
 
 	script2.innerHTML =

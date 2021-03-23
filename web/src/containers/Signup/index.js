@@ -15,6 +15,10 @@ import STRINGS from '../../config/localizedStrings';
 import withConfig from 'components/ConfigProvider/withConfig';
 import QuestionaireContent from './QuestionaireContent';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-135625192-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 let errorTimeOut = null;
 
 const BottomLinks = () => (
@@ -106,6 +110,11 @@ class Signup extends Component {
 	};
 
 	onSubmitSignup = (values) => {
+		ReactGA.ga('send', 'event', {
+			eventCategory: 'Account_SignUp',
+			eventAction: 'Signed_Up',
+		});
+
 		if (this.state.isAnswers) {
 			const answers = this.state.answers;
 			return performSignup(values)
