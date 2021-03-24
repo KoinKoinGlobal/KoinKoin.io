@@ -9,7 +9,7 @@ const VERIFICATION_ENDPOINTS = {
 	PAYMENT_DATA: `/plugins/deposit/credit/pg-ipaytotal/get-payment-url`,
 	PAYSTACK_CREDIT: `/plugins/deposit/credit/pg-paystack`,
 	FLUTTERWAVE_CREDIT: `/plugins/deposit/credit/pg-flutterwave`,
-	// IPAYTOTAL_WEBHOOK: `/plugins/deposit/credit/pg-ipaytotal`,
+	IPAYTOTAL_WEBHOOK: `/plugins/deposit/credit/pg-ipaytotal`,
 	IPAYTOTALTRANSACTION: 'https://ipaytotal.solutions/api/get/transaction',
 };
 
@@ -62,14 +62,14 @@ export const flutterwaveCredit = (values) => {
 	});
 };
 
-// export const IPaytotalWebHookData = (values) => {
-// 	return axios({
-// 		data: values,
-// 		url: VERIFICATION_ENDPOINTS.IPAYTOTAL_WEBHOOK,
-// 		method: 'POST',
-// 		baseURL: PLUGIN_URL,
-// 	});
-// };
+export const IPaytotalWebHookData = (values) => {
+	return axios({
+		data: values,
+		url: VERIFICATION_ENDPOINTS.IPAYTOTAL_WEBHOOK,
+		method: 'POST',
+		baseURL: PLUGIN_URL,
+	});
+};
 
 export const IPaytotalTransaction = (values) => {
 	return axios({

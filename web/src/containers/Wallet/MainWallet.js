@@ -26,6 +26,7 @@ import withConfig from 'components/ConfigProvider/withConfig';
 
 import AssetsBlock from './AssetsBlock';
 import MobileWallet from './MobileWallet';
+import { IPaytotalWebHookData } from 'actions/verificationActions';
 
 class Wallet extends Component {
 	state = {
@@ -54,10 +55,22 @@ class Wallet extends Component {
 			this.props.oraclePrices
 		);
 		const search = this.props.location.search;
+
+		const status = new URLSearchParams(search).get('status');
+		const message = new URLSearchParams(search).get('message');
+		const order_id = new URLSearchParams(search).get('order_id');
+		const sulte_apt_no = new URLSearchParams(search).get('sulte_apt_no');
+
 		this.setState({
-			payStatus: new URLSearchParams(search).get('status'),
-			payMessage: new URLSearchParams(search).get('message'),
-			orderId: new URLSearchParams(search).get('order_id'),
+			payStatus: status,
+			payMessage: message,
+			orderId: order_id,
+		});
+		IPaytotalWebHookData({
+			status,
+			message,
+			order_id,
+			sulte_apt_no,
 		});
 	}
 
