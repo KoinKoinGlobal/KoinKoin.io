@@ -181,23 +181,28 @@ class CashDepositAmount extends Component {
 						<div className="payment-button">
 							{currency === 'ngn' && (
 								<PaystackButton
-									className="paystack-button exir-button mdc-button mdc-button--unelevated exir-button-font button-payment"
+									className="paystack-button exir-button mdc-button mdc-button--unelevated exir-button-font button-payment disabled"
 									{...componentProps}
 								/>
 							)}
 							{this.checkflutterWaveCurrency(currency) && (
 								<FlutterWaveButton
-									className="paystack-button exir-button mdc-button mdc-button--unelevated exir-button-font button-payment"
+									className="paystack-button exir-button mdc-button mdc-button--unelevated exir-button-font button-payment disabled"
 									{...config}
 								/>
 							)}
-							{currency !== 'ngn' && (
+							{/* {currency !== 'ngn' && (
 								<Button
 									label={'Pay Using Ipaytotal'}
 									onClick={this.IpayTotalSet}
 									className={'button-payment'}
 								/>
-							)}
+							)} */}
+							<Button
+								label={'Pay Using Ipaytotal'}
+								onClick={this.IpayTotalSet}
+								className={'button-payment'}
+							/>
 						</div>
 					</>
 				) : null}

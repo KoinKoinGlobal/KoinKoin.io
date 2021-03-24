@@ -9729,6 +9729,10 @@ body {
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px; }
+  .button-payment.disabled {
+    background-color: gray;
+    pointer-events: none;
+    cursor: not-allowed; }
 
 .direction_rtl.apply_rtl {
   direction: rtl; }
