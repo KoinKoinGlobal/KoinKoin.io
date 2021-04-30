@@ -80,12 +80,6 @@ class Home extends Component {
 		} else {
 			this.goTo('/login')();
 		}
-	}
-
-	handleWindowSizeChange = () => {
-		this.setState({
-			width: window.innerWidth,
-		});
 	};
 
 	generateSections = (sections) => {
@@ -111,6 +105,25 @@ class Home extends Component {
 		} else {
 			return '14rem';
 		}
+	}
+
+	handleWindowSizeChange = () => {
+		this.setState({
+			width: window.innerWidth,
+		});
+	};
+
+	generateSections = (sections) => {
+		const sectionComponents = Object.entries(sections)
+			.filter(([_, { is_active }]) => is_active)
+			.sort(
+				([_, { order: order_a }], [__, { order: order_b }]) => order_a - order_b
+			)
+			.map(([key], index) => (
+				<div key={`section-${key}`}>{this.getSectionByKey(key)}</div>
+			));
+
+		return sectionComponents;
 	};
 
 	getSectionByKey = (key) => {
@@ -223,8 +236,72 @@ class Home extends Component {
 				return null;
 		}
 	};
-	onChangeLanguage = (language) => () => {
-		return this.props.changeLanguage(language);
+
+	onSelectTarget = (selectedTarget) => {
+		const { tickers } = this.props;
+		const { selectedSource } = this.state;
+
+		const pairName = `${selectedTarget}-${selectedSource}`;
+		const reversePairName = `${selectedSource}-${selectedTarget}`;
+
+		let tickerClose;
+		let side;
+		let pair;
+		if (tickers[pairName]) {
+			const { close } = tickers[pairName];
+			tickerClose = close;
+			side = 'buy';
+			pair = pairName;
+		} else if (tickers[reversePairName]) {
+			const { close } = tickers[reversePairName];
+			tickerClose = 1 / close;
+			side = 'sell';
+			pair = reversePairName;
+		}
+
+		this.setState({
+			tickerClose,
+			side,
+			selectedTarget,
+			targetAmount: undefined,
+			sourceAmount: undefined,
+		});
+		this.goToPair(pair);
+	};
+
+	onSelectSource = (selectedSource) => {
+		const { tickers } = this.props;
+
+		const targetOptions = this.getTargetOptions(selectedSource);
+		const selectedTarget = targetOptions[0];
+		const pairName = `${selectedTarget}-${selectedSource}`;
+		const reversePairName = `${selectedSource}-${selectedTarget}`;
+
+		let tickerClose;
+		let side;
+		let pair;
+		if (tickers[pairName]) {
+			const { close } = tickers[pairName];
+			tickerClose = close;
+			side = 'buy';
+			pair = pairName;
+		} else if (tickers[reversePairName]) {
+			const { close } = tickers[reversePairName];
+			tickerClose = 1 / close;
+			side = 'sell';
+			pair = reversePairName;
+		}
+
+		this.setState({
+			tickerClose,
+			side,
+			selectedSource,
+			selectedTarget,
+			targetOptions: targetOptions,
+			targetAmount: undefined,
+			sourceAmount: undefined,
+		});
+		this.goToPair(pair);
 	};
 	cancelCookieAccept = () => {
 		this.setState({ openCookieModal: false });
@@ -302,6 +379,47 @@ class Home extends Component {
 			sourceAmount: undefined,
 		});
 		this.goToPair(pair);
+	};
+
+	getTargetOptions = (sourceKey) => {
+		const { sourceOptions, pairs } = this.props;
+
+		return sourceOptions.filter(
+			(key) => pairs[`${key}-${sourceKey}`] || pairs[`${sourceKey}-${key}`]
+		);
+	};
+
+	onChangeTargetAmount = (targetAmount) => {
+		const { tickerClose } = this.state;
+		const sourceAmount = math.round(targetAmount * tickerClose, DECIMALS);
+
+		this.setState({
+			targetAmount,
+			sourceAmount,
+		});
+	};
+
+	onChangeSourceAmount = (sourceAmount) => {
+		const { tickerClose } = this.state;
+		const targetAmount = math.round(sourceAmount / tickerClose, DECIMALS);
+
+		this.setState({
+			sourceAmount,
+			targetAmount,
+		});
+	};
+
+	forwardSourceError = (sourceError) => {
+		this.setState({ sourceError });
+	};
+
+	forwardTargetError = (targetError) => {
+		this.setState({ targetError });
+	};
+
+	goToPair = (pair) => {
+		const { changePair } = this.props;
+		changePair(pair);
 	};
 
 	getTargetOptions = (sourceKey) => {

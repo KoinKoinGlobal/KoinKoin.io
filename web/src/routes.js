@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import ReactGA from 'react-ga';
-// import { isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 import {
 	App as Container,
