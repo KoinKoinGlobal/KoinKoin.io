@@ -795,8 +795,8 @@ export default {
 	LOWEST_PRICE: 'Lowest Price ({0})', // new
 	PHASE: 'Phase', // new
 	INCOMING: 'Incoming', // new
-	PRICE_CURRENCY: '価格 ({0})',
-	AMOUNT_SYMBOL: '数量 ({0})',
+	PRICE_CURRENCY: '価格',
+	AMOUNT_SYMBOL: '数量',
 	MARKET_PRICE: '市場価格',
 	ORDER_PRICE: '注文価格',
 	TOTAL_ORDER: '総額',
@@ -913,8 +913,6 @@ export default {
 	WALLET_TABLE_AMOUNT_IN: `Amount in {0}`,
 	WALLET_TABLE_TOTAL: '総額',
 	WALLET_ALL_ASSETS: '総資産',
-	WALLET_DEPOSIT_USD:
-		'For fiat currency D/W in different countries and other wallet inquiries {0}.', // new
 	HIDE_TEXT: 'Hide',
 	PAGINATOR_FORMAT: '{0} / {1}',
 	ORDERBOOK_SELLERS: '売却',

@@ -784,8 +784,8 @@ const nestedContent = {
 	PUBLIC_SALES: 'public sales', // ToDo
 	REMAINING: 'Remaining',
 	FULLFILLED: '{0} % Filled',
-	PRICE_CURRENCY: 'PRICE ({0})',
-	AMOUNT_SYMBOL: 'AMOUNT ({0})',
+	PRICE_CURRENCY: 'PRICE',
+	AMOUNT_SYMBOL: 'AMOUNT',
 	MARKET_PRICE: '시장가',
 	ORDER_PRICE: '지정가',
 	TOTAL_ORDER: '총액',
@@ -896,8 +896,6 @@ const nestedContent = {
 	WALLET_TABLE_AMOUNT_IN: `Amount in {0}`,
 	WALLET_TABLE_TOTAL: 'Grand Total',
 	WALLET_ALL_ASSETS: 'All Assets',
-	WALLET_DEPOSIT_USD:
-		'For fiat currency D/W in different countries and other wallet inquiries {0}.', // new
 	HIDE_TEXT: 'Hide',
 	PAGINATOR_FORMAT: '{0} / {1}',
 	ORDERBOOK_SELLERS: 'Sellers',

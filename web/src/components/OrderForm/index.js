@@ -43,10 +43,11 @@ const OrderForm = (props) => {
 	const [options, setOptions] = useState([]);
 
 	useEffect(() => {
-		const { wallets, balance, prices, coins, icons } = props;
+		const { wallets, balance, prices, coins, icons, user } = props;
 		const data = [];
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
+		console.log('user', user);
 		Object.keys(coins).forEach((currency) => {
 			const { symbol, min, type } = coins[currency] || DEFAULT_COIN_DATA;
 			// let is_fiat = coins[currency].meta && !!coins[currency].meta.is_fiat;
@@ -245,7 +246,7 @@ const mapStateToProps = (state) => ({
 	// config_level: state.app.config_level,
 	// affiliation: state.user.affiliation,
 	// constants: state.app.constants,
-	wallets: state.user.crypto_wallet,
+	wallets: state.user.wallet,
 });
 
 export default connect(mapStateToProps)(withConfig(OrderForm));

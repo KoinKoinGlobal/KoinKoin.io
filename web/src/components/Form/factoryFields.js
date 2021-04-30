@@ -7,22 +7,23 @@ import DropdownField from './FormFields/DropdownField';
 import DateField from './FormFields/DateField';
 import DropdownDateField from './FormFields/DropdownDateField';
 import CheckField from './FormFields/CheckField';
-import RadioField from './FormFields/RadioField';
 import EditableInputField from './FormFields/EditableInputField';
 import CaptchaField from './FormFields/Captcha';
 import ToggleField from './FormFields/ToggleField';
+import DumbField from './FormFields/DumbFieldForm';
 
 const renderFields = (fields = {}, callback) => {
 	return (
 		<div>
 			{Object.keys(fields).map((key, index) => {
-				const { type, validate = [], choices, ...rest } = fields[key];
+				const { type, validate = [], ishorizontalfield, ...rest } = fields[key];
 				const commonProps = {
 					callback,
 					key,
 					name: key,
 					type,
 					validate,
+					ishorizontalfield,
 					...rest,
 				};
 
@@ -30,9 +31,16 @@ const renderFields = (fields = {}, callback) => {
 					case 'captcha':
 						return <Field component={CaptchaField} {...commonProps} />;
 					case 'hidden':
-						return <Field component="input" {...commonProps} />;
+						return (
+							<Field
+								component={() => <div className="hidden" />}
+								{...commonProps}
+							/>
+						);
 					case 'file':
 						return <Field component={FileField} {...commonProps} />;
+					case 'dumb':
+						return <Field component={DumbField} {...commonProps} />;
 					case 'select':
 					case 'autocomplete':
 						return (
@@ -48,22 +56,6 @@ const renderFields = (fields = {}, callback) => {
 						return <Field component={DateField} {...commonProps} />;
 					case 'checkbox':
 						return <Field component={CheckField} {...commonProps} />;
-					case 'radio':
-						return (
-							<div key={key} style={{ margin: '1rem 0' }}>
-								{choices.map((c) => {
-									commonProps.key = `${c.value}`;
-									return (
-										<Field
-											component={RadioField}
-											label={c.label}
-											value={c.value.toString()}
-											{...commonProps}
-										/>
-									);
-								})}
-							</div>
-						);
 					case 'editable':
 						return <Field component={EditableInputField} {...commonProps} />;
 					case 'textarea':

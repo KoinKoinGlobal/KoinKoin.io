@@ -801,8 +801,8 @@ const nestedContent = {
 	LOWEST_PRICE: 'کمترین قیمت ({0})', // new
 	PHASE: 'پایه', // new
 	INCOMING: 'ورودی', // new
-	PRICE_CURRENCY: 'قیمت ({0})',
-	AMOUNT_SYMBOL: 'مقدار ({0})',
+	PRICE_CURRENCY: 'قیمت',
+	AMOUNT_SYMBOL: 'مقدار',
 	MARKET_PRICE: 'قیمت بازار',
 	ORDER_PRICE: 'قیمت سفارش',
 	TOTAL_ORDER: 'کل سفارش',
@@ -914,8 +914,6 @@ const nestedContent = {
 	WALLET_TABLE_AMOUNT_IN: `مقدار در {0}`,
 	WALLET_TABLE_TOTAL: 'جمع کل',
 	WALLET_ALL_ASSETS: 'مجموع دارایی ها',
-	WALLET_DEPOSIT_USD:
-		'برای درخواست های {0 واریز و برداشت انواع ارزهای کشورهای مختلف}', // new
 	HIDE_TEXT: 'مخفی',
 	PAGINATOR_FORMAT: '{0} / {1}',
 	ORDERBOOK_SELLERS: 'فروشندگان',

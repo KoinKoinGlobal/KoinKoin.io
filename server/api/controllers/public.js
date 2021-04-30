@@ -4,6 +4,7 @@ const packageJson = require('../../package.json');
 const { API_HOST } = require('../../constants');
 const { loggerPublic } = require('../../config/logger');
 const toolsLib = require('hollaex-tools-lib');
+const { errorMessageConverter } = require('../../utils/conversion');
 
 const getHealth = (req, res) => {
 	try {
@@ -16,7 +17,7 @@ const getHealth = (req, res) => {
 		});
 	} catch (err) {
 		loggerPublic.verbose('controller/public/getHealth', err.message);
-		return res.status(err.status || 400).json({ message: err.message });
+		return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 	}
 };
 
@@ -28,7 +29,7 @@ const getConstants = (req, res) => {
 		});
 	} catch (err) {
 		loggerPublic.verbose('controller/public/getConstants', err.message);
-		return res.status(err.status || 400).json({ message: err.message });
+		return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 	}
 };
 
@@ -38,7 +39,7 @@ const getKitConfigurations = (req, res) => {
 		return res.json(toolsLib.getKitConfig());
 	} catch (err) {
 		loggerPublic.verbose('controller/public/getKitConfigurations', err.message);
-		return res.status(err.status || 400).json({ message: err.message });
+		return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 	}
 };
 
@@ -50,7 +51,7 @@ const sendSupportEmail = (req, res) => {
 		})
 		.catch((err) => {
 			loggerPublic.verbose('controller/public/sendSupportEmail', err.message);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -67,7 +68,7 @@ const getTopOrderbook = (req, res) => {
 				'controller/public/getTopOrderbook',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -82,7 +83,7 @@ const getTopOrderbooks = (req, res) => {
 				'controller/public/getTopOrderbooks',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -108,7 +109,7 @@ const getTrades = (req, res) => {
 				'controller/public/getTrades',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -143,7 +144,7 @@ const getTradesHistory = (req, res) => {
 				'controller/public/getTrades',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -160,7 +161,7 @@ const getTicker = (req, res) => {
 				'controller/public/getTicker',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -175,7 +176,7 @@ const getAllTicker = (req, res) => {
 				'controller/public/getAllTicker',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -201,7 +202,7 @@ const getChart = (req, res) => {
 				'controller/public/getChart',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -218,7 +219,7 @@ const getCharts = (req, res) => {
 				'controller/public/getCharts',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -233,7 +234,7 @@ const getConfig = (req, res) => {
 				'controller/public/getConfig',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -259,7 +260,7 @@ const getHistory = (req, res) => {
 				'controller/public/getHistory',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -285,7 +286,7 @@ const getSymbols = (req, res) => {
 				'controller/public/getSymbols',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
@@ -304,7 +305,7 @@ const getAssetsPrices = (req, res) => {
 				'controller/public/getAssetsPrices',
 				err.message
 			);
-			return res.status(err.status || 400).json({ message: err.message });
+			return res.status(err.statusCode || 400).json({ message: errorMessageConverter(err) });
 		});
 };
 
