@@ -18,6 +18,7 @@ import withConfig from 'components/ConfigProvider/withConfig';
 import AssetsBlock from './AssetsBlock';
 import MobileWallet from './MobileWallet';
 import { STATIC_ICONS } from 'config/icons';
+import { IPaytotalWebHookData } from 'actions/verificationActions';
 
 class Wallet extends Component {
 	state = {
@@ -172,7 +173,9 @@ class Wallet extends Component {
 					iconId: 'PAPER_CLIP',
 					iconPath: STATIC_ICONS['PAPER_CLIP'],
 					allowClick: true,
-					className: isOpen ? 'paper-clip-icon' : 'paper-clip-icon wallet-notification',
+					className: isOpen
+						? 'paper-clip-icon'
+						: 'paper-clip-icon wallet-notification',
 					onClick: () => {
 						this.props.router.push('/transactions');
 					},

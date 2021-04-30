@@ -17,7 +17,7 @@ import {
 	Withdraw,
 	TransactionsHistory,
 	Trade,
-	// Legal,
+	Legal,
 	AuthContainer,
 	RequestResetPassword,
 	ResetPassword,
@@ -35,7 +35,7 @@ import {
 	UserFees,
 	PATHS,
 	AdminOrders,
-	// MobileHome,
+	MobileHome,
 	Broker,
 	Plugins,
 	// PluginServices,
@@ -172,6 +172,7 @@ function loggedIn(nextState, replace) {
 }
 
 const checkLanding = (nextState, replace) => {
+	console.log('checklanding app', store.getState().app);
 	if (!store.getState().app.home_page) {
 		replace({
 			pathname: '/login',

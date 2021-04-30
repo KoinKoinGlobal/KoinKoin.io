@@ -1,109 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { QuickTradeLimitsSelector } from 'containers/QuickTrade/utils';
-import { isMobile } from 'react-device-detect';
-
-import STRINGS from 'config/localizedStrings';
-import {
-	changePair,
-	setLanguage,
-	getExchangeInfo,
-	getTickers,
-} from 'actions/appActions';
+// import { isBrowser, isMobile } from 'react-device-detect';
+import classnames from 'classnames';
+// import { getClasesForLanguage } from '../../utils/string';
+// import { getThemeClass } from '../../utils/theme';
+import EventListener from 'react-event-listener';
+import STRINGS from '../../config/localizedStrings';
+import { AppFooter } from '../../components';
+import { Link } from 'react-router';
+import { isLoggedIn } from '../../utils/token';
+// Actions
 import { logout } from '../../actions/authAction';
-import { isLoggedIn } from 'utils/token';
-import Markets from 'containers/Summary/components/Markets';
-import { QuickTrade, EditWrapper, ButtonLink } from 'components';
-import { unique } from 'utils/data';
-import math from 'mathjs';
+import { getExchangeInfo } from '../../actions/appActions';
+import Section1 from './Section1';
+import Section2 from './Section2';
+import Section3 from './Section3';
+import Section4 from './Section4';
+import Section5 from './Section5';
+import Section6 from './Section6';
+import Section7 from './Section7';
+import { _shouldShowPopup, _setCookie } from '../../utils/cookie';
+import CommonButton from '../../components/CommonButton';
+import Dialog from '../../components/Dialog';
 import Image from 'components/Image';
-
-import MainSection from './MainSection';
+import Socket from '../App/Socket';
+import GetSocketState from '../App/GetSocketState';
 import withConfig from 'components/ConfigProvider/withConfig';
 
-const DECIMALS = 4;
+import { FaDownload, FaTimes } from 'react-icons/fa';
+import { isIOS, isAndroid } from 'react-device-detect';
+
 const MIN_HEIGHT = 450;
 const BACKGROUND_PATH =
 	'https://mcusercontent.com/94bba1379edc8e1b29b1336d6/images/84d67678-e33f-4c96-a5fe-9fadad312e9f.png';
 
 class Home extends Component {
-	constructor(props) {
-		super(props);
-		const { pairs, sourceOptions, tickers } = this.props;
-		const pair = Object.keys(pairs)[0];
-		const pairArray = pair ? pair.split('-') : [];
-		const [, selectedSource = sourceOptions[0]] = pairArray;
-		const targetOptions = this.getTargetOptions(selectedSource);
-		const [selectedTarget = targetOptions[0]] = pairArray;
-		const { close: tickerClose } = tickers[pair] || {};
-
-		this.state = {
-			side: 'buy',
-			tickerClose,
-			showQuickTradeModal: false,
-			targetOptions,
-			selectedSource,
-			selectedTarget,
-			targetAmount: undefined,
-			sourceAmount: undefined,
-			order: {
-				fetching: false,
-				error: false,
-				data: {},
-			},
-			sourceError: '',
-			targetError: '',
-			height: 0,
-			style: {
-				minHeight: MIN_HEIGHT,
-			},
-		};
-		this.goToPair(pair);
-	}
-
+	state = {
+		height: 0,
+		style: {
+			minHeight: MIN_HEIGHT,
+		},
+		publicSocket: undefined,
+		privateSocket: undefined,
+		appLoaded: false,
+		isSocketDataReady: false,
+		openCookieModal: _shouldShowPopup(),
+		showDownloadBar: true,
+		width: window.innerWidth,
+	};
 	componentDidMount() {
-		const { sections } = this.props;
 		this.props.getExchangeInfo();
-		this.props.getTickers();
-		this.generateSections(sections);
+		// this.initSocketConnections();
+		window.addEventListener('resize', this.handleWindowSizeChange);
 	}
-
-	goTo = (path) => () => {
-		this.props.router.push(path);
-	};
-
-	onReviewQuickTrade = () => {
-		const { pair } = this.props;
-		if (isLoggedIn()) {
-			this.goTo(`/quick-trade/${pair}`)();
-		} else {
-			this.goTo('/login')();
-		}
-	};
-
-	generateSections = (sections) => {
-		const sectionComponents = Object.entries(sections)
-			.filter(([_, { is_active }]) => is_active)
-			.sort(
-				([_, { order: order_a }], [__, { order: order_b }]) => order_a - order_b
-			)
-			.map(([key], index) => (
-				<div key={`section-${key}`}>{this.getSectionByKey(key)}</div>
-			));
-
-		return sectionComponents;
-	};
-
-	calculateMinHeight = (sectionsNumber) => {
-		if (sectionsNumber === 1) {
-			if (isMobile) {
-				return '30rem';
-			} else {
-				return 'calc(100vh - 15rem)';
-			}
-		} else {
-			return '14rem';
+	componentWillUnmount() {
+		if (this.state.publicSocket) {
+			this.state.publicSocket.close();
 		}
 	}
 
@@ -113,195 +66,25 @@ class Home extends Component {
 		});
 	};
 
-	generateSections = (sections) => {
-		const sectionComponents = Object.entries(sections)
-			.filter(([_, { is_active }]) => is_active)
-			.sort(
-				([_, { order: order_a }], [__, { order: order_b }]) => order_a - order_b
-			)
-			.map(([key], index) => (
-				<div key={`section-${key}`}>{this.getSectionByKey(key)}</div>
-			));
-
-		return sectionComponents;
-	};
-
-	getSectionByKey = (key) => {
-		switch (key) {
-			case 'heading': {
-				const {
-					constants: { features: { quick_trade = false } = {} } = {},
-					isReady,
-					pair,
-					sections,
-				} = this.props;
-
-				const sectionsNumber = Object.entries(sections)
-					.filter(([_, { is_active }]) => is_active)
-					.filter(([key]) => key !== 'quick_trade' || (quick_trade && isReady))
-					.length;
-
-				return (
-					<div className="home-page_section-wrapper main-section-wrapper">
-						<MainSection
-							style={{
-								minHeight: this.calculateMinHeight(sectionsNumber),
-							}}
-							onClickDemo={
-								pair ? this.goTo(`trade/${pair}`) : this.goTo('trade/add/tabs')
-							}
-							onClickTrade={this.goTo('signup')}
-						/>
-					</div>
-				);
-			}
-			case 'market_list': {
-				const { router, coins, pairs } = this.props;
-				return (
-					<div className="home-page_section-wrapper">
-						<div className="d-flex justify-content-center">
-							<EditWrapper stringId="MARKETS_TABLE.TITLE">
-								<div className="live-markets_header">
-									{STRINGS['MARKETS_TABLE.TITLE']}
-								</div>
-							</EditWrapper>
-						</div>
-						<div className="home-page__market-wrapper">
-							<Markets
-								coins={coins}
-								pairs={pairs}
-								router={router}
-								showSearch={false}
-								showMarkets={true}
-							/>
-						</div>
-					</div>
-				);
-			}
-			case 'quick_trade': {
-				const {
-					constants: { features: { quick_trade = false } = {} } = {},
-					isReady,
-					pair,
-					coins,
-					pairs,
-					orderLimits,
-					sourceOptions,
-				} = this.props;
-
-				const {
-					targetAmount,
-					sourceAmount,
-					selectedTarget,
-					selectedSource,
-					targetOptions,
-					side,
-				} = this.state;
-
-				return (
-					pairs &&
-					Object.keys(pairs).length &&
-					selectedTarget &&
-					selectedTarget &&
-					quick_trade &&
-					isReady && (
-						<div className="home-page_section-wrapper">
-							<QuickTrade
-								onReviewQuickTrade={this.onReviewQuickTrade}
-								onSelectTarget={this.onSelectTarget}
-								onSelectSource={this.onSelectSource}
-								side={side}
-								symbol={pair}
-								disabled={false}
-								orderLimits={orderLimits[pair]}
-								pairs={pairs}
-								coins={coins}
-								sourceOptions={sourceOptions}
-								targetOptions={targetOptions}
-								selectedSource={selectedSource}
-								selectedTarget={selectedTarget}
-								targetAmount={targetAmount}
-								sourceAmount={sourceAmount}
-								onChangeTargetAmount={this.onChangeTargetAmount}
-								onChangeSourceAmount={this.onChangeSourceAmount}
-								forwardSourceError={this.forwardSourceError}
-								forwardTargetError={this.forwardTargetError}
-								autoFocus={false}
-							/>
-						</div>
-					)
-				);
-			}
-			default:
-				return null;
+	onResize = () => {
+		if (this.container) {
+			const height = window.innerHeight - 45;
+			this.setState({
+				style: {
+					minHeight: height,
+				},
+				height,
+			});
 		}
 	};
-
-	onSelectTarget = (selectedTarget) => {
-		const { tickers } = this.props;
-		const { selectedSource } = this.state;
-
-		const pairName = `${selectedTarget}-${selectedSource}`;
-		const reversePairName = `${selectedSource}-${selectedTarget}`;
-
-		let tickerClose;
-		let side;
-		let pair;
-		if (tickers[pairName]) {
-			const { close } = tickers[pairName];
-			tickerClose = close;
-			side = 'buy';
-			pair = pairName;
-		} else if (tickers[reversePairName]) {
-			const { close } = tickers[reversePairName];
-			tickerClose = 1 / close;
-			side = 'sell';
-			pair = reversePairName;
+	setContainerRef = (el) => {
+		if (el) {
+			this.container = el;
+			this.onResize();
 		}
-
-		this.setState({
-			tickerClose,
-			side,
-			selectedTarget,
-			targetAmount: undefined,
-			sourceAmount: undefined,
-		});
-		this.goToPair(pair);
 	};
-
-	onSelectSource = (selectedSource) => {
-		const { tickers } = this.props;
-
-		const targetOptions = this.getTargetOptions(selectedSource);
-		const selectedTarget = targetOptions[0];
-		const pairName = `${selectedTarget}-${selectedSource}`;
-		const reversePairName = `${selectedSource}-${selectedTarget}`;
-
-		let tickerClose;
-		let side;
-		let pair;
-		if (tickers[pairName]) {
-			const { close } = tickers[pairName];
-			tickerClose = close;
-			side = 'buy';
-			pair = pairName;
-		} else if (tickers[reversePairName]) {
-			const { close } = tickers[reversePairName];
-			tickerClose = 1 / close;
-			side = 'sell';
-			pair = reversePairName;
-		}
-
-		this.setState({
-			tickerClose,
-			side,
-			selectedSource,
-			selectedTarget,
-			targetOptions: targetOptions,
-			targetAmount: undefined,
-			sourceAmount: undefined,
-		});
-		this.goToPair(pair);
+	onChangeLanguage = (language) => () => {
+		return this.props.changeLanguage(language);
 	};
 	cancelCookieAccept = () => {
 		this.setState({ openCookieModal: false });
@@ -314,290 +97,215 @@ class Home extends Component {
 		this.setState({ appLoaded: value });
 	};
 
-	onSelectTarget = (selectedTarget) => {
-		const { tickers } = this.props;
-		const { selectedSource } = this.state;
+	socketDataCallback = (value = false) => {
+		this.setState({ isSocketDataReady: value });
+	};
+	logout = (message = '') => {
+		this.setState({ appLoaded: false }, () => {
+			this.props.logout(typeof message === 'string' ? message : '');
+		});
+	};
 
-		const pairName = `${selectedTarget}-${selectedSource}`;
-		const reversePairName = `${selectedSource}-${selectedTarget}`;
-
-		let tickerClose;
-		let side;
-		let pair;
-		if (tickers[pairName]) {
-			const { close } = tickers[pairName];
-			tickerClose = close;
-			side = 'buy';
-			pair = pairName;
-		} else if (tickers[reversePairName]) {
-			const { close } = tickers[reversePairName];
-			tickerClose = 1 / close;
-			side = 'sell';
-			pair = reversePairName;
+	openDownloadLink() {
+		if (isAndroid) {
+			this.openAndroidDownload();
+		} else if (isIOS) {
+			this.openIOSDownload();
 		}
+	}
 
+	openAndroidDownload() {
+		window.location.href = 'market://details?id=com.koinkoin';
+	}
+
+	openIOSDownload() {
+		window.location.href =
+			'https://apps.apple.com/gb/app/koinkoin-exchange/id1556014433';
+	}
+
+	closeDownloadBar = () => {
 		this.setState({
-			tickerClose,
-			side,
-			selectedTarget,
-			targetAmount: undefined,
-			sourceAmount: undefined,
+			showDownloadBar: false,
 		});
-		this.goToPair(pair);
-	};
-
-	onSelectSource = (selectedSource) => {
-		const { tickers } = this.props;
-
-		const targetOptions = this.getTargetOptions(selectedSource);
-		const selectedTarget = targetOptions[0];
-		const pairName = `${selectedTarget}-${selectedSource}`;
-		const reversePairName = `${selectedSource}-${selectedTarget}`;
-
-		let tickerClose;
-		let side;
-		let pair;
-		if (tickers[pairName]) {
-			const { close } = tickers[pairName];
-			tickerClose = close;
-			side = 'buy';
-			pair = pairName;
-		} else if (tickers[reversePairName]) {
-			const { close } = tickers[reversePairName];
-			tickerClose = 1 / close;
-			side = 'sell';
-			pair = reversePairName;
-		}
-
-		this.setState({
-			tickerClose,
-			side,
-			selectedSource,
-			selectedTarget,
-			targetOptions: targetOptions,
-			targetAmount: undefined,
-			sourceAmount: undefined,
-		});
-		this.goToPair(pair);
-	};
-
-	getTargetOptions = (sourceKey) => {
-		const { sourceOptions, pairs } = this.props;
-
-		return sourceOptions.filter(
-			(key) => pairs[`${key}-${sourceKey}`] || pairs[`${sourceKey}-${key}`]
-		);
-	};
-
-	onChangeTargetAmount = (targetAmount) => {
-		const { tickerClose } = this.state;
-		const sourceAmount = math.round(targetAmount * tickerClose, DECIMALS);
-
-		this.setState({
-			targetAmount,
-			sourceAmount,
-		});
-	};
-
-	onChangeSourceAmount = (sourceAmount) => {
-		const { tickerClose } = this.state;
-		const targetAmount = math.round(sourceAmount / tickerClose, DECIMALS);
-
-		this.setState({
-			sourceAmount,
-			targetAmount,
-		});
-	};
-
-	forwardSourceError = (sourceError) => {
-		this.setState({ sourceError });
-	};
-
-	forwardTargetError = (targetError) => {
-		this.setState({ targetError });
-	};
-
-	goToPair = (pair) => {
-		const { changePair } = this.props;
-		changePair(pair);
-	};
-
-	getTargetOptions = (sourceKey) => {
-		const { sourceOptions, pairs } = this.props;
-
-		return sourceOptions.filter(
-			(key) => pairs[`${key}-${sourceKey}`] || pairs[`${sourceKey}-${key}`]
-		);
-	};
-
-	onChangeTargetAmount = (targetAmount) => {
-		const { tickerClose } = this.state;
-		const sourceAmount = math.round(targetAmount * tickerClose, DECIMALS);
-
-		this.setState({
-			targetAmount,
-			sourceAmount,
-		});
-	};
-
-	onChangeSourceAmount = (sourceAmount) => {
-		const { tickerClose } = this.state;
-		const targetAmount = math.round(sourceAmount / tickerClose, DECIMALS);
-
-		this.setState({
-			sourceAmount,
-			targetAmount,
-		});
-	};
-
-	forwardSourceError = (sourceError) => {
-		this.setState({ sourceError });
-	};
-
-	forwardTargetError = (targetError) => {
-		this.setState({ targetError });
-	};
-
-	goToPair = (pair) => {
-		const { changePair } = this.props;
-		changePair(pair);
-	};
-
-	renderIcon = () => {
-		const { icons: ICONS } = this.props;
-		return (
-			<div className={classnames('app_bar-icon', 'text-uppercase', 'h-100')}>
-				<div className="d-flex h-100">
-					<div className="'h-100'">
-						<Image
-							iconId="EXCHANGE_LOGO"
-							icon={ICONS['EXCHANGE_LOGO']}
-							wrapperClassName="app_bar-icon-logo wide-logo h-100"
-						/>
-					</div>
-					<EditWrapper iconId="EXCHANGE_LOGO" position={[-5, 5]} />
-				</div>
-			</div>
-		);
-	};
-
-	renderButtonSection = () => {
-		return (
-			<div className="d-flex align-items-center buttons-section-header">
-				<ButtonLink
-					link={'/login'}
-					type="button"
-					label={STRINGS['LOGIN_TEXT']}
-					className="main-section_button_invert home_header_button"
-				/>
-				<div style={{ width: '0.75rem' }} />
-				<ButtonLink
-					link={'/signup'}
-					type="button"
-					label={STRINGS['SIGNUP_TEXT']}
-					className="main-section_button home_header_button"
-				/>
-			</div>
-		);
-	};
-
-	renderAccountButton = () => {
-		const { user } = this.props;
-		return (
-			<div className="pointer" onClick={this.goTo('/account')}>
-				{user.email}
-			</div>
-		);
 	};
 
 	render() {
 		const {
-			// symbol,
-			// quickTradeData,
-			// requestQuickTrade,
-			sections,
+			activeLanguage,
+			activeTheme,
+			constants = { captcha: {} },
+			router,
+			location,
+			icons,
 		} = this.props;
+		console.log('constants', this.props);
+		const { style, isSocketDataReady, showDownloadBar, width } = this.state;
 
 		return (
-			<div className="home_container">
-				{/*<div className="home-page_overlay" />*/}
-				<div>
-					<EditWrapper
-						sectionId="LANDING_PAGE_SECTIONS"
-						position={[0, 0]}
-						style={{
-							position: 'fixed',
-							right: '5px',
-							top: 'calc((100vh - 160px)/2)',
-							display: 'flex !important',
-							zIndex: 1,
-						}}
-					/>
-					<div className="home_app_bar d-flex justify-content-between align-items-center my-2 mx-3">
-						<div className="d-flex align-items-center justify-content-center h-100">
-							{this.renderIcon()}
+			<div
+				className={classnames(
+					'app_container',
+					'home_container',
+					'app_background'
+					// getClasesForLanguage(activeLanguage),
+					// getThemeClass(activeTheme),
+					// {
+					// 	'layout-mobile': isMobile,
+					// 	'layout-desktop': isBrowser,
+					// }
+				)}
+			>
+				{/* <div className="container-fluid"> */}
+				<Socket
+					router={router}
+					location={location}
+					logout={this.logout}
+					connectionCallBack={this.connectionCallBack}
+				/>
+				<GetSocketState
+					router={router}
+					isDataReady={isSocketDataReady}
+					socketDataCallback={this.socketDataCallback}
+				/>
+				<EventListener target="window" onResize={this.onResize} />
+				{showDownloadBar && width < 768 && (
+					<div className="download-bar">
+						<div className="app_bar-icon text-uppercase">
+							<Image
+								icon={BACKGROUND_PATH}
+								wrapperClassName="app_bar-icon-logo"
+							/>
+							<span>APP</span>
 						</div>
-						{isLoggedIn()
-							? this.renderAccountButton()
-							: this.renderButtonSection()}
+						<div className="btn-wrapper">
+							<div class="btn-download mr-5" onClick={this.openDownloadLink}>
+								<FaDownload></FaDownload>
+							</div>
+							<div class="btn-close" onClick={this.closeDownloadBar}>
+								<FaTimes></FaTimes>
+							</div>
+						</div>
 					</div>
-					<EditWrapper
-						iconId="EXCHANGE_LANDING_PAGE"
-						style={{ position: 'absolute', right: 10 }}
+				)}
+
+				<div className={'koinkoin-app_bar'}>
+					<div className="app_bar-icon text-uppercase d-flex justify-content-center align-items-center">
+						{/* <div
+							style={{ backgroundImage: `url(${BACKGROUND_PATH})` }}
+							className="app_bar-icon-logo"
+						></div> */}
+						<Image
+							icon={BACKGROUND_PATH}
+							wrapperClassName="app_bar-icon-logo"
+						/>
+					</div>
+					{isLoggedIn() ? (
+						<div className="sign-in-up-buttons">
+							<Link className="btn-login" to="/summary">
+								{STRINGS['HOME.DASHBOARD']}&nbsp;/&nbsp;
+							</Link>
+							<a
+								className="btn-login"
+								href="https://koinkoin.otctrade.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{' '}
+								{'OTC'}
+							</a>
+						</div>
+					) : (
+						<div className="sign-in-up-buttons">
+							<Link className="btn-login" to="/login">
+								{STRINGS['LOGIN_TEXT']}&nbsp;/&nbsp;
+							</Link>
+							<Link className="btn-login" to="/signup">
+								{' '}
+								{STRINGS['SIGNUP_TEXT']}
+							</Link>
+							{/* <a
+								className="btn-login"
+								href="https://koinkoin.otctrade.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{' '}
+								{STRINGS['FOOTER.SECTIONS.SECTION_7_LINK_1']}
+							</a> */}
+						</div>
+					)}
+				</div>
+				<div
+					className={classnames(
+						'app_container-content',
+						'home_container-content',
+						'flex-column',
+						'overflow-y'
+					)}
+					ref={this.setContainerRef}
+				>
+					<Section1
+						constants={constants}
+						style={{
+							height:
+								style.minHeight > MIN_HEIGHT ? style.minHeight : MIN_HEIGHT,
+						}}
+						icons={icons}
 					/>
-					<div className="home-page_content">
-						<div className="mx-2 mb-3">{this.generateSections(sections)}</div>
-					</div>
+
+					<Section5 style={style} theme={activeTheme} constants={constants} />
+					<Section6 theme={activeTheme} constants={constants} />
+					<Section7 theme={activeTheme} constants={constants} />
+					<Section2 style={style} />
+
+					<Section3 style={style} />
+
+					<Section4
+						style={style}
+						theme={activeTheme}
+						onChangeLanguage={this.onChangeLanguage}
+						activeLanguage={activeLanguage}
+						constants={constants}
+					/>
+
+					<AppFooter
+						theme={activeTheme}
+						onChangeLanguage={this.onChangeLanguage}
+						activeLanguage={activeLanguage}
+						constants={constants}
+					/>
+					<Dialog
+						isOpen={this.state.openCookieModal}
+						label="hollaex-modal"
+						className={classnames('app-dialog', {
+							'app-dialog-flex': true,
+						})}
+						onCloseDialog={this.cancelCookieAccept}
+					>
+						<div className="w-100 text-center p-3">
+							<h3 className="text-dark">
+								Cookie Information and Consent Request
+							</h3>
+							<CommonButton
+								label="Accept"
+								onClick={this.onClickCookieAcceptBtn}
+							/>
+						</div>
+					</Dialog>
 				</div>
 			</div>
 		);
 	}
 }
 
-const getSourceOptions = (pairs = {}) => {
-	const coins = [];
-	Object.entries(pairs).forEach(([, { pair_base, pair_2 }]) => {
-		coins.push(pair_base);
-		coins.push(pair_2);
-	});
-
-	return unique(coins);
-};
-
-const mapStateToProps = (store) => {
-	const pair = store.app.pair;
-	const pairData = store.app.pairs[pair] || {};
-	const sourceOptions = getSourceOptions(store.app.pairs);
-	const qtlimits = QuickTradeLimitsSelector(store);
-
-	return {
-		sourceOptions,
-		pair,
-		pairData,
-		pairs: store.app.pairs,
-		coins: store.app.coins,
-		// estimatedValue: 100,
-		// symbol: store.orderbook.symbol,
-		// quickTradeData: store.orderbook.quickTrade,
-		activeLanguage: store.app.language,
-		info: store.app.info,
-		activeTheme: store.app.theme,
-		constants: store.app.constants,
-		tickers: store.app.tickers,
-		orderLimits: qtlimits,
-		user: store.user,
-		settings: store.user.settings,
-		fetchingAuth: store.auth.fetching,
-		isReady: store.app.isReady,
-	};
-};
+const mapStateToProps = (store) => ({
+	activeLanguage: store.app.language,
+	activeTheme: store.app.theme,
+	info: store.app.info,
+	constants: store.app.constants,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-	// requestQuickTrade: bindActionCreators(requestQuickTrade, dispatch),
-	changePair: bindActionCreators(changePair, dispatch),
-	changeLanguage: bindActionCreators(setLanguage, dispatch),
-	logout: bindActionCreators(logout, dispatch),
-	getTickers: bindActionCreators(getTickers, dispatch),
 	getExchangeInfo: bindActionCreators(getExchangeInfo, dispatch),
 	logout: bindActionCreators(logout, dispatch),
 });
