@@ -2,19 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { isMobile } from 'react-device-detect';
-
-import {
-	IconTitle,
-	Dialog,
-	Accordion,
-	Notification,
-	MobileBarTabs,
-} from 'components';
+import { IconTitle, Accordion, MobileBarTabs } from 'components';
 import { TransactionsHistory } from 'containers';
 
 import { changeSymbol } from 'actions/orderbookAction';
-import { NOTIFICATIONS } from 'actions/appActions';
-import { createAddress, cleanCreateAddress } from 'actions/userAction';
 import {
 	BASE_CURRENCY,
 	CURRENCY_PRICE_FORMAT,
@@ -26,7 +17,7 @@ import withConfig from 'components/ConfigProvider/withConfig';
 
 import AssetsBlock from './AssetsBlock';
 import MobileWallet from './MobileWallet';
-import { IPaytotalWebHookData } from 'actions/verificationActions';
+import { STATIC_ICONS } from 'config/icons';
 
 class Wallet extends Component {
 	state = {
@@ -34,11 +25,6 @@ class Wallet extends Component {
 		sections: [],
 		mobileTabs: [],
 		isOpen: true,
-		dialogIsOpen: false,
-		selectedCurrency: '',
-		payStatus: '',
-		payMessage: '',
-		orderId: '',
 	};
 
 	componentDidMount() {
@@ -47,7 +33,6 @@ class Wallet extends Component {
 			this.props.balance,
 			this.props.prices,
 			this.state.isOpen,
-			this.props.wallets,
 			this.props.bankaccount,
 			this.props.coins,
 			this.props.pairs,
@@ -80,20 +65,12 @@ class Wallet extends Component {
 			nextProps.balance,
 			nextProps.prices,
 			this.state.isOpen,
-			nextProps.wallets,
 			nextProps.bankaccount,
 			nextProps.coins,
 			nextProps.pairs,
 			nextProps.totalAsset,
 			nextProps.oraclePrices
 		);
-
-		if (
-			nextProps.addressRequest.success === true &&
-			nextProps.addressRequest.success !== this.props.addressRequest.success
-		) {
-			this.onCloseDialog();
-		}
 	}
 
 	componentDidUpdate(_, prevState) {
@@ -107,7 +84,6 @@ class Wallet extends Component {
 				this.props.balance,
 				this.props.prices,
 				this.state.isOpen,
-				this.props.wallets,
 				this.props.bankaccount,
 				this.props.coins,
 				this.props.pairs,
@@ -152,7 +128,6 @@ class Wallet extends Component {
 		balance,
 		prices,
 		isOpen = false,
-		wallets,
 		bankaccount,
 		coins,
 		pairs,
@@ -166,7 +141,7 @@ class Wallet extends Component {
 			formatToCurrency(total, min)
 		);
 		const searchResult = this.getSearchResult(coins, balance, oraclePrices);
-		const { icons: ICONS } = this.props;
+		// const { icons: ICONS } = this.props;
 
 		const sections = [
 			{
@@ -180,7 +155,6 @@ class Wallet extends Component {
 						pairs={pairs}
 						totalAssets={totalAssets}
 						changeSymbol={changeSymbol}
-						wallets={wallets}
 						onOpenDialog={this.onOpenDialog}
 						bankaccount={bankaccount}
 						navigate={this.goToPage}
@@ -195,10 +169,10 @@ class Wallet extends Component {
 					stringId: 'TRADE_HISTORY',
 					text: STRINGS['TRADE_HISTORY'],
 					status: 'information',
-					iconId: 'BLUE_CLIP',
-					iconPath: ICONS['BLUE_CLIP'],
+					iconId: 'PAPER_CLIP',
+					iconPath: STATIC_ICONS['PAPER_CLIP'],
 					allowClick: true,
-					className: isOpen ? '' : 'wallet-notification',
+					className: isOpen ? 'paper-clip-icon' : 'paper-clip-icon wallet-notification',
 					onClick: () => {
 						this.props.router.push('/transactions');
 					},
@@ -211,7 +185,6 @@ class Wallet extends Component {
 				content: (
 					<MobileWallet
 						sections={sections}
-						wallets={wallets}
 						balance={balance}
 						prices={prices}
 						navigate={this.goToPage}
@@ -231,39 +204,14 @@ class Wallet extends Component {
 		this.props.router.push(path);
 	};
 
-	onOpenDialog = (selectedCurrency) => {
-		this.setState({ dialogIsOpen: true, selectedCurrency });
-		this.props.cleanCreateAddress();
-	};
-
-	onCloseDialog = () => {
-		this.setState({ dialogIsOpen: false, selectedCurrency: '' });
-	};
-
-	onCreateAddress = () => {
-		if (this.state.selectedCurrency && !this.props.addressRequest.error) {
-			this.props.createAddress(this.state.selectedCurrency);
-		}
-	};
-
 	setActiveTab = (activeTab) => {
 		this.setState({ activeTab });
 	};
 
 	render() {
-		const {
-			sections,
-			dialogIsOpen,
-			selectedCurrency,
-			activeTab,
-			mobileTabs,
-			payStatus,
-			payMessage,
-			orderId,
-		} = this.state;
-		const { activeTheme, addressRequest, coins } = this.props;
+		const { sections, activeTab, mobileTabs } = this.state;
+		const { icons: ICONS } = this.props;
 
-		console.log({ payStatus, payMessage, orderId });
 		if (mobileTabs.length === 0) {
 			return <div />;
 		}
@@ -281,11 +229,12 @@ class Wallet extends Component {
 						</div>
 					</div>
 				) : (
-					<div className="presentation_container apply_rtl">
+					<div className="presentation_container apply_rtl wallet-wrapper">
 						<IconTitle
 							stringId="WALLET_TITLE"
 							text={STRINGS['WALLET_TITLE']}
-							// iconPath={ICONS.BITCOIN_WALLET}
+							iconPath={ICONS['TAB_WALLET']}
+							iconId={STRINGS['WALLET_TITLE']}
 							textType="title"
 						/>
 						<div className="wallet-container">
@@ -293,49 +242,6 @@ class Wallet extends Component {
 						</div>
 					</div>
 				)}
-				<Dialog
-					isOpen={dialogIsOpen}
-					label="hollaex-modal"
-					className="app-dialog"
-					onCloseDialog={this.onCloseDialog}
-					shouldCloseOnOverlayClick={false}
-					theme={activeTheme}
-					showCloseText={true}
-					style={{ 'z-index': 100 }}
-				>
-					{dialogIsOpen && selectedCurrency && (
-						<Notification
-							type={NOTIFICATIONS.GENERATE_ADDRESS}
-							onBack={this.onCloseDialog}
-							onGenerate={this.onCreateAddress}
-							currency={selectedCurrency}
-							data={addressRequest}
-							coins={coins}
-						/>
-					)}
-				</Dialog>
-				<Dialog
-					isOpen={payStatus && payMessage && orderId}
-					label="hollaex-modal"
-					className="app-dialog"
-					onCloseDialog={() => {
-						this.setState({
-							payStatus: '',
-							payMessage: '',
-							orderId: '',
-						});
-						this.props.router.push('/wallet');
-					}}
-					shouldCloseOnOverlayClick={true}
-					theme={activeTheme}
-					showCloseText={true}
-					style={{ 'z-index': 100 }}
-				>
-					<Notification
-						type={NOTIFICATIONS.PAYMENT_STATUS}
-						data={{ status: payStatus, message: payMessage, orderId }}
-					/>
-				</Dialog>
 			</div>
 		);
 	}
@@ -347,18 +253,14 @@ const mapStateToProps = (store) => ({
 	pairs: store.app.pairs,
 	prices: store.orderbook.prices,
 	balance: store.user.balance,
-	addressRequest: store.user.addressRequest,
 	activeTheme: store.app.theme,
 	activeLanguage: store.app.language,
 	bankaccount: store.user.userData.bank_account,
-	wallets: store.user.crypto_wallet,
 	totalAsset: store.asset.totalAsset,
 	oraclePrices: store.asset.oraclePrices,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	createAddress: bindActionCreators(createAddress, dispatch),
-	cleanCreateAddress: bindActionCreators(cleanCreateAddress, dispatch),
 	changeSymbol: bindActionCreators(changeSymbol, dispatch),
 });
 

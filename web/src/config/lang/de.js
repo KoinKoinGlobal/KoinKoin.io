@@ -796,8 +796,8 @@ export default {
 	LOWEST_PRICE: 'Niedrigster Preis ({0})', // new
 	PHASE: 'Phase', // new
 	INCOMING: 'Eingehend', // new
-	PRICE_CURRENCY: 'PREIS ({0})',
-	AMOUNT_SYMBOL: 'BETRAG ({0})',
+	PRICE_CURRENCY: 'PREIS',
+	AMOUNT_SYMBOL: 'BETRAG',
 	MARKET_PRICE: 'Marktpreis',
 	ORDER_PRICE: 'Bestellpreis',
 	TOTAL_ORDER: 'Order Total',
@@ -919,8 +919,6 @@ export default {
 	WALLET_TABLE_AMOUNT_IN: `Betrag in {0}`,
 	WALLET_TABLE_TOTAL: 'Gesamtsumme',
 	WALLET_ALL_ASSETS: 'Alle Vermögenswerte',
-	WALLET_DEPOSIT_USD:
-		'Für Fiat-Währung D/W in verschiedenen Ländern und andere Wallet-Anfragen {0}', // new
 	HIDE_TEXT: 'Ausblenden',
 	PAGINATOR_FORMAT: '{0} / {1}',
 	ORDERBOOK_SELLERS: 'Verkäufer',

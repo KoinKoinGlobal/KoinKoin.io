@@ -11,6 +11,7 @@ import RadioField from './FormFields/RadioField';
 import EditableInputField from './FormFields/EditableInputField';
 import CaptchaField from './FormFields/Captcha';
 import ToggleField from './FormFields/ToggleField';
+import DumbField from './FormFields/DumbFieldForm';
 
 const renderFields = (fields = {}, callback) => {
 	return (
@@ -23,6 +24,7 @@ const renderFields = (fields = {}, callback) => {
 					name: key,
 					type,
 					validate,
+					ishorizontalfield,
 					...rest,
 				};
 
@@ -33,6 +35,8 @@ const renderFields = (fields = {}, callback) => {
 						return <Field component="input" {...commonProps} />;
 					case 'file':
 						return <Field component={FileField} {...commonProps} />;
+					case 'dumb':
+						return <Field component={DumbField} {...commonProps} />;
 					case 'select':
 					case 'autocomplete':
 						return (

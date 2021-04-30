@@ -21,6 +21,24 @@ export const WS_URL = config[ENV].WS_URL;
 export const PLUGIN_URL = config[ENV].PLUGIN_URL;
 export const NETWORK_API_URL = config[ENV].NETWORK_API_URL;
 
+export const DEFAULT_LANDING_SECTIONS = {
+	heading: {
+		name: 'Title/heading',
+		is_active: true,
+		order: 0,
+	},
+	market_list: {
+		name: 'Market list',
+		is_active: false,
+		order: 1,
+	},
+	quick_trade: {
+		name: 'Quick trade calculator',
+		is_active: false,
+		order: 2,
+	},
+};
+
 export const SOCIAL_ICONS = {
 	FACEBOOK: '/assets/icons/facebook.png',
 	LINKEDIN: '/assets/icons/linkedin.png',
@@ -102,6 +120,7 @@ export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE || 'en';
 
 export const TEMP_KEY_LANGUAGE_RTL = 'temp_key_language_rtl';
 export const TEMP_KEY_LANGUAGE_LTR = 'temp_key_language_ltr';
+export const LAST_UPDATED_NOTIFICATION_KEY = 'LAST_UPDATED_NOTIFICATION_TIME';
 
 export const BANK_WITHDRAWAL_BASE_FEE =
 	process.env.REACT_APP_BANK_WITHDRAWAL_BASE_FEE || 1;
@@ -112,10 +131,6 @@ export const BANK_WITHDRAWAL_MAX_DYNAMIC_FEE =
 export const BANK_WITHDRAWAL_MAX_AMOUNT_FOR_BASE_FEE =
 	process.env.REACT_APP_BANK_WITHDRAWAL_MAX_AMOUNT_FOR_BASE_FEE || 0;
 export const takerFee = 0;
-
-export const BANK_PAYMENT_LINK = '';
-export const MIN_VERIFICATION_LEVEL_TO_WITHDRAW = 2;
-export const MAX_VERIFICATION_LEVEL_TO_WITHDRAW = 5;
 
 export const EXPLORERS_ENDPOINT = (currency) => {
 	let endpoint = '';
@@ -201,7 +216,6 @@ export const TIME_ZONE = process.env.REACT_APP_TIMEZONE || 'GMT';
 export const TOKEN_EMAIL = 'token::email';
 export const TOKEN_MAX_AGE = 23 * 60 * 60;
 
-export const DISPLAY_LANDING = true;
 export const DEFAULT_URL = '/';
 
 // minimum level for a user to be able to create api tokens

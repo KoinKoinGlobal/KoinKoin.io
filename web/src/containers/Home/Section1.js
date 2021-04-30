@@ -6,7 +6,12 @@ import { FLEX_CENTER_CLASSES } from '../../config/constants';
 import CommonButton from '../../components/CommonButton';
 import OrderForm from '../../components/OrderForm';
 
-const Section1 = ({ style = {}, constants, icons = {} }) => {
+const Section1 = ({ style = {},
+	onClickScrollTo = () => {},
+	onClickLearnMore,
+	token,
+	icons: ICONS,
+}) => {
 	const renderSocialLinkBar = () => {
 		if (constants.links) {
 			const {
@@ -105,45 +110,44 @@ const Section1 = ({ style = {}, constants, icons = {} }) => {
 				)}
 				style={style}
 			>
-				<video src="assets/video/video.m4v" autoPlay loop muted></video>
-				<div
-					className={classnames(
-						'f-1',
-						...FLEX_CENTER_CLASSES,
-						'flex-column',
-						'content'
-					)}
-				>
-					<h1
-						className="display-3 font-weight-bold text-white my-3"
-						style={{ fontFamily: 'custom_9010' }}
-					>
+				<div className={classnames('f-1', ...FLEX_CENTER_CLASSES, 'flex-column')}>
+					<div className="home-title text-capitalize">
 						{STRINGS['HOME.SECTION_1_TITLE']}
-					</h1>
-					<div className="text-center mb-4">
-						<p className="lead font-weight-bold m-0">
-							{STRINGS['HOME.SECTION_1_TEXT_1']}
-						</p>
-						<p className="lead font-weight-bold">
-							{STRINGS['HOME.SECTION_1_TEXT_2']}
-						</p>
 					</div>
-					<CommonButton
-						className="btn-open-trading-account"
-						label={STRINGS['HOME.SECTION_1_BUTTON_LABEL']}
-						onClick={onClickSignupBtn}
-					/>
-					<OrderForm />
+					<div className="text-section text-center">
+						<div>{STRINGS['HOME.SECTION_1_TEXT_1']}</div>
+						<div>{STRINGS['HOME.SECTION_1_TEXT_2']}</div>
+					</div>
+					<div className={classnames('buttons-section', ...FLEX_CENTER_CLASSES)}>
+						<div
+							className={classnames(...BUTTONS_CLASSES, {
+								pointer: onClickLearnMore,
+							})}
+							onClick={onClickLearnMore}
+						>
+							{STRINGS['HOME.SECTION_1_BUTTON_1']}
+						</div>
+						{/*!token && (
+						<div
+							className={classnames(...BUTTONS_CLASSES, 'contrast', {
+								pointer: onClickRegister
+							})}
+							onClick={onClickRegister}
+						>
+							{STRINGS["REGISTER_TEXT"]}
+						</div>
+					)*/}
+					</div>
 				</div>
+				<EditWrapper iconId="ARROW_ARROW">
+					<div
+						className={classnames('pointer', 'flex-0', 'scroll-button')}
+						onClick={onClickScrollTo}
+					>
+						<ReactSVG src={ICONS['ARROW_ARROW']} />
+					</div>
+				</EditWrapper>
 			</div>
-			{/* <EditWrapper iconId="ARROW_ARROW">
-				<div
-					className={classnames('pointer', 'flex-0', 'scroll-button')}
-					onClick={onClickScrollTo}
-				>
-					<ReactSVG src={ICONS['ARROW_ARROW']} />
-				</div>
-			</EditWrapper> */}
 		</div>
 	);
 };

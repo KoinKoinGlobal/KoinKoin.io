@@ -53,13 +53,14 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		script: {
 			type: DataTypes.TEXT,
-			allowNull: false
+			allowNull: true
 		},
 		admin_view: {
 			type: DataTypes.TEXT
 		},
 		web_view: {
-			type: DataTypes.TEXT
+			type: DataTypes.JSONB,
+			defaultValue: []
 		}
 	}, {
 		timestamps: true,

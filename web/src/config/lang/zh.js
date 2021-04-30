@@ -751,8 +751,8 @@ export default {
 	PUBLIC_SALES: '实时成交', // ToDo
 	REMAINING: 'Remaining',
 	FULLFILLED: '{0} % Filled',
-	PRICE_CURRENCY: 'PRICE ({0})',
-	AMOUNT_SYMBOL: 'AMOUNT ({0})',
+	PRICE_CURRENCY: 'PRICE',
+	AMOUNT_SYMBOL: 'AMOUNT',
 	MARKET_PRICE: '市场价格',
 	ORDER_PRICE: '订购价格',
 	TOTAL_ORDER: '订单总数',
@@ -857,8 +857,6 @@ export default {
 	WALLET_TABLE_AMOUNT_IN: `Amount in {0}`,
 	WALLET_TABLE_TOTAL: '总计',
 	WALLET_ALL_ASSETS: '全部资产',
-	WALLET_DEPOSIT_USD:
-		'For fiat currency D/W in different countries and other wallet inquiries {0}.', // new
 	HIDE_TEXT: 'Hide',
 	PAGINATOR_FORMAT: '{0} / {1}',
 	ORDERBOOK_SELLERS: 'Sellers',
