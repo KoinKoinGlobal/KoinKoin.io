@@ -373,6 +373,18 @@ export const generateRoutes = (routes = []) => {
 					onEnter={requireAuth}
 				/>
 				<Route
+					path="fiat/:currency/withdraw"
+					name="FiatWithdraw"
+					component={FiatWithdraw}
+					onEnter={requireAuth}
+				/>
+				<Route
+					path="fiat/:currency/deposit"
+					name="FiatDeposit"
+					component={FiatDeposit}
+					onEnter={requireAuth}
+				/>
+				<Route
 					path="transactions"
 					name="Transactions"
 					component={TransactionsHistory}

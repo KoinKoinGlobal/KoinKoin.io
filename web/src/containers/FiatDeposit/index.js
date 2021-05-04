@@ -79,7 +79,7 @@ class Deposit extends Component {
 
 const mapStateToProps = (store) => ({
 	id: store.user.id,
-	crypto_wallet: store.user.crypto_wallet,
+	crypto_wallet: store.user.wallet,
 	balance: store.user.balance,
 	activeLanguage: store.app.language,
 	quoteData: store.orderbook.quoteData,
