@@ -58,6 +58,8 @@ class Wallet extends Component {
 			order_id,
 			sulte_apt_no,
 		});
+
+		console.log('wallets', this.props.wallets);
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
@@ -261,6 +263,7 @@ const mapStateToProps = (store) => ({
 	bankaccount: store.user.userData.bank_account,
 	totalAsset: store.asset.totalAsset,
 	oraclePrices: store.asset.oraclePrices,
+	wallets: store.user.wallet,
 });
 
 const mapDispatchToProps = (dispatch) => ({

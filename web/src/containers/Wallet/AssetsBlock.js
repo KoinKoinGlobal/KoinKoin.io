@@ -230,19 +230,15 @@ const AssetsBlock = ({
 									</td>
 									<th className="td-amount" />
 									<td className="td-wallet">
-										{/* {wallets[key] || is_fiat ? (
+										{is_fiat ? (
 											<div className="d-flex justify-content-between deposit-withdrawal-wrapper">
 												<ActionNotification
 													stringId="WALLET_BUTTON_BASE_DEPOSIT"
 													text={STRINGS['WALLET_BUTTON_BASE_DEPOSIT']}
 													iconId="BLUE_PLUS"
 													iconPath={ICONS['BLUE_PLUS']}
-													onClick={() =>
-														navigate(
-															`${is_fiat ? 'fiat' : 'wallet'}/${key}/deposit`
-														)
-													}
-													className="csv-action"
+													onClick={() => navigate(`fiat/${key}/deposit`)}
+													className="csv-action action-button-wrapper"
 													showActionText={isMobile}
 													disable={!is_fiat && !allow_deposit}
 												/>
@@ -251,12 +247,8 @@ const AssetsBlock = ({
 													text={STRINGS['WALLET_BUTTON_BASE_WITHDRAW']}
 													iconId="BLUE_PLUS"
 													iconPath={ICONS['BLUE_PLUS']}
-													onClick={() =>
-														navigate(
-															`${is_fiat ? 'fiat' : 'wallet'}/${key}/withdraw`
-														)
-													}
-													className="csv-action"
+													onClick={() => navigate(`fiat/${key}/withdraw`)}
+													className="csv-action action-button-wrapper"
 													showActionText={isMobile}
 													disable={!is_fiat && !allow_withdrawal}
 												/>
@@ -284,29 +276,7 @@ const AssetsBlock = ({
 													disable={!allow_withdrawal}
 												/>
 											</div>
-										)} */}
-										<div className="d-flex justify-content-between deposit-withdrawal-wrapper">
-											<ActionNotification
-												stringId="WALLET_BUTTON_BASE_DEPOSIT"
-												text={STRINGS['WALLET_BUTTON_BASE_DEPOSIT']}
-												iconId="BLUE_PLUS"
-												iconPath={ICONS['BLUE_PLUS']}
-												onClick={() => navigate(`wallet/${key}/deposit`)}
-												className="csv-action action-button-wrapper"
-												showActionText={isMobile}
-												disable={!allow_deposit}
-											/>
-											<ActionNotification
-												stringId="WALLET_BUTTON_BASE_WITHDRAW"
-												text={STRINGS['WALLET_BUTTON_BASE_WITHDRAW']}
-												iconId="BLUE_PLUS"
-												iconPath={ICONS['BLUE_PLUS']}
-												onClick={() => navigate(`wallet/${key}/withdraw`)}
-												className="csv-action action-button-wrapper"
-												showActionText={isMobile}
-												disable={!allow_withdrawal}
-											/>
-										</div>
+										)}
 									</td>
 									{!isMobile && (
 										<td>

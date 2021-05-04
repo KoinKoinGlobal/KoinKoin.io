@@ -1387,7 +1387,8 @@ table th {
   .section_5 .step-card .step-body .title {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 8px; }
+    margin-bottom: 8px;
+    color: black; }
   .section_5 .step-card .step-body .desc {
     font-size: 1.1rem;
     color: #768493;

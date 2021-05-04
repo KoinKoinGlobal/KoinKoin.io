@@ -251,6 +251,26 @@ export const generateRoutes = (routes = []) => {
 	return (
 		<Router history={browserHistory}>
 			<Route path="lang/:locale" component={createLocalizedRoutes} />
+			<Route
+				path="/contact_us"
+				name="Contact Us"
+				component={() => <StaticPage path={'contact_us'} />}
+			/>
+			<Route
+				path="/about_us"
+				name="About Us"
+				component={() => <StaticPage path={'about_us'} />}
+			/>
+			<Route
+				path="/terms"
+				name="Terms"
+				component={() => <StaticPage path={'terms'} />}
+			/>
+			<Route
+				path="/policy"
+				name="Policy"
+				component={() => <StaticPage path={'policy'} />}
+			/>
 			<Route component={AuthContainer} {...noAuthRoutesCommonProps}>
 				<Route path="login" name="Login" component={Login} />
 				<Route path="signup" name="signup" component={Signup} />
@@ -278,7 +298,7 @@ export const generateRoutes = (routes = []) => {
 				/>
 			</Route>
 			<Route component={Container}>
-				<Route path="/" name="Home" component={Home} onEnter={checkLanding} />
+				<Route path="/" name="Home" component={Home} />
 				{isMobile ? (
 					<Route
 						path="/home"
@@ -350,6 +370,18 @@ export const generateRoutes = (routes = []) => {
 					path="wallet/:currency/withdraw"
 					name="Withdraw"
 					component={Withdraw}
+					onEnter={requireAuth}
+				/>
+				<Route
+					path="fiat/:currency/withdraw"
+					name="FiatWithdraw"
+					component={FiatWithdraw}
+					onEnter={requireAuth}
+				/>
+				<Route
+					path="fiat/:currency/deposit"
+					name="FiatDeposit"
+					component={FiatDeposit}
 					onEnter={requireAuth}
 				/>
 				<Route
