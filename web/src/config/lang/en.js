@@ -41,8 +41,9 @@ const nestedContent = {
 		TEXT:
 			'Feel free to {0} for more information and any issues by sending us an email',
 	},
-	HELP_TELEGRAM_TEXT: 'Check out open API documentation:',
-	HELP_TELEGRAM_LINK: 'https://apidocs.hollaex.com',
+	HELP_TELEGRAM_TEXT: 'Check out our Knowledge Base:',
+	HELP_TELEGRAM_LINK: 'https://koinkoin.zendesk.com',
+	HELP_EXIR_TUTORIAL_LINK: 'support@koinkoin.com',
 	NEED_HELP_TEXT: 'Need help?', // new
 	HELP_TEXT: 'help',
 	SUCCESS_TEXT: 'Success',
@@ -59,12 +60,13 @@ const nestedContent = {
 	CONVERT: 'Convert', // new
 	TO: 'To', // new
 	HOME: {
+		SECTION_1_TITLE: 'CRYPTOCURRENCY MADE EASY FOR EVERYONE',
+		SECTION_1_BUTTON_LABEL: 'OPEN TRADING ACCOUNT',
 		MAIN_TITLE: 'Cryptocurrency trading exchange',
 		MAIN_TEXT:
 			'Easily buy and sell crypto assets. Simply sign up with your email and trade the major crypto assets 24/7.',
 		TRADE_CRYPTO: 'Start trading',
 		VIEW_EXCHANGE: 'View exchange',
-		SECTION_1_TITLE: 'Welcome to HollaEx Exchange Kit!',
 		SECTION_1_TEXT_1:
 			'Security First | Best prices at Lightningfast Speeds| Powered for A Borderless Africa & A Borderless World.',
 		SECTION_1_TEXT_2:
@@ -1009,6 +1011,8 @@ const nestedContent = {
 	WALLET_TABLE_AMOUNT_IN: `Amount in {0}`,
 	WALLET_TABLE_TOTAL: 'Grand Total',
 	WALLET_ALL_ASSETS: 'All Assets',
+	WALLET_DEPOSIT_USD:
+		'For fiat currency D/W in different countries and other wallet inquiries {0}.', // new
 	WALLET_HIDE_ZERO_BALANCE: 'Hide zero balance',
 	WALLET_ESTIMATED_TOTAL_BALANCE: 'Estimated Total Balance',
 	WALLET_ASSETS_SEARCH_TXT: 'Search',
