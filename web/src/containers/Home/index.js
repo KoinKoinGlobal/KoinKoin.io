@@ -268,12 +268,6 @@ class Home extends Component {
 						constants={constants}
 					/>
 
-					<AppFooter
-						theme={activeTheme}
-						onChangeLanguage={this.onChangeLanguage}
-						activeLanguage={activeLanguage}
-						constants={constants}
-					/>
 					<Dialog
 						isOpen={this.state.openCookieModal}
 						label="hollaex-modal"
