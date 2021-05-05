@@ -299,14 +299,14 @@ export const generateRoutes = (routes = []) => {
 			</Route>
 			<Route component={Container}>
 				<Route path="/" name="Home" component={Home} />
-				{isMobile ? (
+				{/* {isMobile ? (
 					<Route
 						path="/home"
 						name="Home"
 						component={MobileHome}
 						onEnter={requireAuth}
 					/>
-				) : null}
+				) : null} */}
 				<Route
 					path="account"
 					name="Account"
