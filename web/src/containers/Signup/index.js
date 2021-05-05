@@ -114,23 +114,23 @@ class Signup extends Component {
 			eventCategory: 'Account_SignUp',
 			eventAction: 'Signed_Up',
 		});
-
-		if (this.state.isAnswers) {
-			const answers = this.state.answers;
+		if (true) {
+			// if (this.state.isAnswers) {
+			// const answers = this.state.answers;
 			return performSignup(values)
 				.then((res) => {
 					this.setState({ success: true });
-					performQuestions({
-						answers,
-						email: values.email,
-						password: values.password,
-					})
-						.then((re) => {
-							console.log(re);
-						})
-						.catch((er) => {
-							console.log(er);
-						});
+					// performQuestions({
+					// 	answers,
+					// 	email: values.email,
+					// 	password: values.password,
+					// })
+					// 	.then((re) => {
+					// 		console.log(re);
+					// 	})
+					// 	.catch((er) => {
+					// 		console.log(er);
+					// 	});
 				})
 				.catch((error) => {
 					const errors = {};
