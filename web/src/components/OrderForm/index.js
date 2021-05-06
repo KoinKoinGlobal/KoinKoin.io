@@ -47,7 +47,6 @@ const OrderForm = (props) => {
 		const data = [];
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
-		console.log('user', user);
 		Object.keys(coins).forEach((currency) => {
 			const { symbol, min, type } = coins[currency] || DEFAULT_COIN_DATA;
 			// let is_fiat = coins[currency].meta && !!coins[currency].meta.is_fiat;
@@ -71,7 +70,8 @@ const OrderForm = (props) => {
 			if (!is_fiat) {
 				arr.push({
 					...coins[currency],
-					walletAddress: wallets[symbol],
+					walletAddress: wallets.find((item) => item.currency == symbol)
+						?.address,
 					isCryto: !is_fiat,
 					balance: balancePercent,
 					balanceFormat: formatToCurrency(currencyBalance, min),
@@ -84,7 +84,8 @@ const OrderForm = (props) => {
 			} else {
 				arr.push({
 					...coins[currency],
-					walletAddress: wallets[symbol],
+					walletAddress: wallets.find((item) => item.currency == symbol)
+						?.address,
 					isCryto: !is_fiat,
 					balance: balancePercent,
 					balanceFormat: formatToCurrency(currencyBalance, min),
@@ -96,6 +97,7 @@ const OrderForm = (props) => {
 				});
 			}
 		});
+		console.log({ arr });
 		setOptions(arr);
 	}, [props]);
 
@@ -130,7 +132,7 @@ const OrderForm = (props) => {
 		const currency_amount = null;
 		const currency = 'USD';
 		const walletAddress = currentCtytoItem.walletAddress;
-
+		console.log({ currentCtytoItem });
 		if (isLoggedIn()) {
 			if (walletAddress) {
 				setLoading(true);
