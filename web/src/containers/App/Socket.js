@@ -297,6 +297,7 @@ class Container extends Component {
 
 		privateSocket.onmessage = (evt) => {
 			const data = JSON.parse(evt.data);
+			console.log('socket data', data);
 			switch (data.topic) {
 				case 'trade':
 					if (data.action === 'partial' || 'insert') {
@@ -427,6 +428,7 @@ class Container extends Component {
 							this.props.removeOrder(data.data);
 						}
 					}
+					// this.props.setPairsTradesFetched();
 					break;
 				// case 'userTrade':
 				// 	this.props.addUserTrades(data.data);
