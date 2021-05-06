@@ -33,6 +33,7 @@ import { formatAverage, formatBaseAmount } from 'utils/currency';
 import { getLastMonthVolume } from './components/utils';
 import { getUserReferralCount } from '../../actions/userAction';
 import withConfig from 'components/ConfigProvider/withConfig';
+import OrderForm from 'components/OrderForm';
 
 class Summary extends Component {
 	state = {
@@ -184,6 +185,14 @@ class Summary extends Component {
 					/>
 				) : (
 					<div>
+						<div className="w-100">
+							<SummaryBlock title={STRINGS['QUICK_BUY']}>
+								<div>{STRINGS['BUY_COIN_INSTANTLY']}</div>
+								<div className="order-form-wrapper">
+									<OrderForm />
+								</div>
+							</SummaryBlock>
+						</div>
 						<div className="d-flex">
 							<div className="summary-section_1 trader-account-wrapper d-flex">
 								<SummaryBlock title={traderAccTitle} wrapperClassname="w-100">
