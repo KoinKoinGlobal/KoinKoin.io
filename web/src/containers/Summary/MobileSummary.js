@@ -18,6 +18,7 @@ import {
 } from '../../config/constants';
 // import { formatAverage, formatBaseAmount } from '../../utils/currency';
 import STRINGS from '../../config/localizedStrings';
+import OrderForm from 'components/OrderForm';
 
 const MobileSummary = ({
 	user,
@@ -66,6 +67,14 @@ const MobileSummary = ({
 						onUpgradeAccount={onUpgradeAccount}
 						verification_level={verification_level}
 					/>
+				</SummaryBlock>
+			</div>
+			<div className="w-100">
+				<SummaryBlock title={STRINGS['QUICK_BUY']}>
+					<div>{STRINGS['BUY_COIN_INSTANTLY']}</div>
+					<div className="order-form-wrapper">
+						<OrderForm />
+					</div>
 				</SummaryBlock>
 			</div>
 			{/*<div className="summary-section_1 requirement-wrapper d-flex w-100">
