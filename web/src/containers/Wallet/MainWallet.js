@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { isMobile } from 'react-device-detect';
-import { IconTitle, Accordion, MobileBarTabs } from 'components';
+import {
+	IconTitle,
+	Accordion,
+	MobileBarTabs,
+	Dialog,
+	Notification,
+} from 'components';
 import { TransactionsHistory } from 'containers';
 
 import { changeSymbol } from 'actions/orderbookAction';
@@ -19,6 +25,7 @@ import AssetsBlock from './AssetsBlock';
 import MobileWallet from './MobileWallet';
 import { STATIC_ICONS } from 'config/icons';
 import { IPaytotalWebHookData } from 'actions/verificationActions';
+import { NOTIFICATIONS } from 'actions/appActions';
 
 class Wallet extends Component {
 	state = {
@@ -26,6 +33,9 @@ class Wallet extends Component {
 		sections: [],
 		mobileTabs: [],
 		isOpen: true,
+		payStatus: '',
+		payMessage: '',
+		orderId: '',
 	};
 
 	componentDidMount() {
@@ -214,8 +224,15 @@ class Wallet extends Component {
 	};
 
 	render() {
-		const { sections, activeTab, mobileTabs } = this.state;
-		const { icons: ICONS } = this.props;
+		const {
+			sections,
+			activeTab,
+			mobileTabs,
+			payStatus,
+			payMessage,
+			orderId,
+		} = this.state;
+		const { icons: ICONS, activeTheme } = this.props;
 
 		if (mobileTabs.length === 0) {
 			return <div />;
@@ -247,6 +264,28 @@ class Wallet extends Component {
 						</div>
 					</div>
 				)}
+				<Dialog
+					isOpen={payStatus && payMessage && orderId}
+					label="hollaex-modal"
+					className="app-dialog"
+					onCloseDialog={() => {
+						this.setState({
+							payStatus: '',
+							payMessage: '',
+							orderId: '',
+						});
+						this.props.router.push('/wallet');
+					}}
+					shouldCloseOnOverlayClick={true}
+					theme={activeTheme}
+					showCloseText={true}
+					style={{ 'z-index': 100 }}
+				>
+					<Notification
+						type={NOTIFICATIONS.PAYMENT_STATUS}
+						data={{ status: payStatus, message: payMessage, orderId }}
+					/>
+				</Dialog>
 			</div>
 		);
 	}

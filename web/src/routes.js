@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import ReactGA from 'react-ga';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 
 import {
 	App as Container,
@@ -35,7 +35,7 @@ import {
 	UserFees,
 	PATHS,
 	AdminOrders,
-	MobileHome,
+	// MobileHome,
 	Broker,
 	Plugins,
 	// PluginServices,
@@ -171,14 +171,14 @@ function loggedIn(nextState, replace) {
 	}
 }
 
-const checkLanding = (nextState, replace) => {
-	console.log('checklanding app', store.getState().app);
-	if (!store.getState().app.home_page) {
-		replace({
-			pathname: '/login',
-		});
-	}
-};
+// const checkLanding = (nextState, replace) => {
+// 	console.log('checklanding app', store.getState().app);
+// 	if (!store.getState().app.home_page) {
+// 		replace({
+// 			pathname: '/login',
+// 		});
+// 	}
+// };
 
 const logOutUser = () => {
 	if (getToken()) {

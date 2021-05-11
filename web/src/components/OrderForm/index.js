@@ -43,7 +43,7 @@ const OrderForm = (props) => {
 	const [options, setOptions] = useState([]);
 
 	useEffect(() => {
-		const { wallets, balance, prices, coins, icons, user } = props;
+		const { wallets, balance, prices, coins, icons } = props;
 		const data = [];
 		const totalAssets = calculateBalancePrice(balance, prices, coins);
 		const arr = [];
@@ -70,7 +70,7 @@ const OrderForm = (props) => {
 			if (!is_fiat) {
 				arr.push({
 					...coins[currency],
-					walletAddress: wallets.find((item) => item.currency == symbol)
+					walletAddress: wallets.find((item) => item.currency === symbol)
 						?.address,
 					isCryto: !is_fiat,
 					balance: balancePercent,
@@ -84,7 +84,7 @@ const OrderForm = (props) => {
 			} else {
 				arr.push({
 					...coins[currency],
-					walletAddress: wallets.find((item) => item.currency == symbol)
+					walletAddress: wallets.find((item) => item.currency === symbol)
 						?.address,
 					isCryto: !is_fiat,
 					balance: balancePercent,

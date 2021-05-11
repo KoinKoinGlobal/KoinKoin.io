@@ -7,7 +7,6 @@ import classnames from 'classnames';
 // import { getThemeClass } from '../../utils/theme';
 import EventListener from 'react-event-listener';
 import STRINGS from '../../config/localizedStrings';
-import { AppFooter } from '../../components';
 import { Link } from 'react-router';
 import { isLoggedIn } from '../../utils/token';
 // Actions

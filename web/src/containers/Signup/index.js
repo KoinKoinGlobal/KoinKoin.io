@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import { SubmissionError, change, submit } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import { performSignup, performQuestions } from '../../actions/authAction';
+import {
+	performSignup,
+	// performQuestions
+} from '../../actions/authAction';
 import SignupForm, { generateFormFields, FORM_NAME } from './SignupForm';
 import SignupSuccess from './SignupSuccess';
 import { ContactForm } from '../';
