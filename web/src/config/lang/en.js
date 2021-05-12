@@ -1214,7 +1214,7 @@ const nestedContent = {
 	QUICK_BUY: 'Quick Buy',
 	CRYPTOCURRENCY_AMOUNT_REQUIRED:
 		'The cryptocurrenty amount must be greater than 0',
-	BUY_COIN_INSTANTLY: 'Buy coin instantly',
+	BUY_COIN_INSTANTLY: 'Buy coin instantly with credit or debit card',
 	SUMMARY: {
 		TITLE: 'Summary',
 		TINY_PINK_SHRIMP_TRADER: 'Tiny Pink Shrimp Trader',
