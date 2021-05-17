@@ -10,7 +10,7 @@ import {
 import renderFields from '../../components/Form/factoryFields';
 import { Button, IconTitle, HeaderSection } from '../../components';
 import STRINGS from '../../config/localizedStrings';
-import { verifyBankData } from '../../actions/verificationActions';
+import { verifyBankData, verifyBVN } from '../../actions/verificationActions';
 import { getErrorLocalized } from '../../utils/errors';
 import { isMobile } from 'react-device-detect';
 import { EditWrapper } from 'components';
@@ -20,6 +20,8 @@ const FORM_NAME = 'BankVerification';
 class BankVerification extends Component {
 	state = {
 		formFields: {},
+		bvnFields: {},
+		bvnVisible: false,
 	};
 
 	componentDidMount() {
@@ -70,24 +72,90 @@ class BankVerification extends Component {
 			fullWidth: isMobile,
 			ishorizontalfield: true,
 		};
-		this.setState({ formFields });
+		const bvnFields = {};
+
+		bvnFields.bvn = {
+			type: 'text',
+			stringId:
+				'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.BVN_LABEL,USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.BVN_PLACEHOLDER',
+			label:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.BVN_LABEL'
+				],
+			placeholder:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.BVN_PLACEHOLDER'
+				],
+			validate: [required],
+			fullWidth: isMobile,
+			ishorizontalfield: true,
+		};
+
+		bvnFields.first_name = {
+			type: 'text',
+			stringId:
+				'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.FIRST_NAME_LABEL,USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.FIRST_NAME_PLACEHOLDER',
+			label:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.FIRST_NAME_LABEL'
+				],
+			placeholder:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.FIRST_NAME_PLACEHOLDER'
+				],
+			validate: [required],
+			fullWidth: isMobile,
+			ishorizontalfield: true,
+		};
+		bvnFields.last_name = {
+			type: 'text',
+			stringId:
+				'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.LAST_NAME_LABEL,USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.LAST_NAME_PLACEHOLDER',
+			label:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.LAST_NAME_LABEL'
+				],
+			placeholder:
+				STRINGS[
+					'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.LAST_NAME_PLACEHOLDER'
+				],
+			validate: [required],
+			fullWidth: isMobile,
+			ishorizontalfield: true,
+		};
+		this.setState({ formFields, bvnFields });
 	};
 
-	handleSubmit = ({ ...rest }) => {
-		return verifyBankData(rest)
-			.then(({ data }) => {
-				this.props.moveToNextStep('bank', {
-					bank_data: data,
-				});
-				this.props.setActivePageContent('email');
-			})
-			.catch((err) => {
+	handleSubmit = async ({ ...rest }) => {
+		const { bvnVisible } = this.state;
+		if (bvnVisible) {
+			try {
+				const res = await verifyBVN(rest);
+				console.log({ res });
+			} catch (err) {
+				console.log({ err });
 				const error = { _error: err.message };
 				if (err.response && err.response.data) {
-					error._error = err.response.data.message;
+					error._error = err.response.data.error;
 				}
+				console.log({ error });
 				throw new SubmissionError(error);
-			});
+			}
+		}
+		// return verifyBankData(rest)
+		// 	.then(({ data }) => {
+		// 		this.props.moveToNextStep('bank', {
+		// 			bank_data: data,
+		// 		});
+		// 		this.props.setActivePageContent('email');
+		// 	})
+		// 	.catch((err) => {
+		// 		const error = { _error: err.message };
+		// 		if (err.response && err.response.data) {
+		// 			error._error = err.response.data.message;
+		// 		}
+		// 		throw new SubmissionError(error);
+		// 	});
 	};
 
 	onGoBack = () => {
@@ -95,6 +163,9 @@ class BankVerification extends Component {
 		this.props.handleBack('bank');
 	};
 
+	setBvnVisible = (bvnVisible) => {
+		this.setState({ bvnVisible });
+	};
 	render() {
 		const {
 			handleSubmit,
@@ -106,7 +177,8 @@ class BankVerification extends Component {
 			icon,
 			// iconId,
 		} = this.props;
-		const { formFields } = this.state;
+		const { formFields, bvnFields, bvnVisible } = this.state;
+		console.log({ formFields });
 		return (
 			<div className="presentation_container apply_rtl verification_container">
 				<IconTitle
@@ -151,6 +223,32 @@ class BankVerification extends Component {
 							</ul>
 						</HeaderSection>
 						{renderFields(formFields)}
+						<div className="d-flex align-items-center">
+							<EditWrapper stringId="USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.QUESTION">
+								{
+									STRINGS[
+										'USER_VERIFICATION.BANK_ACCOUNT_FORM.FORM_FIELDS.BVN.QUESTION'
+									]
+								}
+							</EditWrapper>
+							<input
+								type="radio"
+								name="nationality"
+								aria-label="Checkbox for following text input"
+								class="ml-3"
+								onClick={() => this.setBvnVisible(true)}
+							/>
+							<span>Yes</span>
+							<input
+								type="radio"
+								name="nationality"
+								aria-label="Checkbox for following text input"
+								class="ml-2"
+								onClick={() => this.setBvnVisible(false)}
+							/>
+							<span>No</span>
+						</div>
+						{bvnVisible && renderFields(bvnFields)}
 						{error && (
 							<div className="warning_text">{getErrorLocalized(error)}</div>
 						)}

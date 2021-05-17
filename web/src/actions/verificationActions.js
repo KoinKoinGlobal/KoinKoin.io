@@ -11,7 +11,10 @@ const VERIFICATION_ENDPOINTS = {
 	FLUTTERWAVE_CREDIT: `/plugins/deposit/credit/pg-flutterwave`,
 	IPAYTOTAL_WEBHOOK: `/plugins/deposit/credit/pg-ipaytotal`,
 	IPAYTOTALTRANSACTION: 'https://ipaytotal.solutions/api/get/transaction',
+	VERIFYME_BVN: 'https://vapi.verifyme.ng/v1/verifications/identities/bvn/',
 };
+
+const VERIFYME_API_KEY = '';
 
 export const getUserData = () => axios.get(VERIFICATION_ENDPOINTS.GET_USER);
 
@@ -33,6 +36,17 @@ export const verifyBankData = (values) => {
 	return axios.post(VERIFICATION_ENDPOINTS.VERIFY_BANK, body);
 };
 
+export const verifyBVN = (values) => {
+	const body = {
+		firstname: values.first_name,
+		lastname: values.last_name,
+	};
+	return axios.post(VERIFICATION_ENDPOINTS.VERIFYME_BVN + values.bvn, body, {
+		headers: {
+			Authorization: 'Bearer ' + VERIFYME_API_KEY,
+		},
+	});
+};
 export const paymentData = (values) => {
 	// console.log(values, 'IpayTotal Values');
 	// console.log(VERIFICATION_ENDPOINTS.PAYMENT_DATA, 'Url');

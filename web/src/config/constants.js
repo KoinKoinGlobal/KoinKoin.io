@@ -344,3 +344,6 @@ export const FIAT_WITHDRAW_COUNTRIES = [
 	{ label: 'South Africa', value: 'ZA', currency: 'zar' },
 	{ label: 'Tanzania', value: 'TZ', currency: 'tzs' },
 ];
+
+export const GOOGLE_CLIENT_ID =
+	'285569176074-qis05o9m89oaojv2sh170548mciioj0h.apps.googleusercontent.com';

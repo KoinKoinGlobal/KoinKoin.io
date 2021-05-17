@@ -322,3 +322,7 @@ export const getUserLogins = ({ limit = 50, page = 1, ...rest }) => {
 			});
 	};
 };
+
+export const getUserByEmail = (email) => {
+	return axios.post(`${PLUGIN_URL}/plugins/user/get-user-by-email`, { email });
+};

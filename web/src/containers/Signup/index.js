@@ -7,6 +7,7 @@ import { SubmissionError, change, submit } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import {
 	performSignup,
+	performSignupWithGoogle,
 	// performQuestions
 } from '../../actions/authAction';
 import SignupForm, { generateFormFields, FORM_NAME } from './SignupForm';
@@ -17,6 +18,8 @@ import { FLEX_CENTER_CLASSES } from 'config/constants';
 import STRINGS from '../../config/localizedStrings';
 import withConfig from 'components/ConfigProvider/withConfig';
 import QuestionaireContent from './QuestionaireContent';
+
+import { getUserByEmail } from '../../actions/userAction';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-135625192-1');
@@ -110,6 +113,34 @@ class Signup extends Component {
 			email = window.location.search.split('?email')[1];
 		}
 		return email;
+	};
+
+	onSubmitGoogleLogin = (values) => {
+		const { email } = values;
+		console.log({ values });
+
+		return getUserByEmail(email)
+			.then((res) => {
+				console.log({ res });
+				if (res.data) {
+					alert('User already exist');
+				} else {
+					ReactGA.ga('send', 'event', {
+						eventCategory: 'Account_SignUp',
+						eventAction: 'Signed_Up',
+					});
+					return performSignupWithGoogle(values)
+						.then((res) => {
+							this.setState({ success: true });
+						})
+						.catch((error) => {
+							console.log({ error });
+						});
+				}
+			})
+			.catch((err) => {
+				console.log({ err });
+			});
 	};
 
 	onSubmitSignup = (values) => {
@@ -301,6 +332,7 @@ class Signup extends Component {
 					>
 						<SignupForm
 							onSubmit={this.onSubmitSignup}
+							onSubmitGoogleLogin={this.onSubmitGoogleLogin}
 							formFields={formFields}
 						/>
 						{isMobile && <BottomLinks />}

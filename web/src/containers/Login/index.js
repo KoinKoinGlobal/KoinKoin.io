@@ -10,9 +10,18 @@ import {
 	performLogin,
 	storeLoginResult,
 	setLogoutMessage,
+	performSigninWithGoogle,
 } from '../../actions/authAction';
+import { getUserByEmail } from '../../actions/userAction';
 import LoginForm, { FORM_NAME } from './LoginForm';
-import { Dialog, OtpForm, IconTitle, Notification } from '../../components';
+import {
+	Dialog,
+	OtpForm,
+	IconTitle,
+	Notification,
+	MobileBarBack,
+} from '../../components';
+import SignupSuccess from '../Signup/SignupSuccess';
 import { NOTIFICATIONS } from '../../actions/appActions';
 import { errorHandler } from '../../components/OtpForm/utils';
 import { FLEX_CENTER_CLASSES } from '../../config/constants';
@@ -39,6 +48,7 @@ class Login extends Component {
 		termsDialogIsOpen: false,
 		depositDialogIsOpen: false,
 		token: '',
+		googleSignupSuccess: false,
 	};
 
 	componentDidMount() {
@@ -93,6 +103,7 @@ class Login extends Component {
 	};
 
 	onSubmitLogin = (values) => {
+		console.log({ values });
 		const service = this.getServiceParam();
 		if (service) {
 			values.service = service;
@@ -110,6 +121,10 @@ class Login extends Component {
 				else this.redirectToHome();
 			})
 			.catch((err) => {
+				if (values.provider === 'google') {
+					console.log(err);
+					return;
+				}
 				const _error =
 					err.response && err.response.data
 						? err.response.data.message
@@ -133,6 +148,39 @@ class Login extends Component {
 					}
 					throw new SubmissionError(error);
 				}
+			});
+	};
+
+	onSubmitGoogleLogin = (values) => {
+		const { email } = values;
+		console.log({ values });
+
+		return getUserByEmail(email)
+			.then((res) => {
+				console.log({ res });
+				if (res.data) {
+					return performSigninWithGoogle(values)
+						.then((res) => {
+							if (res.data.token) this.setState({ token: res.data.token });
+							if (res.data && res.data.callbackUrl)
+								this.redirectToService(res.data.callbackUrl);
+							else this.redirectToHome();
+						})
+						.catch((err) => {
+							if (values.provider === 'google') {
+								console.log(err);
+								return;
+							}
+						});
+				} else {
+					alert("User doesn't exist");
+					const error = {};
+					error._error = "User doesn't exist";
+					throw new SubmissionError(error);
+				}
+			})
+			.catch((err) => {
+				console.log({ err });
 			});
 	};
 
@@ -184,7 +232,20 @@ class Login extends Component {
 			constants = {},
 			icons: ICONS,
 		} = this.props;
-		const { otpDialogIsOpen, logoutDialogIsOpen } = this.state;
+		const {
+			otpDialogIsOpen,
+			logoutDialogIsOpen,
+			googleSignupSuccess,
+		} = this.state;
+
+		if (googleSignupSuccess) {
+			return (
+				<div>
+					{isMobile && <MobileBarBack onBackClick={this.onBackActiveEmail} />}
+					<SignupSuccess activeTheme={activeTheme} />
+				</div>
+			);
+		}
 
 		return (
 			<div className={classnames(...FLEX_CENTER_CLASSES, 'flex-column', 'f-1')}>
@@ -227,7 +288,11 @@ class Login extends Component {
 							'w-100'
 						)}
 					>
-						<LoginForm onSubmit={this.onSubmitLogin} theme={activeTheme} />
+						<LoginForm
+							onSubmit={this.onSubmitLogin}
+							onSubmitGoogleLogin={this.onSubmitGoogleLogin}
+							theme={activeTheme}
+						/>
 						{isMobile && <BottomLink />}
 					</div>
 				</div>
