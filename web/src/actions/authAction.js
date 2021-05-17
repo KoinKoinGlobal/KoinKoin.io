@@ -54,6 +54,7 @@ export function verifyVerificationCode(data) {
 
 export const performLogin = (values) =>
 	axios.post('/login', values).then((res) => {
+		console.log('login', res);
 		storeLoginResult(res.data.token);
 		return res;
 	});
@@ -69,6 +70,16 @@ export const storeLoginResult = (token) => {
 };
 
 export const performSignup = (values) => axios.post('/signup', values);
+export const performSignupWithGoogle = (values) =>
+	axios.post(`${PLUGIN_URL}/plugins/user/signup-with-google`, values);
+export const performSigninWithGoogle = (values) =>
+	axios
+		.post(`${PLUGIN_URL}/plugins/user/signin-with-google`, values)
+		.then((res) => {
+			storeLoginResult(res.data.token);
+			return res;
+		});
+
 export const performQuestions = (values) =>
 	axios.post('/plugins/questionaire/save', values, { baseURL: PLUGIN_URL });
 

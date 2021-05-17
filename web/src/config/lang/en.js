@@ -421,6 +421,7 @@ const nestedContent = {
 		TITLE_USER_DOCUMENTATION: 'Identification',
 		TITLE_ID_DOCUMENTS: 'Upload',
 		TITLE_BANK_ACCOUNT: 'Bank Account',
+		TITLE_BVN: 'Bank Verification Number ( For Nigerian Users Only )',
 		TITLE_MOBILE_PHONE: 'Mobile Phone',
 		TITLE_PERSONAL_INFORMATION: 'Personal Information',
 		VERIFY_EMAIL: 'Verify email',
@@ -491,9 +492,11 @@ const nestedContent = {
 				FIRST_NAME_LABEL: 'First name',
 				FIRST_NAME_PLACEHOLDER:
 					'Type your first name as it appears on your identity document',
+				FIRST_NAME_BVN_PLACEHOLDER: 'Type your first name to verify',
 				LAST_NAME_LABEL: 'Last name',
 				LAST_NAME_PLACEHOLDER:
 					'Type your last name as it appears on your identity document',
+				LAST_NAME_BVN_PLACEHOLDER_BVN: 'Type your last name to verify',
 				FULL_NAME_LABEL: 'Your Full Name',
 				FULL_NAME_PLACEHOLDER:
 					'Type your full name as it appears on your identity document',
@@ -655,6 +658,16 @@ const nestedContent = {
 				CARD_NUMBER_LABEL: 'Bank Card Number',
 				CARD_NUMBER_PLACEHOLDER:
 					'Type the 16 digit number that is on the front of your bank card',
+				BVN: {
+					QUESTION: 'Are you Nigerian user?',
+					FIRST_NAME_LABEL: 'First Name',
+					FIRST_NAME_PLACEHOLDER: 'Type your first name to verify',
+					LAST_NAME_LABEL: 'Last Name',
+					LAST_NAME_PLACEHOLDER: 'Type your last name to verify',
+					BVN_LABEL: 'BVN Number',
+					BVN_PLACEHOLDER: 'Type your bank verification number',
+					NIGERIAN_ONLY_TEXT: 'For nigerian users only',
+				},
 			},
 		},
 		WARNING: {
