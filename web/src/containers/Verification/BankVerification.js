@@ -10,10 +10,15 @@ import {
 import renderFields from '../../components/Form/factoryFields';
 import { Button, IconTitle, HeaderSection } from '../../components';
 import STRINGS from '../../config/localizedStrings';
-import { verifyBankData, verifyBVN } from '../../actions/verificationActions';
+import {
+	verifyBankData,
+	verifyBVN,
+	verifyNIN,
+} from '../../actions/verificationActions';
 import { getErrorLocalized } from '../../utils/errors';
 import { isMobile } from 'react-device-detect';
 import { EditWrapper } from 'components';
+import { all } from 'bluebird';
 
 const FORM_NAME = 'BankVerification';
 
@@ -128,34 +133,44 @@ class BankVerification extends Component {
 
 	handleSubmit = async ({ ...rest }) => {
 		const { bvnVisible } = this.state;
+		let bvnSuccess = true,
+			ninSuccess = true;
 		if (bvnVisible) {
 			try {
 				const res = await verifyBVN(rest);
-				console.log({ res });
+				bvnSuccess = true;
 			} catch (err) {
 				console.log({ err });
-				const error = { _error: err.message };
-				if (err.response && err.response.data) {
-					error._error = err.response.data.error;
-				}
-				console.log({ error });
-				throw new SubmissionError(error);
+				bvnSuccess = false;
 			}
+			try {
+				const res = await verifyNIN(rest);
+				ninSuccess = true;
+			} catch (err) {
+				console.log({ err });
+				ninSuccess = false;
+			}
+			console.log({ bvnSuccess, ninSuccess });
 		}
-		// return verifyBankData(rest)
-		// 	.then(({ data }) => {
-		// 		this.props.moveToNextStep('bank', {
-		// 			bank_data: data,
-		// 		});
-		// 		this.props.setActivePageContent('email');
-		// 	})
-		// 	.catch((err) => {
-		// 		const error = { _error: err.message };
-		// 		if (err.response && err.response.data) {
-		// 			error._error = err.response.data.message;
-		// 		}
-		// 		throw new SubmissionError(error);
-		// 	});
+		if (bvnSuccess || ninSuccess) {
+			return verifyBankData(rest)
+				.then(({ data }) => {
+					this.props.moveToNextStep('bank', {
+						bank_data: data,
+					});
+					this.props.setActivePageContent('email');
+				})
+				.catch((err) => {
+					const error = { _error: err.message };
+					if (err.response && err.response.data) {
+						error._error = err.response.data.message;
+					}
+					throw new SubmissionError(error);
+				});
+		} else {
+			const error = { _error: 'BVN or NIN verification failed' };
+			throw new SubmissionError(error);
+		}
 	};
 
 	onGoBack = () => {

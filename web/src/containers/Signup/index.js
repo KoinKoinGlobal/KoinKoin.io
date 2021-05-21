@@ -131,7 +131,8 @@ class Signup extends Component {
 					});
 					return performSignupWithGoogle(values)
 						.then((res) => {
-							this.setState({ success: true });
+							// this.setState({ success: true });
+							this.props.router.push(`/login`);
 						})
 						.catch((error) => {
 							console.log({ error });
