@@ -664,7 +664,7 @@ const nestedContent = {
 					FIRST_NAME_PLACEHOLDER: 'Type your first name to verify',
 					LAST_NAME_LABEL: 'Last Name',
 					LAST_NAME_PLACEHOLDER: 'Type your last name to verify',
-					BVN_LABEL: 'BVN Number',
+					BVN_LABEL: 'BVN/NIN Number',
 					BVN_PLACEHOLDER: 'Type your bank verification number',
 					NIGERIAN_ONLY_TEXT: 'For nigerian users only',
 				},

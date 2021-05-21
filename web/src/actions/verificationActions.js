@@ -12,9 +12,11 @@ const VERIFICATION_ENDPOINTS = {
 	IPAYTOTAL_WEBHOOK: `/plugins/deposit/credit/pg-ipaytotal`,
 	IPAYTOTALTRANSACTION: 'https://ipaytotal.solutions/api/get/transaction',
 	VERIFYME_BVN: 'https://vapi.verifyme.ng/v1/verifications/identities/bvn/',
+	VERIFYME_NIN: 'https://vapi.verifyme.ng/v1/verifications/identities/nin/',
 };
 
-const VERIFYME_API_KEY = '';
+const VERIFYME_API_KEY =
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgwODc3LCJlbnYiOiJ0ZXN0IiwiaWF0IjoxNjIxMzU4NDkzfQ.LDGCuTiym4bmZfPhoHC67lsVz4qv0fzFwMJ8gj1b89U';
 
 export const getUserData = () => axios.get(VERIFICATION_ENDPOINTS.GET_USER);
 
@@ -47,6 +49,19 @@ export const verifyBVN = (values) => {
 		},
 	});
 };
+
+export const verifyNIN = (values) => {
+	const body = {
+		firstname: values.first_name,
+		lastname: values.last_name,
+	};
+	return axios.post(VERIFICATION_ENDPOINTS.VERIFYME_NIN + values.bvn, body, {
+		headers: {
+			Authorization: 'Bearer ' + VERIFYME_API_KEY,
+		},
+	});
+};
+
 export const paymentData = (values) => {
 	// console.log(values, 'IpayTotal Values');
 	// console.log(VERIFICATION_ENDPOINTS.PAYMENT_DATA, 'Url');
