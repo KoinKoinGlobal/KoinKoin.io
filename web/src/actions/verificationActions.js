@@ -16,7 +16,7 @@ const VERIFICATION_ENDPOINTS = {
 };
 
 const VERIFYME_API_KEY =
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgwODc3LCJlbnYiOiJ0ZXN0IiwiaWF0IjoxNjIxMzU4NDkzfQ.LDGCuTiym4bmZfPhoHC67lsVz4qv0fzFwMJ8gj1b89U';
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgwODc3LCJlbnYiOiJsaXZlIiwiaWF0IjoxNjIxMzU4NDkzfQ.NfdVeaFJFO-6XpzvINuS522itX0v6CeOJlcLFDGqV0Y';
 
 export const getUserData = () => axios.get(VERIFICATION_ENDPOINTS.GET_USER);
 
