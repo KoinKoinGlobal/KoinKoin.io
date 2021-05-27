@@ -34,6 +34,7 @@ import { getLastMonthVolume } from './components/utils';
 import { getUserReferralCount } from '../../actions/userAction';
 import withConfig from 'components/ConfigProvider/withConfig';
 import OrderForm from 'components/OrderForm';
+import { openContactForm } from 'actions/appActions';
 
 class Summary extends Component {
 	state = {
@@ -97,11 +98,8 @@ class Summary extends Component {
 	};
 
 	onUpgradeAccount = () => {
-		// this.props.openContactForm({ category: 'level' });
-		const { links = {} } = this.props.constants;
-		if (window && links && links.helpdesk) {
-			window.open(links.helpdesk, '_blank');
-		}
+		const { openContactForm } = this.props;
+		openContactForm();
 	};
 
 	setCurrentTradeAccount = (user) => {
@@ -335,6 +333,7 @@ const mapDispatchToProps = (dispatch) => ({
 	),
 	setNotification: bindActionCreators(setNotification, dispatch),
 	getUserReferralCount: bindActionCreators(getUserReferralCount, dispatch),
+	openContactForm: bindActionCreators(openContactForm, dispatch),
 });
 
 export default connect(

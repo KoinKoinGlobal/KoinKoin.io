@@ -6,12 +6,106 @@ $features-container--sm--width: 45rem;
 $card-text--margin: 0.75rem;
 $no-background--color: white;
 
-.layout-mobile {
-	&.home_container {
-		.app_container-content {
-			min-height: $max-content-height-home-mobile;
-			max-height: $max-content-height-home-mobile;
+.home-page__market-wrapper {
+	background-color: $landing_markets_table;
+
+	.table-row {
+		color: $colors-main-black !important;
+	}
+
+	thead {
+		color: $colors-main-black !important;
+		background-color: $auth-container-background;
+		tr {
+			height: 5rem !important;
 		}
+	}
+
+	th:nth-child(1) {
+		padding-left: 2rem !important;
+	}
+
+	td:nth-child(1) {
+		padding-left: 1rem !important;
+	}
+
+	th:last-child {
+		padding-right: 2rem !important;
+	}
+
+	td:last-child {
+		padding-right: 1rem !important;
+	}
+
+	.market-list__footer {
+		height: 4.5rem !important;
+	}
+
+	.market-list__block-table {
+		margin-bottom: 0 !important;
+	}
+
+	.price-diff-down {
+		color: $sell;
+		padding: 0 5px;
+		border-radius: 2px;
+		transition: all 0.2s ease-out 0s;
+	}
+
+	.glance-price-diff-down {
+		&.entering,
+		&.exiting {
+			color: $sell-bids-text;
+			background-color: $sell;
+
+			&.glance-trade-tab-price_diff_down:before {
+				border-color: $sell-bids-text;
+			}
+		}
+	}
+
+	.price-diff-up {
+		color: $buy;
+		padding: 0 5px;
+		border-radius: 2px;
+		transition: all 0.2s ease-out 0s;
+	}
+
+	.glance-price-diff-up {
+		&.entering,
+		&.exiting {
+			color: $buy-bids-text;
+			background-color: $buy;
+
+			&.glance-trade-tab-price_diff_up:before {
+				border-color: $buy-bids-text;
+			}
+		}
+	}
+
+	.trade-tab-price_diff_up {
+		margin: auto 0;
+	}
+
+	.trade-tab-price_diff_up:before {
+		@include css-triangle($buy, 'up', $trade-tab--arrow-size);
+		display: inline-block;
+		margin-bottom: 0.2rem;
+		margin-right: 0.5rem;
+		position: relative;
+		top: calc(50% - 0.6rem);
+	}
+
+	.trade-tab-price_diff_down {
+		margin: auto 0;
+	}
+
+	.trade-tab-price_diff_down:before {
+		@include css-triangle($sell, 'down', $trade-tab--arrow-size);
+		display: inline-block;
+		margin-right: 0.5rem;
+		position: relative;
+		top: calc(50% - 0.6rem);
 	}
 }
 
@@ -271,6 +365,19 @@ $no-background--color: white;
 			// }
 		}
 	}
+	.live-markets_header {
+		font-size: $font-size-subhead3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 1.5rem;
+		color: $colors-main-black;
+		font-weight: bolder;
+	}
+
+	.buttons-section-header {
+		margin: 0 0.5rem;
+	}
 
 	.btn-open-trading-account {
 		background-color: rgb(0, 120, 255);
@@ -359,6 +466,12 @@ $no-background--color: white;
 		.features-container {
 			.features-card_container {
 				max-width: $features-container--sm--width;
+			}
+		}
+		.buttons-section,
+		.buttons-section-header {
+			.holla-button {
+				font-size: 1.2rem !important;
 			}
 		}
 	}

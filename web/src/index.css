@@ -317,6 +317,9 @@ table th {
 .no-border {
   border: none !important; }
 
+.flex-direction-column {
+  flex-direction: column !important; }
+
 .app_container {
   min-height: 100vh;
   background-color: var(--base_background);
@@ -445,7 +448,7 @@ table th {
 
 @media (min-width: 1920px) {
   .font-small,
-  .exir-button,
+  .holla-button,
   .field-wrapper,
   .action_notification-text,
   .wallet-assets_block-table,
@@ -481,7 +484,7 @@ table th {
 
 @media screen and (max-width: 1096px) {
   .font-small,
-  .exir-button,
+  .holla-button,
   .field-wrapper,
   .action_notification-text,
   .wallet-assets_block-table,
@@ -619,12 +622,12 @@ table th {
       .auth-wrapper .icon_title-wrapper .icon_title-svg svg {
         width: 6rem;
         height: 6rem; }
-    .auth-wrapper .icon_title-wrapper.exir-logo .icon_title-svg {
+    .auth-wrapper .icon_title-wrapper.holla-logo .icon_title-svg {
       height: inherit; }
-      .auth-wrapper .icon_title-wrapper.exir-logo .icon_title-svg svg {
+      .auth-wrapper .icon_title-wrapper.holla-logo .icon_title-svg svg {
         width: inherit;
         height: 4rem; }
-  .auth-wrapper .exir-button {
+  .auth-wrapper .holla-button {
     margin-top: 1rem; }
   .auth-wrapper .link_wrapper {
     margin: 1.5rem 0 0; }
@@ -641,14 +644,14 @@ table th {
       margin-top: 1rem; }
       .auth-wrapper .auth-container .auth_form-wrapper .field-wrapper {
         margin: 0.5rem 0; }
-    .auth-wrapper .auth-container .exir-button {
+    .auth-wrapper .auth-container .holla-button {
       margin-top: 0.5rem; }
   .auth-wrapper .link_wrapper {
     margin-top: 1rem; }
   .auth-wrapper .icon_title-wrapper .icon_title-svg svg {
     width: 5rem;
     height: 5rem; }
-  .auth-wrapper .icon_title-wrapper.exir-logo .icon_title-svg svg {
+  .auth-wrapper .icon_title-wrapper.holla-logo .icon_title-svg svg {
     height: 3rem; }
   .auth-wrapper .icon_title-wrapper .icon_title-text {
     margin: 0.8rem auto; }
@@ -1540,7 +1543,7 @@ ul li:hover a span {
 .layout-mobile .currency-list-container .balance-small {
   font-size: 1.5rem; }
 
-.layout-mobile .currency-list-container .button-container .exir-button {
+.layout-mobile .currency-list-container .button-container .holla-button {
   font-size: 13px !important; }
 
 .layout-mobile .wallet-container .action_notification-wrapper .action_notification-text {
@@ -1603,7 +1606,7 @@ ul li:hover a span {
     display: flex;
     margin-left: 5px; }
     .wallet-container .paper-clip-icon .action_notification-svg svg {
-      width: 0.8rem  !important;
+      width: 0.8rem !important;
       height: 0.8rem !important; }
   .wallet-container .wallet-buttons_action {
     margin: 2.5rem 0 3.75rem; }
@@ -1785,7 +1788,7 @@ ul li:hover a span {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .withdrawal-container .withdraw-form-wrapper .btn-wrapper .exir-button {
+  .withdrawal-container .withdraw-form-wrapper .btn-wrapper .holla-button {
     width: 300px; }
 
 .layout-mobile .review-wrapper {
@@ -1832,7 +1835,7 @@ ul li:hover a span {
 .layout-mobile .presentation_container .inner_container .action_notification-wrapper .action_notification-text {
   font-size: 1.2rem; }
 
-.layout-mobile .presentation_container .inner_container .exir-button {
+.layout-mobile .presentation_container .inner_container .holla-button {
   font-size: 13px !important; }
 
 .layout-mobile .review_email-wrapper {
@@ -1852,7 +1855,7 @@ ul li:hover a span {
     font-size: 11px; }
   .withdrawal-container .withdraw-form-wrapper .withdraw-form .field-wrapper .input-box-field .input_field-input::placeholder {
     font-size: 11px; }
-  .withdrawal-container .withdraw-form-wrapper .btn-wrapper .exir-button {
+  .withdrawal-container .withdraw-form-wrapper .btn-wrapper .holla-button {
     width: 200px; } }
 
 .extra_information-wrapper {
@@ -1888,8 +1891,9 @@ ul li:hover a span {
       position: relative;
       width: 0;
       height: 0;
-      border-left: 0.5rem solid transparent;
-      border-right: 0.5rem solid transparent;
+      border-top: none !important;
+      border-left: 0.5rem solid transparent !important;
+      border-right: 0.5rem solid transparent !important;
       border-bottom: 0.5rem solid var(--labels_important-active-labels-text-graphics);
       margin-bottom: 0rem;
       border-bottom: 0.75rem solid var(--labels_important-active-labels-text-graphics); }
@@ -2190,6 +2194,8 @@ ul li:hover a span {
     flex: 0;
     min-width: 23rem;
     max-width: 23rem; }
+    .trade-container .trade-col_side_wrapper .trade_block-wrapper {
+      max-height: calc(49vh + 5rem) !important; }
     .trade-container .trade-col_side_wrapper > div {
       flex: 1; }
   .trade-container .trade-col_action_wrapper {
@@ -2322,8 +2328,12 @@ ul li:hover a span {
   .layout-mobile .trade_history-wrapper .display_table-wrapper .display_table-body {
     font-size: 13px; }
 
+.trade_block-column-wrapper .trade_block-wrapper {
+  max-height: 23rem; }
+
 .trade_block-wrapper {
   padding: 1rem;
+  max-height: 50rem;
   margin: 6px 3px 3px 3px;
   background-color: var(--base_wallet-sidebar-and-popup); }
   .trade_block-wrapper .trade_block-title {
@@ -2402,6 +2412,10 @@ ul li:hover a span {
     background-image: linear-gradient(var(--calculated_trading_buying-orderbook-bar), var(--calculated_trading_buying-orderbook-bar)); }
   .trade_history-wrapper .display_table-wrapper .display_table-body .display_table-cell .fill-sell {
     background-image: linear-gradient(var(--calculated_trading_selling-orderbook-bar), var(--calculated_trading_selling-orderbook-bar)); }
+
+@media screen and (max-width: 1060px) {
+  .trade_block-column-wrapper .trade_block-wrapper {
+    max-height: 20rem; } }
 
 .trade_order_entry-wrapper.order_side-selector-sell {
   flex: 1;
@@ -2576,7 +2590,7 @@ ul li:hover a span {
 .layout-mobile .trade_order_entry-review > div {
   font-size: 11px !important; }
 
-.layout-mobile .exir-button {
+.layout-mobile .holla-button {
   font-size: 13px !important; }
 
 .layout-mobile .trade_orderbook-wrapper .trade_asks-limit_bar .orderbook-limit_bar-wrapper .orderbook-limit_bar-text {
@@ -2980,7 +2994,7 @@ ul li:hover a span {
     color: var(--labels_secondary-inactive-label-text-graphics); }
   .verification_container .verification-buttons-wrapper {
     width: 100%; }
-    .verification_container .verification-buttons-wrapper .exir-button {
+    .verification_container .verification-buttons-wrapper .holla-button {
       width: 300px; }
   .verification_container .warning_text {
     margin: 1rem 0;
@@ -3005,7 +3019,7 @@ ul li:hover a span {
       display: flex;
       justify-content: center;
       align-items: center; }
-      .verification_container .inner-content .btn-wrapper .exir-verification-button {
+      .verification_container .inner-content .btn-wrapper .holla-verification-button {
         position: absolute;
         top: 60px;
         width: 300px; }
@@ -3048,7 +3062,7 @@ ul li:hover a span {
   width: 100%;
   font-size: 13px !important; }
 
-.layout-mobile .verification_container .exir-verification-button {
+.layout-mobile .verification_container .holla-verification-button {
   font-size: 13px !important;
   position: unset !important;
   top: 0 !important;
@@ -3073,7 +3087,7 @@ ul li:hover a span {
 .layout-mobile .verification_container .input-box-field .input_field-input::placeholder {
   font-size: 10px; }
 
-.layout-mobile .verification_container .verification-buttons-wrapper .exir-button {
+.layout-mobile .verification_container .verification-buttons-wrapper .holla-button {
   width: 100% !important;
   flex: 1; }
 
@@ -3116,7 +3130,7 @@ ul li:hover a span {
 @media (max-width: 1060px) {
   .verification_container .inner-content .custom-tab-wrapper {
     overflow-x: auto; }
-  .verification_container .verification-buttons-wrapper .exir-button {
+  .verification_container .verification-buttons-wrapper .holla-button {
     width: 80%; }
   .verification_container .verification_content-form-wrapper .verification-form-panel .field-wrapper .field-label {
     font-size: 11px; }
@@ -3442,43 +3456,32 @@ ul li:hover a span {
     padding: 0 5px;
     border-radius: 2px;
     transition: all 0.2s ease-out 0s; }
-    .summary-container .price-diff-down.entering, .summary-container .price-diff-down.exiting {
-      color: var(--calculated_trading_selling-related-text);
-      background-color: var(--trading_selling-related-elements); }
+  .summary-container .glance-price-diff-down.entering, .summary-container .glance-price-diff-down.exiting {
+    color: var(--calculated_trading_selling-related-text);
+    background-color: var(--trading_selling-related-elements); }
+    .summary-container .glance-price-diff-down.entering.glance-trade-tab-price_diff_down:before, .summary-container .glance-price-diff-down.exiting.glance-trade-tab-price_diff_down:before {
+      border-color: var(--calculated_trading_selling-related-text); }
   .summary-container .price-diff-up {
     color: var(--trading_buying-related-elements);
     padding: 0 5px;
     border-radius: 2px;
     transition: all 0.2s ease-out 0s; }
-    .summary-container .price-diff-up.entering, .summary-container .price-diff-up.exiting {
-      color: var(--calculated_trading_buying-related-text);
-      background-color: var(--trading_buying-related-elements); }
+  .summary-container .glance-price-diff-up.entering, .summary-container .glance-price-diff-up.exiting {
+    color: var(--calculated_trading_buying-related-text);
+    background-color: var(--trading_buying-related-elements); }
+    .summary-container .glance-price-diff-up.entering.glance-trade-tab-price_diff_up:before, .summary-container .glance-price-diff-up.exiting.glance-trade-tab-price_diff_up:before {
+      border-color: var(--calculated_trading_buying-related-text); }
   .summary-container .trade-tab-price_diff_up {
     margin: auto 0; }
-  .summary-container .entering.trade-tab-price_diff_up:before,
-  .summary-container .exiting.trade-tab-price_diff_up:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
-    border-bottom: 0.4rem solid var(--calculated_trading_buying-related-text);
-    margin-bottom: 0rem;
-    display: inline-block;
-    margin-bottom: 0.2rem;
-    margin-right: 0.5rem;
-    position: relative;
-    top: calc(50% - 0.6rem); }
   .summary-container .trade-tab-price_diff_up:before {
     content: "";
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-top: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-bottom: 0.4rem solid var(--trading_buying-related-elements);
     margin-bottom: 0rem;
     display: inline-block;
@@ -3488,29 +3491,15 @@ ul li:hover a span {
     top: calc(50% - 0.6rem); }
   .summary-container .trade-tab-price_diff_down {
     margin: auto 0; }
-  .summary-container .entering.trade-tab-price_diff_down:before,
-  .summary-container .exiting.trade-tab-price_diff_down:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
-    border-top: 0.4rem solid var(--calculated_trading_selling-related-text);
-    margin-top: 0rem;
-    display: inline-block;
-    margin-right: 0.5rem;
-    position: relative;
-    top: calc(50% - 0.6rem); }
   .summary-container .trade-tab-price_diff_down:before {
     content: "";
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-bottom: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-top: 0.4rem solid var(--trading_selling-related-elements);
     margin-top: 0rem;
     display: inline-block;
@@ -3537,6 +3526,8 @@ ul li:hover a span {
     font-weight: bold; }
   .fee-limits-wrapper .content-txt {
     font-size: 1rem; }
+    .fee-limits-wrapper .content-txt .fee-reduction-container {
+      border: 1px solid var(--calculated_secondary-border); }
   .fee-limits-wrapper .content-title {
     font-size: 1.1rem;
     font-weight: bold;
@@ -3607,8 +3598,9 @@ ul li:hover a span {
   position: absolute;
   width: 0;
   height: 0;
-  border-left: 0.4rem solid transparent;
-  border-right: 0.4rem solid transparent;
+  border-top: none !important;
+  border-left: 0.4rem solid transparent !important;
+  border-right: 0.4rem solid transparent !important;
   border-bottom: 0.4rem solid var(--trading_buying-related-elements);
   margin-bottom: 0rem;
   display: inline-block;
@@ -3626,8 +3618,9 @@ ul li:hover a span {
   position: absolute;
   width: 0;
   height: 0;
-  border-left: 0.4rem solid transparent;
-  border-right: 0.4rem solid transparent;
+  border-bottom: none !important;
+  border-left: 0.4rem solid transparent !important;
+  border-right: 0.4rem solid transparent !important;
   border-top: 0.4rem solid var(--trading_selling-related-elements);
   margin-top: 0rem;
   display: inline-block;
@@ -3825,6 +3818,9 @@ ul li:hover a span {
     max-width: 12rem !important;
     z-index: 1; }
 
+.layout-mobile .trade_tabs-container .sticky-col {
+  background-color: var(--base_background) !important; }
+
 .trade_tabs-container {
   color: var(--labels_secondary-inactive-label-text-graphics);
   height: inherit;
@@ -3918,43 +3914,32 @@ ul li:hover a span {
     padding: 0 5px;
     border-radius: 2px;
     transition: all 0.2s ease-out 0s; }
-    .trade_tabs-container .price-diff-down.entering, .trade_tabs-container .price-diff-down.exiting {
-      color: var(--calculated_trading_selling-related-text);
-      background-color: var(--trading_selling-related-elements); }
+  .trade_tabs-container .glance-price-diff-down.entering, .trade_tabs-container .glance-price-diff-down.exiting {
+    color: var(--calculated_trading_selling-related-text);
+    background-color: var(--trading_selling-related-elements); }
+    .trade_tabs-container .glance-price-diff-down.entering.glance-trade-tab-price_diff_down:before, .trade_tabs-container .glance-price-diff-down.exiting.glance-trade-tab-price_diff_down:before {
+      border-color: var(--calculated_trading_selling-related-text); }
   .trade_tabs-container .price-diff-up {
     color: var(--trading_buying-related-elements);
     padding: 0 5px;
     border-radius: 2px;
     transition: all 0.2s ease-out 0s; }
-    .trade_tabs-container .price-diff-up.entering, .trade_tabs-container .price-diff-up.exiting {
-      color: var(--calculated_trading_buying-related-text);
-      background-color: var(--trading_buying-related-elements); }
+  .trade_tabs-container .glance-price-diff-up.entering, .trade_tabs-container .glance-price-diff-up.exiting {
+    color: var(--calculated_trading_buying-related-text);
+    background-color: var(--trading_buying-related-elements); }
+    .trade_tabs-container .glance-price-diff-up.entering.glance-trade-tab-price_diff_up:before, .trade_tabs-container .glance-price-diff-up.exiting.glance-trade-tab-price_diff_up:before {
+      border-color: var(--calculated_trading_buying-related-text); }
   .trade_tabs-container .trade-tab-price_diff_up {
     margin: auto 0; }
-  .trade_tabs-container .entering.trade-tab-price_diff_up:before,
-  .trade_tabs-container .exiting.trade-tab-price_diff_up:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
-    border-bottom: 0.4rem solid var(--calculated_trading_buying-related-text);
-    margin-bottom: 0rem;
-    display: inline-block;
-    margin-bottom: 0.2rem;
-    margin-right: 0.5rem;
-    position: relative;
-    top: calc(50% - 0.6rem); }
   .trade_tabs-container .trade-tab-price_diff_up:before {
     content: "";
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-top: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-bottom: 0.4rem solid var(--trading_buying-related-elements);
     margin-bottom: 0rem;
     display: inline-block;
@@ -3964,29 +3949,15 @@ ul li:hover a span {
     top: calc(50% - 0.6rem); }
   .trade_tabs-container .trade-tab-price_diff_down {
     margin: auto 0; }
-  .trade_tabs-container .entering.trade-tab-price_diff_down:before,
-  .trade_tabs-container .exiting.trade-tab-price_diff_down:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
-    border-top: 0.4rem solid var(--calculated_trading_selling-related-text);
-    margin-top: 0rem;
-    display: inline-block;
-    margin-right: 0.5rem;
-    position: relative;
-    top: calc(50% - 0.6rem); }
   .trade_tabs-container .trade-tab-price_diff_down:before {
     content: "";
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-bottom: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-top: 0.4rem solid var(--trading_selling-related-elements);
     margin-top: 0rem;
     display: inline-block;
@@ -4142,7 +4113,7 @@ ul li:hover a span {
       font-size: 15px;
       margin: 0; }
 
-.settings_container .settings-form-wrapper .exir-button {
+.settings_container .settings-form-wrapper .holla-button {
   width: 300px; }
 
 .layout-mobile .portfolio-wrapper {
@@ -4273,7 +4244,7 @@ ul li:hover a span {
   .layout-mobile.home_container-mobile .post-wrapper .trade_announcement {
     font-size: 1.5rem; }
 
-.layout-mobile.home_container-mobile .exir-button {
+.layout-mobile.home_container-mobile .holla-button {
   font-size: 1.2rem; }
 
 .image-upload {
@@ -5386,8 +5357,9 @@ ul li:hover a span {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-top: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-bottom: 0.4rem solid var(--trading_buying-related-elements);
     margin-bottom: 0rem;
     display: inline-block;
@@ -5403,8 +5375,9 @@ ul li:hover a span {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-bottom: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-top: 0.4rem solid var(--trading_selling-related-elements);
     margin-top: 0rem;
     display: inline-block;
@@ -5781,8 +5754,9 @@ ul li:hover a span {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-top: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-bottom: 0.4rem solid var(--trading_buying-related-elements);
     margin-bottom: 0rem;
     display: inline-block;
@@ -5798,8 +5772,9 @@ ul li:hover a span {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0.4rem solid transparent;
-    border-right: 0.4rem solid transparent;
+    border-bottom: none !important;
+    border-left: 0.4rem solid transparent !important;
+    border-right: 0.4rem solid transparent !important;
     border-top: 0.4rem solid var(--trading_selling-related-elements);
     margin-top: 0rem;
     display: inline-block;
@@ -6055,7 +6030,7 @@ ul li:hover a span {
     width: 1rem; }
   .app-bar-add-tab-menu .app-bar-add-tab-icons {
     width: 1.2rem;
-    margin: 0.3rem 0.3rem 0 0.3rem; }
+    margin: 0.6rem 0.3rem 0 0.3rem; }
   .app-bar-add-tab-menu .app-bar-tab-setting svg .btc0,
   .app-bar-add-tab-menu .app-bar-tab-setting svg .btc1,
   .app-bar-add-tab-menu .app-bar-tab-setting svg .eth0,
@@ -6526,8 +6501,9 @@ ul li:hover a span {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 0.3rem solid transparent;
-  border-bottom: 0.3rem solid transparent;
+  border-right: none !important;
+  border-top: 0.3rem solid transparent !important;
+  border-bottom: 0.3rem solid transparent !important;
   border-left: 0.3rem solid var(--labels_secondary-inactive-label-text-graphics);
   margin-right: -0.3rem;
   right: -0.3rem;
@@ -6548,8 +6524,9 @@ ul li:hover a span {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 0.3rem solid transparent;
-  border-bottom: 0.3rem solid transparent;
+  border-left: none !important;
+  border-top: 0.3rem solid transparent !important;
+  border-bottom: 0.3rem solid transparent !important;
   border-right: 0.3rem solid var(--labels_secondary-inactive-label-text-graphics);
   margin-left: -0.3rem;
   left: -0.3rem;
@@ -6766,7 +6743,7 @@ ul li:hover a span {
     .notification-wrapper .new-order-notification .notification-content-title,
     .notification-wrapper .order-notification .notification-content-title {
       margin: 1rem 0; }
-  .notification-wrapper .notification-buttons-wrapper .exir-button {
+  .notification-wrapper .notification-buttons-wrapper .holla-button {
     font-size: 1.1rem;
     font-weight: bold; }
   .notification-wrapper .with_price-block_amount {
@@ -7427,18 +7404,18 @@ ul li:hover a span {
   color: var(--labels_important-active-labels-text-graphics);
   font-weight: bold; }
 
-.exir-button {
+.holla-button {
   width: 100%;
   font-size: 1rem;
   padding: 0 4px;
   background-color: var(--specials_buttons-links-and-highlights) !important; }
-  .exir-button.button-success {
+  .holla-button.button-success {
     background-color: var(--specials_checks-okay-done) !important; }
-  .exir-button.button-fail {
+  .holla-button.button-fail {
     background-color: var(--specials_notifications-alerts-warnings) !important; }
-  .exir-button.disabled {
+  .holla-button.disabled {
     background-color: var(--labels_inactive-button) !important; }
-  .exir-button:active, .exir-button:focus {
+  .holla-button:active, .holla-button:focus {
     outline: none;
     border: none; }
 
@@ -7469,10 +7446,10 @@ ul li:hover a span {
 .buttons-row > *:not(:last-child) {
   margin-right: 1rem; }
 
-.direction_ltr .exir-button-font {
+.direction_ltr .holla-button-font {
   font-family: "Raleway"; }
 
-.direction_rtl .exir-button-font {
+.direction_rtl .holla-button-font {
   font-family: inherit !important; }
 
 .ReactModal__Overlay {
@@ -7591,7 +7568,7 @@ ul li:hover a span {
 .accordion_section {
   position: relative; }
 
-.layout-mobile .exir-button-font {
+.layout-mobile .holla-button-font {
   font-size: 1.2rem; }
 
 .layout-mobile .accordion_wrapper .accordion_section .accordion_section_title {
@@ -9042,14 +9019,14 @@ foreignObject {
 .layout-mobile .countdown-wrapper {
   margin: 38% auto; }
 
-.light-theme.exir-tooltip {
+.light-theme.holla-tooltip {
   opacity: 1 !important;
   background-color: transparent !important; }
-  .light-theme.exir-tooltip .rc-tooltip-inner {
+  .light-theme.holla-tooltip .rc-tooltip-inner {
     color: var(--labels_important-active-labels-text-graphics) !important;
     background-color: var(--base_background);
     border-color: var(--labels_important-active-labels-text-graphics) !important; }
-  .light-theme.exir-tooltip.rc-tooltip-placement-bottom .rc-tooltip-arrow, .light-theme.exir-tooltip.rc-tooltip-placement-bottomLeft .rc-tooltip-arrow, .light-theme.exir-tooltip.rc-tooltip-placement-bottomRight .rc-tooltip-arrow {
+  .light-theme.holla-tooltip.rc-tooltip-placement-bottom .rc-tooltip-arrow, .light-theme.holla-tooltip.rc-tooltip-placement-bottomLeft .rc-tooltip-arrow, .light-theme.holla-tooltip.rc-tooltip-placement-bottomRight .rc-tooltip-arrow {
     border-bottom-color: var(--labels_important-active-labels-text-graphics) !important; }
 
 .currency-list {
@@ -9148,8 +9125,9 @@ foreignObject {
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 1rem solid transparent;
-      border-right: 1rem solid transparent;
+      border-top: none !important;
+      border-left: 1rem solid transparent !important;
+      border-right: 1rem solid transparent !important;
       border-bottom: 1rem solid var(--base_background);
       margin-bottom: 0rem; }
   .mobile-bar-tab .bartab-text-wrapper {
@@ -9486,8 +9464,9 @@ foreignObject {
   position: relative;
   width: 0;
   height: 0;
-  border-top: 0.7rem solid transparent;
-  border-bottom: 0.7rem solid transparent;
+  border-left: none !important;
+  border-top: 0.7rem solid transparent !important;
+  border-bottom: 0.7rem solid transparent !important;
   border-right: 0.7rem solid var(--dark-accordion-arrow-active);
   margin-left: -0.7rem;
   right: -1rem; }
@@ -10702,7 +10681,9 @@ svg .check-order,
 svg .otp-inactive,
 svg .otp-active,
 svg .unknown-error-icon,
-svg .cancel-all {
+svg .cancel-all,
+svg .fiat-page-under-construction,
+svg .generate-reference-number {
   fill: var(--labels_important-active-labels-text-graphics); }
 
 svg .trade-history-2,
