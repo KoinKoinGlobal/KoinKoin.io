@@ -38,7 +38,11 @@ import {
 	getFontClassForLanguage,
 } from '../../utils/string';
 import { ContactForm } from '../';
-import { NOTIFICATIONS } from '../../actions/appActions';
+import {
+	NOTIFICATIONS,
+	requestPlugin,
+	openContactForm,
+} from 'actions/appActions';
 import { setMe } from '../../actions/userAction';
 import { getThemeClass } from '../../utils/theme';
 import BankVerificationHome from './BankVerificationHome';
@@ -63,12 +67,14 @@ class Verification extends Component {
 		user: {},
 		activePage: 'email',
 		showVerificationSentModal: false,
+		bankMeta: {},
 	};
 
 	componentDidMount() {
 		if (this.props.user) {
 			this.setUserData(this.props.user);
 		}
+		this.getBankData();
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
@@ -99,6 +105,18 @@ class Verification extends Component {
 			);
 		}
 	}
+
+	getBankData = () => {
+		requestPlugin({ name: 'bank' })
+			.then((res) => {
+				if (res.data) {
+					this.setState({ bankMeta: res.data });
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	setUserData = (user = {}) => {
 		const calculatedData = this.calculateActiveTab(user);
@@ -206,9 +224,9 @@ class Verification extends Component {
 			} else if (bank_account.filter((data) => data.status === 2).length) {
 				bank_status = 2;
 			}
-			if (id_data.status !== 3) {
-				bank_status = 1;
-			}
+			// if (id_data.status !== 3) {
+			// 	bank_status = 1;
+			// }
 			if (
 				bank_account.length ===
 				bank_account.filter((data) => data.status === 0).length
@@ -433,8 +451,8 @@ class Verification extends Component {
 	renderContent = (tabs, activeTab) => tabs[activeTab].content || <div>c</div>;
 
 	renderPageContent = (tabProps) => {
-		const { activePage, activeTab, tabs, user } = this.state;
-		const { activeLanguage, icons: ICONS } = this.props;
+		const { activePage, activeTab, tabs, user, bankMeta } = this.state;
+		const { activeLanguage, icons: ICONS, openContactForm } = this.props;
 		switch (activePage) {
 			case 'email':
 				return (
@@ -442,7 +460,7 @@ class Verification extends Component {
 						activeTab={activeTab}
 						tabProps={tabProps}
 						tabs={tabs}
-						openContactForm={this.openContactForm}
+						openContactForm={openContactForm}
 						setActiveTab={this.setActiveTab}
 						renderContent={this.renderContent}
 					/>
@@ -453,7 +471,7 @@ class Verification extends Component {
 						id="REMOTE_COMPONENT__BANK_VERIFICATION"
 						iconId="VERIFICATION_BANK_NEW"
 						icon={ICONS['VERIFICATION_BANK_NEW']}
-						openContactForm={this.openContactForm}
+						openContactForm={openContactForm}
 						setActivePageContent={this.setActivePageContent}
 						handleBack={this.handleBack}
 						moveToNextStep={this.goNextTab}
@@ -461,11 +479,12 @@ class Verification extends Component {
 						getErrorLocalized={getErrorLocalized}
 						maxLength={maxLength}
 						required={required}
+						bankMeta={bankMeta}
 					>
 						<BankVerification
 							iconId="VERIFICATION_BANK_NEW"
 							icon={ICONS['VERIFICATION_BANK_NEW']}
-							openContactForm={this.openContactForm}
+							openContactForm={openContactForm}
 							setActivePageContent={this.setActivePageContent}
 							handleBack={this.handleBack}
 							moveToNextStep={this.goNextTab}
@@ -480,7 +499,7 @@ class Verification extends Component {
 						moveToNextStep={this.goNextTab}
 						activeLanguage={activeLanguage}
 						initialValues={identityInitialValues(user)}
-						openContactForm={this.openContactForm}
+						openContactForm={openContactForm}
 						setActivePageContent={this.setActivePageContent}
 						handleBack={this.handleBack}
 					/>
@@ -491,7 +510,7 @@ class Verification extends Component {
 						initialValues={mobileInitialValues(user.address)}
 						moveToNextStep={this.goNextTab}
 						activeLanguage={activeLanguage}
-						openContactForm={this.openContactForm}
+						openContactForm={openContactForm}
 						handleBack={this.handleBack}
 						setActivePageContent={this.setActivePageContent}
 					/>
@@ -505,7 +524,7 @@ class Verification extends Component {
 						moveToNextStep={this.goNextTab}
 						skip={this.skip}
 						activeLanguage={activeLanguage}
-						openContactForm={this.openContactForm}
+						openContactForm={openContactForm}
 						handleBack={this.handleBack}
 						setActivePageContent={this.setActivePageContent}
 					/>
@@ -521,13 +540,6 @@ class Verification extends Component {
 		this.setState({ dialogIsOpen: true, dialogType: 'skip' });
 	};
 
-	openContactForm = () => {
-		const { links = {} } = this.props.constants;
-		if (window && links && links.helpdesk) {
-			window.open(links.helpdesk, '_blank');
-		}
-		// this.setState({ dialogIsOpen: true, dialogType: 'contact' });
-	};
 	renderDialogContent = (type) => {
 		switch (type) {
 			case 'skip':
@@ -640,6 +652,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	setMe: bindActionCreators(setMe, dispatch),
 	logout: bindActionCreators(logout, dispatch),
+	openContactForm: bindActionCreators(openContactForm, dispatch),
 });
 
 export default connect(

@@ -24,6 +24,7 @@ import { getUserByEmail } from '../../actions/userAction';
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-135625192-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
+import { openContactForm } from 'actions/appActions';
 
 let errorTimeOut = null;
 
@@ -266,6 +267,7 @@ class Signup extends Component {
 			activeTheme,
 			constants = {},
 			icons: ICONS,
+			openContactForm,
 		} = this.props;
 		const {
 			success,
@@ -309,7 +311,7 @@ class Signup extends Component {
 						text={STRINGS['SIGNUP_TEXT']}
 						textType="title"
 						underline={true}
-						className="w-100 exir-logo"
+						className="w-100 holla-logo"
 						imageWrapperClassName="auth_logo-wrapper"
 						subtitle={STRINGS.formatString(
 							STRINGS['SIGN_UP.SIGNUP_TO'],
@@ -318,7 +320,7 @@ class Signup extends Component {
 						actionProps={{
 							text: STRINGS['HELP_TEXT'],
 							iconPath: ICONS['BLUE_QUESTION'],
-							onClick: this.onOpenDialog,
+							onClick: openContactForm,
 							useSvg: true,
 							showActionText: true,
 						}}
@@ -381,9 +383,7 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	change: bindActionCreators(change, dispatch),
-	remoteSubmit: () => {
-		dispatch(submit(FORM_NAME));
-	},
+	openContactForm: bindActionCreators(openContactForm, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withConfig(Signup));
