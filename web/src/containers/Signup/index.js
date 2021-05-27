@@ -20,11 +20,11 @@ import withConfig from 'components/ConfigProvider/withConfig';
 import QuestionaireContent from './QuestionaireContent';
 
 import { getUserByEmail } from '../../actions/userAction';
+import { openContactForm } from 'actions/appActions';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-135625192-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
-import { openContactForm } from 'actions/appActions';
 
 let errorTimeOut = null;
 
