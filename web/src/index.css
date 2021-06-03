@@ -10769,7 +10769,8 @@ svg .otp-active,
 svg .unknown-error-icon,
 svg .cancel-all,
 svg .fiat-page-under-construction,
-svg .generate-reference-number {
+svg .generate-reference-number,
+svg .osko-logo {
   fill: var(--labels_important-active-labels-text-graphics); }
 
 svg .trade-history-2,
