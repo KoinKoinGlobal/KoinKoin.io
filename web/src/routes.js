@@ -76,6 +76,7 @@ import { checkUserSessionExpired } from './utils/utils';
 import { getExchangeInitialized, getSetupCompleted } from './utils/initialize';
 import FiatDeposit from 'containers/FiatDeposit';
 import FiatWithdraw from 'containers/FiatWithdraw';
+import PluginConfig from 'containers/Admin/PluginConfig';
 
 ReactGA.initialize('UA-154626247-1'); // Google analytics. Set your own Google Analytics values
 browserHistory.listen((location) => {
@@ -466,6 +467,11 @@ export const generateRoutes = (routes = []) => {
 					path="/admin/collateral"
 					name="Admin Collateral"
 					component={withAdminProps(MoveToDash, 'collateral')}
+				/>
+				<Route
+					path="/admin/plugin/adminView/:name"
+					name="Admin Announcement"
+					component={withAdminProps(PluginConfig, 'adminView')}
 				/>
 				{/* <Route
 				path="/admin/wallets"

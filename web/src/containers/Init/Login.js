@@ -36,7 +36,10 @@ const Login = (props) => {
 	const handleSubmit = (values) => {
 		if (values) {
 			const formProps = { ...values };
-			formProps.otp_code = formProps.otp_code.toString();
+			console.log({ formProps });
+			if (formProps.otp_code) {
+				formProps.otp_code = formProps.otp_code.toString();
+			}
 			performLogin(formProps)
 				.then((res) => {
 					if (isAdmin()) {
