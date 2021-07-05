@@ -14,6 +14,11 @@ const AddMetaForm = ({
 	isVisible,
 	resetForm,
 	dispatch,
+	isAddMeta,
+	pristine,
+	error,
+	valid,
+	submitting,
 }) => {
 	useEffect(() => {
 		if (!isVisible) {
@@ -23,7 +28,7 @@ const AddMetaForm = ({
 
 	return (
 		<form onSubmit={handleSubmit} className="modal-wrapper">
-			<div className="title">Add new meta</div>
+			<div className="title">{isAddMeta ? 'Add new meta' : 'Edit meta'}</div>
 			<div className="w-50">{renderFields(add_meta_field)}</div>
 			<div className="d-flex">
 				<Button
@@ -40,7 +45,7 @@ const AddMetaForm = ({
 					onClick={handleSubmit(onSubmit)}
 					className="green-btn"
 					block
-					disabled={btnDisable || metaType === ''}
+					disabled={btnDisable || pristine || submitting || !valid || error}
 				>
 					Confirm
 				</Button>

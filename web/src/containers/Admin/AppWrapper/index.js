@@ -65,6 +65,7 @@ class AppWrapper extends React.Component {
 			idleTimer: undefined,
 			setupCompleted: true,
 			myPlugins: [],
+			isConfigure: false,
 		};
 	}
 
@@ -116,6 +117,16 @@ class AppWrapper extends React.Component {
 			if (!this.state.publicSocket) {
 				this.initSocketConnections();
 			}
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		if (
+			JSON.stringify(prevProps.location) !==
+				JSON.stringify(this.props.location) &&
+			this.state.isConfigure
+		) {
+			this.setState({ isConfigure: false });
 		}
 	}
 
@@ -300,8 +311,13 @@ class AppWrapper extends React.Component {
 
 	getTitle = () => {
 		const { location = {}, router } = this.props;
-		if (location.pathname.includes('/admin/user')) {
+		if (location.pathname.includes('/admin/user') && !this.state.isConfigure) {
 			return 'Users';
+		} else if (
+			location.pathname.includes('/admin/user') &&
+			this.state.isConfigure
+		) {
+			return 'Configure Meta';
 		} else if (location.pathname.includes('/admin/general')) {
 			return 'General';
 		} else if (location.pathname.includes('/admin/financial')) {
@@ -424,6 +440,10 @@ class AppWrapper extends React.Component {
 			});
 	};
 
+	showConfigure = () => {
+		this.setState({ isConfigure: !this.state.isConfigure });
+	};
+
 	render() {
 		const { children, router, user } = this.props;
 		const logout = () => {
@@ -436,6 +456,7 @@ class AppWrapper extends React.Component {
 			appLoaded,
 			setupCompleted,
 			myPlugins,
+			isConfigure,
 		} = this.state;
 		let pathNames = PATHS;
 		myPlugins.forEach((data) => {
@@ -562,7 +583,10 @@ class AppWrapper extends React.Component {
 								<div className="admin-content-head">{this.getTitle()}</div>
 								<div className="content-wrapper admin-content-wrapper">
 									{appLoaded && this.isSocketDataReady() ? (
-										children
+										React.cloneElement(children, {
+											isConfigure: isConfigure,
+											showConfigure: this.showConfigure,
+										})
 									) : (
 										<Spin size="large" className="m-top" />
 									)}

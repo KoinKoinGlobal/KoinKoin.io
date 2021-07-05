@@ -36,7 +36,6 @@ const Login = (props) => {
 	const handleSubmit = (values) => {
 		if (values) {
 			const formProps = { ...values };
-			console.log({ formProps });
 			if (formProps.otp_code) {
 				formProps.otp_code = formProps.otp_code.toString();
 			}
