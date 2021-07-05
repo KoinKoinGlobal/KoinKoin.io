@@ -63,6 +63,11 @@ const renderContent = (selectedPlugin, setMetaData, metaData, restart) => {
 				if (fields.type === 'number') {
 					fieldData[key].validate = [validateNumber];
 				}
+				if (fields.type === 'date-time') {
+					fieldData[key].dateFormat = 'YYYY-MM-DD h:mm';
+					fieldData[key].showTime = true;
+					fieldData[key].clearIcon = null;
+				}
 				initialValues[key] = fields.value;
 			} else {
 				if (key.toLowerCase().includes('secret')) {

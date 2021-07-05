@@ -62,7 +62,30 @@ class UserBalance extends Component {
 			this.setState({ tableData });
 		}
 	}
-
+	renderAddress = ({ network, address, ...rest }) => {
+		const networks = network ? network.split(',') : [];
+		if (networks.length) {
+			return (
+				<div>
+					address
+					{networks.map((data, index) => {
+						return (
+							<div key={index}>
+								{data}:{' '}
+								{rest[`${data}_address`]
+									? rest[`${data}_address`]
+									: 'Not generated'}{' '}
+							</div>
+						);
+					})}
+				</div>
+			);
+		} else if (address) {
+			return <div>address: {address}</div>;
+		} else {
+			return <div>address: Not generated</div>;
+		}
+	};
 	getBalanceColumn = () => {
 		return [
 			{
@@ -78,33 +101,28 @@ class UserBalance extends Component {
 					);
 				},
 			},
-			{
-				title: 'Address',
-				key: 'address',
-				render: ({ network, address, ...rest }) => {
-					const networks = network ? network.split(',') : [];
-					if (networks.length) {
-						return (
-							<div>
-								{networks.map((data, index) => {
-									return (
-										<div key={index}>
-											{data}:{' '}
-											{rest[`${data}_address`]
-												? rest[`${data}_address`]
-												: 'Not generated'}{' '}
-										</div>
-									);
-								})}
-							</div>
-						);
-					} else if (address) {
-						return <div>{address}</div>;
-					} else {
-						return <div>Not generated</div>;
-					}
-				},
-			},
+			// {
+			// 	title: 'Address',
+			// 	key: 'address',
+			// 	render: ({ network, address, ...rest }) => {
+			// 		const networks = network ? network.split(',') : [];
+			// 		if (networks.length) {
+			// 			return (
+			// 				<div>
+			// 					{networks.map((data, index) => {
+			// 						return (
+			// 							<div key={index}>{data}: {rest[`${data}_address`] ? rest[`${data}_address`] : 'Not generated'} </div>
+			// 						)
+			// 					})}
+			// 				</div>
+			// 			)
+			// 		} else if (address) {
+			// 			return <div>{address}</div>
+			// 		} else {
+			// 			return <div>Not generated</div>
+			// 		}
+			// 	}
+			// },
 			{
 				title: 'Last generated',
 				dataIndex: 'updated_at',
@@ -193,6 +211,7 @@ class UserBalance extends Component {
 					rowKey={(data) => {
 						return data.id;
 					}}
+					expandedRowRender={this.renderAddress}
 					dataSource={tableData}
 				/>
 				<div className="user-donut-chart-wrapper">
